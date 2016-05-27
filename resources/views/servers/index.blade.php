@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 
-<form action="" method="GET" class="form-horizontal">
+<form action="{{ url('servers/lookup') }}" method="GET" class="form-horizontal">
  <div class="page-header">
       <h1>Search servers <small>Query your assets by attribute.</small></h1>
     </div>
@@ -15,15 +15,13 @@
            <div class="form-group">
  <label for="tag" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Asset Tag</label>
   <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
-   <input type="text" class="focus form-control" placeholder="Asset Tag" id="tag" name="tag" autocomplete="off">
+   <input type="text" class="focus form-control" placeholder="Asset Tag" id="tag" name="tag">
     <div class="input-group-addon">
      <span class="help-inline">
-      <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Unique identifier for asset"></i>
+      <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Unique identifier for asset"></i>
      </span>
     </div>
-
-            
-</div>
+  </div>
 </div>
 
 <div class="form-group">
@@ -44,7 +42,7 @@
 
 <div class="input-group-addon">
   <span class="help-inline">
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Asset Status (New, Incomplete, etc)"></i>
+    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Asset Status (New, Incomplete, etc)"></i>
   </span>
 </div>
 </div>
@@ -72,10 +70,7 @@
 
 <div class="input-group-addon">
   <span class="help-inline">
-    <a target="_blank" href="/help?t=default#assetState">
-      <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Asset state represents the current operational state of an asset (i.e. new, failed, starting, running)"></i>
-    </a>
-    
+      <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Asset state represents the current operational state of an asset (i.e. new, failed, starting, running)"></i>    
   </span>
 </div>
 </div>
@@ -87,36 +82,26 @@
 <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
               <select name="type" id="type" class="form-control">
                 <option value="" selected="selected"></option>
-                  <option value="CONFIGURATION">Configuration</option>
-                  <option value="DATA_CENTER">Data Center</option>
-                  <option value="POWER_CIRCUIT">Power Circuit</option>
-                  <option value="POWER_STRIP">Power Strip</option>
-                  <option value="RACK">Rack</option>
-                  <option value="ROUTER">Router</option>
-                  <option value="SERVER_CHASSIS">Server Chassis</option>
-                  <option value="SERVER_NODE">Server Node</option>
-                  <option value="SWITCH">Switch</option>
+                  <option value="SERVER_DEDICATED">Dedicated server</option>
+                  <option value="SERVER_VPS">Virtual server</option>
               </select>
 
 <div class="input-group-addon">
   <span class="help-inline">
-    
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Type of Asset (Service Chassis, Server Node, etc)"></i>
-    
-  </span>
+    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Type of Asset (Dedicated, Virtual server)"></i>
+   </span>
 </div>
             
 </div>
 </div>
           
-
 <div class="form-group">
 <label for="IP_ADDRESS" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">IP Address</label>
 <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
  <input type="text" id="IP_ADDRESS" name="IP_ADDRESS" placeholder="IP Address" class="form-control">
   <div class="input-group-addon">
    <span class="help-inline">
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="IP address of the asset. Prefix searches are also supported."></i>
+    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom"  data-container="body" title="IP address of the asset. Prefix searches are also supported."></i>
   </span>
 </div>
 </div>
@@ -141,14 +126,8 @@
            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
            <input type="text" id="createdBefore" name="createdBefore" placeholder="End" readonly class="form-control">
               </div>
-            
+     </div>
 </div>
-
-          
-</div>
-
-
-          
 
 <div class="form-group">
  <label  class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Updated Between</label>
@@ -178,7 +157,7 @@
        <input type="text" id="HOSTNAME" placeholder="Hostname" class="form-control" name="HOSTNAME">
         <div class="input-group-addon">
          <span class="help-inline">
-          <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Hostname of asset"></i>
+          <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Hostname of asset"></i>
          </span>
         </div>
       </div>
@@ -194,7 +173,7 @@
 
 <div class="input-group-addon">
   <span class="help-inline">
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Nodeclass of asset"></i>
+    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Nodeclass of asset"></i>
   </span>
 </div>
 </div>
@@ -211,7 +190,7 @@
  
  <div class="input-group-addon">
   <span class="help-inline">
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Groups related assets spanning multiple functional roles"></i>
+    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Groups related assets spanning multiple functional roles"></i>
   </span>
 </div>
              
@@ -230,27 +209,11 @@
 
 <div class="input-group-addon">
   <span class="help-inline">
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Primary functional role of asset"></i>
+    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Primary functional role of asset"></i>
   </span>
 </div>
               
 </div>
-</div>
-
-<div class="form-group">
- <label for="SECONDARY_ROLE" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Secondary Role</label>
-  <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
-   <select name="SECONDARY_ROLE" id="SECONDARY_ROLE" class="form-control">
-    <option value="" selected="selected"></option>
-    <option value="(none)">(None)</option>
-   </select>
-  <div class="input-group-addon">
-   <span class="help-inline">
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Secondary functional role of asset"></i>
-  </span>
-</div>
-</div>
-      
 </div>
 
 <div class="form-group">
@@ -259,7 +222,7 @@
    <input type="text" id="SERVICE_TAG" placeholder="Service Tag" class="form-control" name="SERVICE_TAG">
     <div class="input-group-addon">
      <span class="help-inline">
-      <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Vendor supplied service tag"></i>
+      <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Vendor supplied service tag"></i>
      </span>
     </div>
    </div>
@@ -271,12 +234,10 @@
   <input type="text" id="CHASSIS_TAG" placeholder="Chassis Tag" class="form-control" name="CHASSIS_TAG">
  <div class="input-group-addon">
   <span class="help-inline">
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Tag for asset chassis"></i>
+    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Tag for asset chassis"></i>
   </span>
  </div>
-</div>
-
-            
+</div>      
 </div>
             
 
@@ -287,7 +248,7 @@
   <div class="input-group-addon">
   <span class="help-inline">
     
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Position of asset in rack"></i>
+    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Position of asset in rack"></i>
     
   </span>
 </div>             
@@ -301,7 +262,7 @@
     <input type="text" id="BASE_PRODUCT" placeholder="Base Product" class="form-control" name="BASE_PRODUCT">
      <div class="input-group-addon">
       <span class="help-inline">
-       <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Formal product model designation"></i>
+       <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Formal product model designation"></i>
       </span>
      </div>
     </div>
@@ -317,36 +278,11 @@
 
   <div class="input-group-addon">
   <span class="help-inline">   
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Who made your spiffy computer?"></i>    
+    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Who made your spiffy computer?"></i>    
   </span>
  </div>
 </div>
 
-</div>
-
-<div class="form-group">
-<label for="POWER_PORT" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Power Port</label>
-<div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
-<input type="text" id="POWER_PORT" placeholder="Power Port" class="form-control" name="POWER_PORT">
-<div class="input-group-addon">
-  <span class="help-inline">
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Power port of asset"></i>
-  </span>
-</div>            
-</div>
-</div>
-
-
-<div class="form-group">
-<label for="SWITCH_PORT" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Switch Port</label>
-<div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">                
-<input type="text" id="SWITCH_PORT" placeholder="Switch Port" class="form-control" name="SWITCH_PORT">
-<div class="input-group-addon">
-  <span class="help-inline">
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Switch port that asset is connected to"></i>
-  </span>
-</div>              
-</div>
 </div>
 
 <div class="form-group">
@@ -355,7 +291,7 @@
    <input type="text" id="MAC_ADDRESS" placeholder="MAC Address" class="form-control" name="MAC_ADDRESS">
     <div class="input-group-addon">
      <span class="help-inline">   
-      <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="MAC Address of NIC"></i>
+      <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="MAC Address of NIC"></i>
      </span>
     </div>
    </div>
@@ -371,7 +307,7 @@
 
    <div class="input-group-addon">
     <span class="help-inline">
-     <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="CPU Speed in GHz"></i>
+     <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="CPU Speed in GHz"></i>
     </span>
    </div>
   </div>           
@@ -386,7 +322,7 @@
   </select>
   <div class="input-group-addon">
    <span class="help-inline">
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Total amount of available memory in bytes"></i>
+    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Total amount of available memory in bytes"></i>
    </span>
   </div>
   </div>
@@ -402,7 +338,7 @@
 
 <div class="input-group-addon">
   <span class="help-inline">
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Speed of nic, stored as bits per second"></i>
+    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Speed of nic, stored as bits per second"></i>
   </span>
 </div>
               
@@ -423,7 +359,7 @@
 
 <div class="input-group-addon">
   <span class="help-inline">    
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Inferred disk type: SCSI, IDE or FLASH"></i>    
+    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Inferred disk type: SCSI, IDE or FLASH"></i>    
   </span>
 </div>
 
@@ -441,7 +377,7 @@
 
 <div class="input-group-addon">
   <span class="help-inline">
-    <i class="glyphicon glyphicon-question-sign" data-rel="tooltip" title="Total amount of available storage"></i>
+    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Total amount of available storage"></i>
   </span>
 </div>             
 </div>
@@ -463,29 +399,5 @@
     </div>
     
 </form>
-
-<table class="table table-bordered table-hover">
-	 <thead>
-        <tr>
-          <th>Tag</th>
-          <th>Hostname</th>
-          <th>Status</th>
-          <th>State</th> 
-          <th>created</th> 
-          <th>updated</th>                     
-        </tr>
-      </thead>
-      <tbody>
-      	<tr>
-      	 <td><a href="#">General</a></td>
-      	 <td>local.idevelopment.be</td>
-      	 <td>Running</td>
-      	 <td>Provisioned</td>
-      	 <td>2016-05-27 14:23:01</td>
-      	 <td>2016-05-27 14:23:01</td>
-
-      	 </tr>
-      </tbody>
-</table>
 </div>
 @endsection

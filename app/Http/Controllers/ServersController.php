@@ -20,7 +20,7 @@ class ServersController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the servers search form.
      *
      * @return \Illuminate\Http\Response
      */
@@ -29,4 +29,27 @@ class ServersController extends Controller
     {
     	return view('servers.index');
     }
+
+    /**
+     * Show the servers list.
+     *
+     * @return \Illuminate\Http\Response
+     */
+         	
+    public function getServers()
+    {
+    	return view('servers.list');
+    }
+
+    /**
+     * Show the server overview.
+     *
+     * @return \Illuminate\Http\Response
+     */
+         	
+    public function display()
+    {
+    	return view('servers.details');
+    }    
+
 }

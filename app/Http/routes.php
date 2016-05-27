@@ -13,7 +13,7 @@
 
 
 Route::auth();
-Route::get('/', function () { return view('welcome'); });
+Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
 // Customers routes
@@ -23,7 +23,7 @@ Route::get('/customers/display/{id}', 'CustomersController@edit')->name('custome
 Route::post('/customers', 'CustomersController@store')->name('customers.store');
 
 // Servers routes
-Route::get('/servers', 'ServersController@index');
-Route::post('/servers', 'ServersController@display');
-
-
+Route::get('/servers', 'ServersController@index')->name('servers.index');
+Route::get('/servers/lookup', 'ServersController@getServers')->name('servers.lookup');
+Route::get('/servers/display/{id}', 'ServersController@display')->name('servers.display');
+Route::post('/servers/create', 'ServersController@create')->name('servers.create');
