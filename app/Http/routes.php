@@ -11,6 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::auth();
+Route::get('/', function () { return view('welcome'); });
+Route::get('/home', 'HomeController@index');
+
+// Customers routes
+Route::get('/customers', 'CustomersController@index')->name('customers.index');
+Route::get('/customers/register', 'CustomersController@register')->name('customers.register');
+Route::get('/customers/display/{id}', 'CustomersController@edit')->name('customers.display');
+Route::post('/customers', 'CustomersController@store')->name('customers.store');
+
+// Servers routes
+Route::get('/servers', 'ServersController@index');
+Route::post('/servers', 'ServersController@display');
+
+
