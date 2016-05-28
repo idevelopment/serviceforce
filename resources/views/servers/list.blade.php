@@ -19,16 +19,16 @@
       <tbody>
       	<tr class="warning">
       	 <td><a href="{{ url('servers/display/1') }}">idev001</a></td>
-      	 <td>local.idevelopment.be</td>
+      	 <td></td>
       	 <td>Running</td>
-      	 <td>Provisioned</td>
+      	 <td>New</td>
       	 <td>2016-05-27 14:23:01</td>
       	 <td>2016-05-27 14:23:01</td>
       	 </tr>
 
-        <tr class="danger">
+        <tr class="">
          <td><a href="#">idev001</a></td>
-         <td>Unknown</td>
+         <td>local.idevelopment.be</td>
          <td>Running</td>
          <td>Provisioned</td>
          <td>2016-05-27 14:23:01</td>

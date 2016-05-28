@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Customers;
 
 class CustomersController extends Controller
 {
@@ -14,7 +15,6 @@ class CustomersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('lang');
     }
     /**
      * The customer index view.
@@ -23,7 +23,7 @@ class CustomersController extends Controller
      */
     public function index()
     {
-        $data['customers'] = Customer::paginate(15);
+        $data['customers'] = Customers::paginate(15);
         return view('customers/index', $data);
     }
 
