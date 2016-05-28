@@ -11,11 +11,11 @@
 <div class="row">
   <div class="col-md-12">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#overview" data-toggle="pill">Overview</a></li>
-      <li><a href="#ipmi-info" data-toggle="pill">IPMI Info</a></li>
-      <li><a href="#log-data" data-toggle="pill">Logs</a></li>
-      <li><a href="#hardware-details" data-toggle="pill">Hardware Details</a></li>
-      <li><a href="#lldp-info" data-toggle="pill">LLDP Info</a></li>
+      <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
+      <li><a href="#ipmi-info" data-toggle="tab">IPMI Info</a></li>
+      <li><a href="#log-data" data-toggle="tab">Logs</a></li>
+      <li><a href="#hardware-details" data-toggle="tab">Hardware Details</a></li>
+      <li><a href="#software-details" data-toggle="tab">Software</a></li>
       <li class="dropdown" data-dropdown="dropdown">
         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
          <strong>Actions</strong> <b class="caret"></b></a>
@@ -26,12 +26,17 @@
            </li>
           <li class="divider"></li>
           <li>
-           <a href="#maintenance" role="button" data-keyboard="true" data-toggle="modal" data-backdrop="static"><i class="glyphicon glyphicon-wrench"></i> Maintenance Start</a>
+           <a href="#maintenance" role="button" data-keyboard="true" data-toggle="modal" data-backdrop="static">
+           <i class="glyphicon glyphicon-wrench"></i> Maintenance Start</a>
           </li>
           <li>
            <a href="#power-server" role="button" data-keyboard="true" data-toggle="modal" data-backdrop="static">
             <i class="glyphicon glyphicon-fire"></i> Power Management</a>
-          </li> 
+          </li>
+          <li>
+           <a href="#provision-server" role="button" data-keyboard="true" data-toggle="modal" data-backdrop="static">
+            <i class="fa fa-play"></i> Start provisioning</a>
+          </li>          
         </ul>
       </li>
       
@@ -55,9 +60,9 @@
             <td></td>
         </tr>
         <tr>
-          <th>Classification</th>
-          <td><span>Unclassified</span></td>
-          <td><span></span></td>          
+          <th>Customer</th>
+          <td><a href="#">iDevelopment</a></td>
+          <td><span>internal account</span></td>          
         </tr>
         <tr>
           <th>Asset Type</th>
@@ -74,6 +79,17 @@
           <td>New</td>
           <td>A service in this state is inactive. It does minimal work and consumes minimal resources.</td>
         </tr>
+        <tr>
+          <th>Chassis Tag </th>
+          <td>Testing this</td>
+          <td>Tag for asset chassis</td>
+        </tr>
+        
+        <tr>
+          <th>Total disk storage</th>
+          <td>930.99 GB</td>
+          <td>Total amount of available storage</td>
+        </tr>
 
         <tr>
           <th>Created On</th>
@@ -88,27 +104,15 @@
         </tr>
         
         <tr>
-          <th>Base Serial </th>
-          <td>1234567890</td>
-          <td>How does your computer identify itself?</td>
+          <th>SLA</th>
+          <td>1 hour</td>
+          <td>Service Level Agreement Response time</td>
         </tr>
-        
-        <tr>
-          <th>Chassis Tag </th>
-          <td>Testing this</td>
-          <td>Tag for asset chassis</td>
-        </tr>
-        
-        <tr>
-          <th>Total disk storage</th>
-          <td>930.99 GB</td>
-          <td>Total amount of available storage</td>
-        </tr>
-        
+              
       </tbody>
     </table>
 
-    <h3>Hardware Summary <small>Summary of system components reported by LSHW</small></h3>
+    <h3>Hardware Summary</h3>
     
     <table class="table table-hover table-condensed" id="hardwareSummary">
       <thead>
@@ -240,16 +244,266 @@
     </table>
      </div>
      <div role="tabpanel" class="tab-pane" id="ipmi-info">
-      ...
+      <div class="row">
+      <div class="col-md-12">
+        <table class="table table-hover table-condensed" id="ipmiInfo">
+          <tbody>
+            <tr>
+              <th>IPMI Address</th>
+              <td><a target="_blank" href="http://172.16.32.26/">172.16.32.26</a></td>
+            </tr>
+            <tr>
+              <th>IPMI Username</th>
+              <td>root</td>
+            </tr>
+            <tr>
+              <th>IPMI Password</th>
+              <td>AVRdWtiHpRMHPa63</td>
+            </tr>
+            <tr>
+              <th>IPMI Gateway/Netmask</th>
+              <td>172.16.32.1/255.255.240.0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
      </div>
      <div role="tabpanel" class="tab-pane" id="log-data">
       ...
      </div>
      <div role="tabpanel" class="tab-pane" id="hardware-details">
-      ...
-      </div>
-     <div role="tabpanel" class="tab-pane" id="lldp-info">
-      ...
+      <h4>Server Base <small>Collected information about the server itself</small></h4>
+    <table class="table table-bordered table-hover table-condensed">
+      <thead>
+        <tr>
+          <th>Field</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Product</td><td>X8DTN</td>
+        </tr>
+        <tr>
+          <td>Vendor</td><td>Supermicro</td>
+        </tr>
+
+        <tr>
+            <td>Serial</td><td>1234567890</td>
+        </tr>
+      </tbody>
+    </table>
+       <h4>Network Interfaces <small>Collected NIC Information</small></h4>
+  <table class="table table-bordered table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Id</th><th>Speed</th><th>MAC Address</th><th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+      <tr>
+        <th>0</th>
+        <td>1.00 Gb/s</td>
+        <td>00:25:90:2b:19:b4</td>
+        <td>82576 Gigabit Network Connection - Intel Corporation</td>
+      </tr>
+    
+      <tr>
+        <th>1</th>
+        <td>1.00 Gb/s</td>
+        <td>00:25:90:2b:19:b5</td>
+        <td>82576 Gigabit Network Connection - Intel Corporation</td>
+      </tr>
+    
+      <tr>
+        <th>2</th>
+        <td>1.00 Gb/s</td>
+        <td>00:25:90:2b:19:b4</td>
+        <td>82575EB Gigabit Network Connection - Intel Corporation</td>
+      </tr>
+    
+      <tr>
+        <th>3</th>
+        <td>1.00 Gb/s</td>
+        <td>00:25:90:2b:19:b5</td>
+        <td>82575EB Gigabit Network Connection - Intel Corporation</td>
+      </tr>
+    
+    </tbody>
+  </table>
+
+  <h4>CPU <small>Collected CPU Information</small></h4>
+  <table class="table table-bordered table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Cores</th>
+        <th>Threads</th>
+        <th>Speed</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+      <tr>
+        <th>0</th>
+        <td>1</td>
+        <td>1</td>
+        <td>1.6</td>
+        <td>Intel(R) Xeon(R) CPU X5675  @ 3.07GHz Intel Corp.</td>
+      </tr>
+    
+      <tr>
+        <th>1</th>
+        <td>1</td>
+        <td>1</td>
+        <td>1.6</td>
+        <td>Intel(R) Xeon(R) CPU X5675  @ 3.07GHz Intel Corp.</td>
+      </tr>
+    
+    </tbody>
+  </table>
+
+  <h4>Memory <small>Collected Memory Information</small></h4>
+  <table class="table table-bordered table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Bank Id</th><th>Size</th><th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+      <tr>
+        <th>0</th>
+        <td>4.00 GB</td>
+        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
+      </tr>
+    
+      <tr>
+        <th>1</th>
+        <td>4.00 GB</td>
+        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
+      </tr>
+    
+      <tr>
+        <th>2</th>
+        <td>4.00 GB</td>
+        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
+      </tr>
+    
+      <tr>
+        <th>3</th>
+        <td>4.00 GB</td>
+        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
+      </tr>
+    
+      <tr>
+        <th>4</th>
+        <td>4.00 GB</td>
+        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
+      </tr>
+    
+      <tr>
+        <th>5</th>
+        <td>4.00 GB</td>
+        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
+      </tr>
+    
+      <tr>
+        <th>6</th>
+        <td>4.00 GB</td>
+        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
+      </tr>
+    
+      <tr>
+        <th>7</th>
+        <td>4.00 GB</td>
+        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
+      </tr>
+    
+      <tr>
+        <th>8</th>
+        <td>4.00 GB</td>
+        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
+      </tr>
+    
+      <tr>
+        <th>9</th>
+        <td>4.00 GB</td>
+        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
+      </tr>
+    
+      <tr>
+        <th>10</th>
+        <td>4.00 GB</td>
+        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Disks <small>Collected Disk Information</small></h4>
+  <table class="table table-bordered table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Id</th><th>Size</th><th>Type</th><th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+      <tr>
+        <th>0</th>
+        <td>930.99 GB</td>
+        <td>SCSI</td>
+        <td>Adaptec RAID1-A</td>
+      </tr>
+    
+      <tr>
+        <th>1</th>
+        <td>0 Bytes</td>
+        <td>SCSI</td>
+        <td>WDC WD1003FBYX-0</td>
+      </tr>
+    
+      <tr>
+        <th>2</th>
+        <td>0 Bytes</td>
+        <td>SCSI</td>
+        <td>WDC WD1003FBYX-0</td>
+      </tr>
+    
+    </tbody>
+  </table>
+
+     </div>
+     <div role="tabpanel" class="tab-pane" id="software-details">
+        <h3>Software details</h3>
+  <table class="table table-hover table-condensed" id="lldpSummary">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>IP</th>
+        <th>Name</th>
+        <th>Key</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Control panel</th>
+        <td>127.0.0.1</td>
+        <td>Plesk 12 - 100 domains (Linux)</td>
+        <td>PLSK.01234567.8910</td>        
+      </tr>  
+
+                <tr>
+        <th>Software as a service</th>
+        <td>127.0.0.1</td>
+        <td>Timecontrol - 50 users</td>
+        <td>-</td>        
+      </tr>
+    </tbody>
+  </table>
      </div>     
   </div>
 
@@ -310,6 +564,73 @@
     <div class="modal-footer">
       <div class="btn-group">
        <button type="submit" class="btn btn-danger">Asset in Maintenance Mode</button>
+      </div>
+    </div>
+   </form>
+
+    </div>
+  </div>
+</div>
+
+
+ <div class="modal fade" id="provision-server" tabindex="-1" role="dialog" aria-labelledby="provisionLabel">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+         </button>
+        <h4 class="modal-title" id="provisionLabel">Provision Server</h4>
+      </div>
+      <form action="" method="POST">
+      <div class="modal-body">
+       <p>Provisioning a server is a destructive process. Be certain that you want to do this. The provisioner will:</p>
+        <ul>
+         <li>Verify the server is stable</li>
+         <li>Power it off</li>
+         <li>Reinstall the operating system</li>
+         <li>Come back online without old data on disks</li>
+        </ul>
+    <p>If that all sounds good, choose an appropriate profile below.</p>
+    <input type="hidden" name="status" value="Maintenance">
+
+<div class="form-group">
+<label for="profile" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Profile</label>
+<div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
+   <select name="state" class="form-control" id="state">
+     <option value="" selected="selected"></option>         
+          <option value="adminwebnode">Admin Web Server</option>
+          <option value="collinsnode">Collins Server</option>
+          <option value="dhcpnode">DHCP/iPXE Server</option>
+          <option value="mysqlnode">Mysql Database Server</option>
+          <option value="devnode">Dev Machine</option>        
+          <option value="gitlabnode">Gitlab Server</option>       
+          <option value="icinganode">Icinga Server</option>         
+          <option value="mailrelaynode">Mail Relay Server</option>
+          <option value="servicenode">Platform Service Server</option>
+          <option value="puppetnode">Puppet Master</option>
+          <option value="redisnode">Redis Server</option>
+          <option value="utilnode">Utility Server</option>
+          <option value="varnishnode">Varnish Server</option>
+          <option value="webnode">Web Server</option>
+          </select>
+ <div class="input-group-addon">
+  <span class="help-inline">
+      <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="A state representing the operational state of the asset (i.e. network problem, hardware problem, IPMI problem, NOOP, etc)"></i>
+  </span>
+</div>
+</div>
+</div>
+
+
+      <div class="form-group">
+        <textarea name="description" id="maintenanceDescription" class="form-control" rows="3" placeholder="Description"></textarea>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <div class="btn-group">
+       <button type="submit" class="btn btn-success">Provision server</button>
       </div>
     </div>
    </form>
