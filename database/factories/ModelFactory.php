@@ -61,3 +61,11 @@ $factory->define(App\ServerLocation::class, function(Faker\Generator $faker) {
         'CombinationLock' => '123456'
     ];
 });
+
+$factory->define(App\DataPackExcess::class, function(Faker\Generator $faker) {
+    return [
+        'type'  => 'bandwidth',
+        'value' => $faker->numberBetween(0, 25),
+        'unit'  => 'MB',
+    ];
+});
