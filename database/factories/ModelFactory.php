@@ -62,6 +62,19 @@ $factory->define(App\ServerLocation::class, function(Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\NetworkInformation::class, function(Faker\Generator $faker) {
+    return [
+        'dataPack'        => $faker->name,
+        'ipsFreeOfCharge' => $faker->numberBetween(0, 3),
+        'ipsAssigned'     => $faker->numberBetween(0, 3),
+        'excessIpsPrice'  => '4',
+        'dataPackExpress' => '1',
+        'macAddresses'    => $faker->ipv4,
+        'pricePerMonth'   => '2,48',
+    ];
+});
+
+
 $factory->define(App\DataPackExcess::class, function(Faker\Generator $faker) {
     return [
         'type'  => 'bandwidth',
