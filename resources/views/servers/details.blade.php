@@ -12,7 +12,7 @@
   <div class="col-md-12">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
-      <li><a href="#ipmi-info" data-toggle="tab">IPMI Info</a></li>
+      <li><a href="#network-info" data-toggle="tab">Network</a></li>
       <li><a href="#log-data" data-toggle="tab">Logs</a></li>
       <li><a href="#hardware-details" data-toggle="tab">Hardware Details</a></li>
       <li><a href="#software-details" data-toggle="tab">Software</a></li>
@@ -56,17 +56,17 @@
       <tbody>
         <tr>
           <th>Asset Tag</th>
-            <td>idev001</td>
+            <td>{!! $server["bareMetal"]["serverHostingPack"]["bareMetalId"] !!}</td>
             <td></td>
         </tr>
         <tr>
           <th>Customer</th>
           <td><a href="#">iDevelopment</a></td>
-          <td><span>internal account</span></td>          
+          <td><span></span></td>          
         </tr>
         <tr>
-          <th>Asset Type</th>
-          <td>Server Node</td>
+          <th>Server Type</th>
+          <td>{!! $server["bareMetal"]["serverType"] !!}</td>
           <td></td>
         </tr>
         <tr class="warning">
@@ -74,20 +74,25 @@
           <td>New</td>          
           <td>Asset has been entered into the system</td>
         </tr>
-        <tr>
-          <th>Asset State</th>
+        <tr class="success">
+          <th>Server State</th>
           <td>New</td>
           <td>A service in this state is inactive. It does minimal work and consumes minimal resources.</td>
         </tr>
+        <tr class="success">
+          <th>Switch port status</th>
+          <td>{!! $switch["switchPort"]["status"] !!}</td>
+          <td></td>
+        </tr>        
         <tr>
           <th>Chassis Tag </th>
-          <td>Testing this</td>
+          <td>{!! $server["bareMetal"]["serverName"] !!}</td>
           <td>Tag for asset chassis</td>
         </tr>
         
         <tr>
           <th>Total disk storage</th>
-          <td>930.99 GB</td>
+          <td>{!! $server["bareMetal"]["server"]["hardDisks"] !!}</td>
           <td>Total amount of available storage</td>
         </tr>
 
@@ -105,167 +110,33 @@
         
         <tr>
           <th>SLA</th>
-          <td>1 hour</td>
+          <td>{!! $server["bareMetal"]["serviceLevelAgreement"]["sla"]; !!}</td>
           <td>Service Level Agreement Response time</td>
         </tr>
               
       </tbody>
     </table>
 
-    <h3>Hardware Summary</h3>
-    
-    <table class="table table-hover table-condensed" id="hardwareSummary">
+
+     </div>
+     <div role="tabpanel" class="tab-pane" id="network-info">
+      <div class="row">
+      <div class="col-md-12">
+        <h3>IP Overview</h3>
+       <table class="table table-bordered table-hover table-condensed">
       <thead>
         <tr>
-          <th></th><th></th><th></th>
+          <th>IP</th>
+          <th>PTR</th>
         </tr>
       </thead>
       <tbody>
-        
         <tr>
-          <th colspan="3">Server Base</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Product</td>
-          <td>X8DTN</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Vendor</td>
-          <td>Supermicro</td>
-        </tr>
-        <tr>
-        
-          <th colspan="3">CPU</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Total CPUs</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Total CPU Cores</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Total CPU Threads</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Hyperthreading Enabled</td>
-          <td>No</td>
-        </tr>
-  
-        <tr>
-          <th colspan="3">Memory</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Total Memory</td>
-          <td>72.00 GB</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Total Memory Banks</td>
-          <td>18</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Used Memory Banks</td>
-          <td>18</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Unused Memory Banks</td>
-          <td>0</td>
-        </tr>
-  
-        <tr>
-          <th colspan="3">Disks</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Disks</td>
-          <td>3</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>SCSI Storage</td>
-          <td>930.99 GB</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Total Storage</td>
-          <td>930.99 GB</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Has PCIe Flash Disk</td>
-          <td>No</td>
-        </tr>
-  
-        <tr>
-          <th colspan="3">Network</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Interfaces</td>
-          <td>4</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Has 10Gb Interface</td>
-          <td>No</td>
-        </tr>
-  
-        <tr>
-          <th colspan="3">Power</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Units</td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Components per Unit</td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Total Components</td>
-          <td>0</td>
+          <td>127.0.0.1</td>
+          <td>localhost</td>
         </tr>
       </tbody>
     </table>
-     </div>
-     <div role="tabpanel" class="tab-pane" id="ipmi-info">
-      <div class="row">
-      <div class="col-md-12">
-        <table class="table table-hover table-condensed" id="ipmiInfo">
-          <tbody>
-            <tr>
-              <th>IPMI Address</th>
-              <td><a target="_blank" href="http://172.16.32.26/">172.16.32.26</a></td>
-            </tr>
-            <tr>
-              <th>IPMI Username</th>
-              <td>root</td>
-            </tr>
-            <tr>
-              <th>IPMI Password</th>
-              <td>AVRdWtiHpRMHPa63</td>
-            </tr>
-            <tr>
-              <th>IPMI Gateway/Netmask</th>
-              <td>172.16.32.1/255.255.240.0</td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
      </div>
@@ -298,50 +169,9 @@
   <table class="table table-bordered table-hover table-condensed">
     <thead>
       <tr>
-        <th>Id</th><th>Speed</th><th>MAC Address</th><th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-    
-      <tr>
-        <th>0</th>
-        <td>1.00 Gb/s</td>
-        <td>00:25:90:2b:19:b4</td>
-        <td>82576 Gigabit Network Connection - Intel Corporation</td>
-      </tr>
-    
-      <tr>
-        <th>1</th>
-        <td>1.00 Gb/s</td>
-        <td>00:25:90:2b:19:b5</td>
-        <td>82576 Gigabit Network Connection - Intel Corporation</td>
-      </tr>
-    
-      <tr>
-        <th>2</th>
-        <td>1.00 Gb/s</td>
-        <td>00:25:90:2b:19:b4</td>
-        <td>82575EB Gigabit Network Connection - Intel Corporation</td>
-      </tr>
-    
-      <tr>
-        <th>3</th>
-        <td>1.00 Gb/s</td>
-        <td>00:25:90:2b:19:b5</td>
-        <td>82575EB Gigabit Network Connection - Intel Corporation</td>
-      </tr>
-    
-    </tbody>
-  </table>
-
-  <h4>CPU <small>Collected CPU Information</small></h4>
-  <table class="table table-bordered table-hover table-condensed">
-    <thead>
-      <tr>
         <th>Id</th>
-        <th>Cores</th>
-        <th>Threads</th>
         <th>Speed</th>
+        <th>MAC Address</th>
         <th>Description</th>
       </tr>
     </thead>
@@ -349,23 +179,22 @@
     
       <tr>
         <th>0</th>
-        <td>1</td>
-        <td>1</td>
-        <td>1.6</td>
-        <td>Intel(R) Xeon(R) CPU X5675  @ 3.07GHz Intel Corp.</td>
+        <td>1.00 Gb/s</td>
+        <td>00:25:90:2b:19:b4</td>
+        <td>82576 Gigabit Network Connection - Intel Corporation</td>
       </tr>
     
       <tr>
         <th>1</th>
-        <td>1</td>
-        <td>1</td>
-        <td>1.6</td>
-        <td>Intel(R) Xeon(R) CPU X5675  @ 3.07GHz Intel Corp.</td>
+        <td>1.00 Gb/s</td>
+        <td>00:25:90:2b:19:b5</td>
+        <td>82576 Gigabit Network Connection - Intel Corporation</td>
       </tr>
-    
+        
     </tbody>
   </table>
 
+  
   <h4>Memory <small>Collected Memory Information</small></h4>
   <table class="table table-bordered table-hover table-condensed">
     <thead>
@@ -374,7 +203,6 @@
       </tr>
     </thead>
     <tbody>
-    
       <tr>
         <th>0</th>
         <td>4.00 GB</td>
@@ -385,61 +213,7 @@
         <th>1</th>
         <td>4.00 GB</td>
         <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
-      </tr>
-    
-      <tr>
-        <th>2</th>
-        <td>4.00 GB</td>
-        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
-      </tr>
-    
-      <tr>
-        <th>3</th>
-        <td>4.00 GB</td>
-        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
-      </tr>
-    
-      <tr>
-        <th>4</th>
-        <td>4.00 GB</td>
-        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
-      </tr>
-    
-      <tr>
-        <th>5</th>
-        <td>4.00 GB</td>
-        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
-      </tr>
-    
-      <tr>
-        <th>6</th>
-        <td>4.00 GB</td>
-        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
-      </tr>
-    
-      <tr>
-        <th>7</th>
-        <td>4.00 GB</td>
-        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
-      </tr>
-    
-      <tr>
-        <th>8</th>
-        <td>4.00 GB</td>
-        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
-      </tr>
-    
-      <tr>
-        <th>9</th>
-        <td>4.00 GB</td>
-        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
-      </tr>
-    
-      <tr>
-        <th>10</th>
-        <td>4.00 GB</td>
-        <td>DIMM 800 MHz (1.2 ns) - Hyundai HMT351R7BFR8C-H9</td>
-      </tr>
+      </tr>    
     </tbody>
   </table>
 
@@ -447,7 +221,8 @@
   <table class="table table-bordered table-hover table-condensed">
     <thead>
       <tr>
-        <th>Id</th><th>Size</th><th>Type</th><th>Description</th>
+        <th>Size</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
@@ -458,21 +233,6 @@
         <td>SCSI</td>
         <td>Adaptec RAID1-A</td>
       </tr>
-    
-      <tr>
-        <th>1</th>
-        <td>0 Bytes</td>
-        <td>SCSI</td>
-        <td>WDC WD1003FBYX-0</td>
-      </tr>
-    
-      <tr>
-        <th>2</th>
-        <td>0 Bytes</td>
-        <td>SCSI</td>
-        <td>WDC WD1003FBYX-0</td>
-      </tr>
-    
     </tbody>
   </table>
 

@@ -16,12 +16,24 @@ class CustomersController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * The customer index view.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
+    {
+        $data['customers'] = Customers::paginate(15);
+        return view('customers/index', $data);
+    }
+
+    /**
+     * The customer index view.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit()
     {
         $data['customers'] = Customers::paginate(15);
         return view('customers/index', $data);
