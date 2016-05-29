@@ -1,86 +1,70 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-        <ul class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li class="active"><a href="#">Customers</a></li>
-        </ul>
+  <div class="panel panel-default">
+   <div class="panel-heading">{{ trans('customers.search') }}</div>
+    <div class="panel-body">
+     <form action="{{ url('customers') }}" method="post" class="form-horizontal">
+      <div class="row">
+       <div class="col-md-6">
+        <div class="form-group">
+         <label for="company" class="col-md-3 control-label">{{trans('customers.company')}}</label>
+           <div class="col-md-8">
+             <input type="text" id="company" name="company" class="form-control">
+           </div>
+        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">{{ trans('customers.search') }}</div>
-                    <div class="panel-body">
-                        <form action="{{ url('customers') }}" method="post" class="form-horizontal">
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="company"
-                                               class="col-md-3 control-label">{{trans('customers.company')}}</label>
-                                        <div class="col-md-8">
-                                            <input type="text" id="company" name="company" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="firstname"
-                                               class="col-md-3 control-label">{{trans('customers.first_name')}}</label>
-                                        <div class="col-md-8">
-                                            <input type="text" id="firstname" name="firstname" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                      <label for="email" class="col-md-3 control-label">{{trans('customers.email')}}</label>
-                                        <div class="col-md-8">
-                                            <input type="text" id="email" name="email" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="phone"
-                                               class="col-md-3 control-label">{{trans('customers.vat')}}</label>
-                                        <div class="col-md-8">
-                                            <input type="text" id="phone" name="phone" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="name"
-                                               class="col-md-3 control-label">{{trans('customers.name')}}</label>
-                                        <div class="col-md-8">
-                                            <input type="text" id="name" name="name" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="name"
-                                               class="col-md-3 control-label">{{trans('customers.phone')}}</label>
-                                        <div class="col-md-8">
-                                            <input type="text" id="name" name="name" class="form-control">
-                                        </div>
-                                    </div>                                    
-                                </div>
-                            </div
-                            >
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">&nbsp;</label>
-                                        <div class="col-md-8">
-                                            <button type="submit" name="search" id="search"
-                                                    class="btn btn-sm btn-primary">{{ trans('app.search')}}</button>
-                                            <button type="button"
-                                                    onclick="location.href='{{url('customers/register')}}';"
-                                                    class="btn btn-sm btn-default">{{ trans('customers.register')}}</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+        <div class="form-group">
+         <label for="firstname" class="col-md-3 control-label">{{trans('customers.first_name')}}</label>
+          <div class="col-md-8">
+           <input type="text" id="firstname" name="firstname" class="form-control">
+          </div>
+        </div>
+        
+        <div class="form-group">
+         <label for="email" class="col-md-3 control-label">{{trans('customers.email')}}</label>
+         <div class="col-md-8">
+          <input type="text" id="email" name="email" class="form-control">
+         </div>
+        </div>
+        </div>
+         
+          <div class="col-md-6">
+            <div class="form-group">
+             <label for="phone" class="col-md-3 control-label">{{trans('customers.vat')}}</label>
+              <div class="col-md-8">
+               <input type="text" id="phone" name="phone" class="form-control">
+              </div>
             </div>
+
+           <div class="form-group">
+            <label for="name" class="col-md-3 control-label">{{trans('customers.name')}}</label>
+              <div class="col-md-8">
+                <input type="text" id="name" name="name" class="form-control">
+              </div>
+            </div>
+            
+            <div class="form-group">
+             <label for="name" class="col-md-3 control-label">{{trans('customers.phone')}}</label>
+              <div class="col-md-8">
+                <input type="text" id="name" name="name" class="form-control">
+              </div>
+            </div>                                    
+            </div>
+          </div>
+         
+          <div class="row">
+           <div class="col-md-6">
+            <div class="form-group">
+             <label class="col-md-3 control-label">&nbsp;</label>
+              <div class="col-md-8">
+              <button type="submit" name="search" id="search" class="btn btn-sm btn-primary">{{ trans('app.search')}}</button>
+              <button type="button" onclick="location.href='{{url('customers/register')}}';" class="btn btn-sm btn-default">{{ trans('customers.register')}}</button>
+              </div>
+            </div>
+           </div>
+           </div>
+          </form>
+         </div>
         </div>
 
         <div class="row">

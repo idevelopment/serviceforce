@@ -16,9 +16,6 @@ Route::auth();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
-// profile routes
-Route::get('/profile', 'ProfileController@index')->name('profile.view');
-
 // Customers routes
 Route::get('/customers', 'CustomersController@index')->name('customers.index');
 Route::get('/customers/register', 'CustomersController@register')->name('customers.register');
@@ -29,4 +26,6 @@ Route::post('/customers', 'CustomersController@store')->name('customers.store');
 Route::get('/servers', 'ServersController@index')->name('servers.index');
 Route::get('/servers/lookup', 'ServersController@getServers')->name('servers.lookup');
 Route::get('/servers/display/{id}', 'ServersController@display')->name('servers.display');
+
+Route::get('/servers/create', 'ServersController@create')->name('servers.create');
 Route::post('/servers/create', 'ServersController@create')->name('servers.create');

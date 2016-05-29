@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-
 <form action="{{ url('servers/lookup') }}" method="GET" class="form-horizontal">
  <div class="page-header">
       <h1>Search servers <small>Query your assets by attribute.</small></h1>
@@ -105,7 +103,7 @@
 <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
               <select name="type" id="type" class="form-control">
                 <option value="" selected="selected"></option>
-                  <option value="SERVER_DEDICATED">Dedicated server</option>
+                  <option value="SERVER_DEDICATED">Bare metal</option>
                   <option value="SERVER_VPS">Virtual server</option>
               </select>
 
@@ -172,25 +170,7 @@
 </div>
 </div>
             
-</div>
-
-<div class="form-group">
- <label for="POOL" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Pool</label>
-  <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
-   <select name="POOL" id="POOL" class="form-control">
-    <option value="" selected="selected"></option>
-    <option value="(none)">(None)</option>
-   </select>
- 
- <div class="input-group-addon">
-  <span class="help-inline">
-    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Groups related assets spanning multiple functional roles"></i>
-  </span>
-</div>
-             
-</div>
-</div>
-            
+</div>           
 
 <div class="form-group">
  <label for="PRIMARY_ROLE" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Primary Role</label>
@@ -307,5 +287,5 @@
     </div>
     
 </form>
-</div>
+
 @endsection

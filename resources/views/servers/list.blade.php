@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
 <div class="page-header">
 <h1>Servers</h1>
 </div>
@@ -37,5 +36,4 @@
 
       </tbody>
 </table>
-</div>
 @endsection
