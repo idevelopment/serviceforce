@@ -38,3 +38,17 @@ $factory->define(App\serverHostingPack::class, function(Faker\Generator $faker) 
         'contractTerm' => '1 Year'
     ];
 });
+
+$factory->define(App\Server::class, function(Faker\Generator $faker) {
+    return [
+        'ram'            => '8GB',
+        'kvm'            => 'yes',
+        'serverType'     => 'dedicated',
+        'processorType'  => 'I7',
+        'processorSpeed' => '3.3Ghz',
+        'numberOfCpus'   => 4,
+        'numberOfCores'  => 8,
+        'hardDisks'      => 16,
+        'hardwareRaid'   => 'RAID 4'
+    ];
+});
