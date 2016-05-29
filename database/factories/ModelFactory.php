@@ -62,6 +62,28 @@ $factory->define(App\ServerLocation::class, function(Faker\Generator $faker) {
     ];
 });
 
+// bareMetalId	            integer The identifier of the bare metal resource
+// serverName	            string	The name of the bare metal server
+// serverType	            string	The type of the bare metal resource
+// reference	            string	A reference for the bare metal server
+// location	                object	An object with location information
+// server	                object	An object with server information
+// network	                object	An object with network information
+// serverHostingPack	    object	An object with pack information
+// serviceLevelAgreement	object	An object with SLA information
+$factory->define(App\BaseServers::class, function(Faker\Generator $faker) {
+    return [
+        'bareMetalId'           => $faker->numberBetween(0, 250),
+        'serverName'            => $faker->name,
+        'serverType'            => 'dedicated',
+        'reference'             => $faker->text(200),
+        'ServerLocation_id'     => 1,
+        'NetworkInformation_id' => 1,
+        'serverHostingPack_id'  => 1,
+        'Sla_id'                => 1
+    ];
+});
+
 $factory->define(App\NetworkInformation::class, function(Faker\Generator $faker) {
     return [
         'dataPack'        => $faker->name,
