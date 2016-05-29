@@ -52,3 +52,12 @@ $factory->define(App\Server::class, function(Faker\Generator $faker) {
         'hardwareRaid'   => 'RAID 4'
     ];
 });
+
+$factory->define(App\ServerLocation::class, function(Faker\Generator $faker) {
+    return [
+        'Site'            => $faker->address,
+        'Cabinet'         => $faker->numberBetween(0, 250),
+        'Rackspace'       => $faker->numberBetween(0, 250),
+        'CombinationLock' => '123456'
+    ];
+});
