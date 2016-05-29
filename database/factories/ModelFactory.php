@@ -26,3 +26,15 @@ $factory->define(App\Sla::class, function(Faker\Generator $faker) {
         'pricePerMonth' => $faker->currencyCode
     ];
 });
+
+$factory->define(App\serverHostingPack::class, function(Faker\Generator $faker) {
+    return [
+        'reference'    => 'reference',
+        'bareMetalId'  => $faker->numberBetween(0, 250),
+        'serverName'   => 'Server name',
+        'serverType'   => 'Dedicated',
+        'startDate'    => $faker->time(),
+        'endDate'      => $faker->time(),
+        'contractTerm' => '1 Year'
+    ];
+});
