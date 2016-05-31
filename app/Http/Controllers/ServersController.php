@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\BaseServers;
 
 class ServersController extends Controller
 {
@@ -38,7 +39,8 @@ class ServersController extends Controller
          	
     public function getServers()
     {
-    	return view('servers.list');
+        $data["servers"] = BaseServers::all();
+    	return view('servers.list', $data);
     }
 
     /**

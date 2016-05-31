@@ -30,8 +30,6 @@
           </li>          
         </ul>
       </li>
-      
-        <li class="disabled" data-rel="tooltip" data-original-title="This asset is not graphable"><a href="javascript:void(0);">{{ trans('servers.graphs') }}</a></li>
      </ul>
 
      <!-- Tab panes -->
@@ -96,7 +94,7 @@
     </table>
      </div>
      <div role="tabpanel" class="tab-pane" id="log-info">
-      <table class="table table-bordered table-hover table-">
+      <table class="table table-bordered table-hover table-condensed">
         <thead>
         <tr>
           <th>Date</th>
@@ -134,7 +132,7 @@
        <td>2016-05-31 00:00:00</td>
        <td>2016-05-31 00:00:00</td>
        <td>Provisioning</td>
-       <td><a href="#"><i class="fa fa-wrench fa-lg" rel="tooltip" title="Manage"></i></a></td>
+       <td><a href="#"><i class="fa fa-wrench fa-lg" data-toggle="tooltip" title="Settings" data-placement="bottom"></i></a></td>
       </tr>
 
       <tr class="">
@@ -143,7 +141,7 @@
        <td>2016-05-31 00:00:00</td>
        <td>2016-05-31 00:00:00</td>
        <td>Provisioned</td>
-       <td><a href="#"><i class="fa fa-wrench fa-lg"></i></a></td>
+       <td><a href="#"><i class="fa fa-wrench fa-lg" data-toggle="tooltip" title="Settings" data-placement="bottom"></i></a></td>
       </tr>
 
       <tr class="warning">
@@ -152,7 +150,7 @@
        <td>2016-05-31 00:00:00</td>
        <td>2016-05-31 00:00:00</td>
        <td>Maintenance</td>
-       <td><a href="#"><i class="fa fa-wrench fa-lg"></i></a></td>
+       <td><a href="#"><i class="fa fa-wrench fa-lg" data-toggle="tooltip" title="Settings" data-placement="bottom"></i></a></td>
       </tr>
 
       <tr class="danger">
@@ -161,7 +159,7 @@
        <td>2016-05-31 00:00:00</td>
        <td>2016-05-31 00:00:00</td>
        <td>Cancelled</td>
-       <td><a href="#"><i class="fa fa-wrench fa-lg"></i></a></td>
+       <td><a href="#"><i class="fa fa-wrench fa-lg" data-toggle="tooltip" title="Settings" data-placement="bottom"></i></a></td>
       </tr>
       </tbody>
       </table>
@@ -169,6 +167,5 @@
     </div>
 
   </div>
-        @endforeach
-
-  @endsection
+ @endforeach
+@endsection
