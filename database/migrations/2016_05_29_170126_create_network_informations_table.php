@@ -21,7 +21,7 @@ class CreateNetworkInformationsTable extends Migration
             $table->float('excessIpsPrice')->comment('Price per IP for extra IPs');
             $table->integer('DataPackExcess_id')->comment('An object with information about over usage');
             $table->text('macAddresses')->comment('An array with key mac containing all mac addresses of the bare metal server.');
-            $table->float('privePerMonth')->comment('Monthly price of the datapack');
+            $table->float('pricePerMonth')->comment('Monthly price of the datapack');
             $table->timestamps();
         });
     }

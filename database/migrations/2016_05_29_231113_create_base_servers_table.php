@@ -21,9 +21,9 @@ class CreateBaseServersTable extends Migration
             $table->string('reference')->comment('A reference to the bare metal server.');
             $table->integer('ServerLocation_id')->comment('An object with the location information');
             $table->integer('Server_id')->comment('An object with the server information');
-            $table->integer('NetworkInformation_id')->comment('An object wuth the netwokr information');
+            $table->integer('network_informations_id')->comment('An object wuth the netwokr information');
             $table->integer('serverHostingPack')->comment('An object with the pack information');
-            $table->integer('Sla_id')->comment('An object with SLA information');
+            $table->integer('sla_id')->comment('An object with SLA information');
             $table->timestamps();
         });
     }
