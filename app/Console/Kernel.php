@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\ForgeServers::class
+        Commands\ForgeServers::class,
+        Commands\OperatingSystems::class
     ];
 
     /**
