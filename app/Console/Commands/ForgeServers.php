@@ -42,9 +42,9 @@ class ForgeServers extends Command
     public function handle()
     {
         // GET the data from the api.
-        $path     = 'https://api.leaseweb.com/v1/bareMetals/';
+        $path     = config('ServiceForge.leaseweb.urls.server');
         $client   = new \GuzzleHttp\Client();
-        $response = $client->get($path, ['headers' => ['X-Lsw-Auth' => '']]);
+        $response = $client->get($path, ['headers' => ['X-Lsw-Auth' => config('ServiceForge.leaseweb.apikey')]]);
 
         $body = $response->getbody();
         $body->getContents();
