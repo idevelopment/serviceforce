@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/serviceforge":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/serviceforge","hostpath":"/Users/tim/Documents/projects/ServiceForge","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/tim/Documents/projects/ServiceForge","disabled":false,"__vagrantfile":true}}}
