@@ -32,4 +32,24 @@ class ProfileController extends Controller
         $data['user'] = User::find(auth()->user()->id);
         return view('profile.settings', $data);
     }
+
+    /**
+     * Update the account information.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function storeInformation()
+    {
+        return redirect()->back(302);
+    }
+
+    /**
+     * Update the password.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateCredentials()
+    {
+        return redirect()->back(302);
+    }
 }

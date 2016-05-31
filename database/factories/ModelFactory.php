@@ -64,14 +64,27 @@ $factory->define(App\ServerLocation::class, function(Faker\Generator $faker) {
 
 $factory->define(App\BaseServers::class, function(Faker\Generator $faker) {
     return [
-        'bareMetalId'           => $faker->numberBetween(0, 250),
-        'serverName'            => $faker->name,
-        'serverType'            => 'dedicated',
-        'reference'             => $faker->text(200),
-        'ServerLocation_id'     => 1,
-        'NetworkInformation_id' => 1,
-        'serverHostingPack_id'  => 1,
-        'Sla_id'                => 1
+        'bareMetalId'             => $faker->numberBetween(0, 250),
+        'serverName'              => $faker->name,
+        'serverType'              => 'dedicated',
+        'reference'               => $faker->text(200),
+
+        // Relations
+        'ServerLocation_id'       => function () {
+            return factory(App\ServerLocation::class)->create()->id;
+        },
+        'Server_id'               => function() {
+            return factory(App\Server::class)->create()->id;
+        },
+        'serverHostingPack'       => function() {
+            return factory(App\serverHostingPack::class)->create()->id;
+        },
+        'network_informations_id' => function () {
+            return factory(App\NetworkInformation::class)->create()->id;
+        },
+        'sla_id'                  => function () {
+            return factory(App\Sla::class)->create()->id;
+        },
     ];
 });
 
@@ -81,7 +94,9 @@ $factory->define(App\NetworkInformation::class, function(Faker\Generator $faker)
         'ipsFreeOfCharge' => $faker->numberBetween(0, 3),
         'ipsAssigned'     => $faker->numberBetween(0, 3),
         'excessIpsPrice'  => '4',
-        'dataPackExpress' => '1',
+        'DataPackExcess_id' => function () {
+            return factory(App\DataPackExcess::class)->create()->id;
+        },
         'macAddresses'    => $faker->ipv4,
         'pricePerMonth'   => '2,48',
     ];
