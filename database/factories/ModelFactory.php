@@ -11,6 +11,15 @@
 |
 */
 
+$factory->define(App\ServiceStatus::class, function (Faker\Generator $faker) {
+    return [
+        'name'        => $faker->name,
+        'description' => 'description',
+        'bgcolor'     => '#FF0000',
+        'background'  => 'alert'
+    ];
+});
+
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
