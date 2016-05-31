@@ -102,6 +102,9 @@ $factory->define(App\NetworkInformation::class, function(Faker\Generator $faker)
     ];
 });
 
+$factory->define(App\OperatingSystems::class, function(Faker\Generator $faker) {
+    return [ 'name' => 'Linux' ];
+});
 
 $factory->define(App\DataPackExcess::class, function(Faker\Generator $faker) {
     return [
