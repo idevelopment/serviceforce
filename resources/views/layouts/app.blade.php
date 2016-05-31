@@ -46,6 +46,41 @@ body {
   border: 0;
 }
 
+.navbar-default{
+      background-color: #246c99;
+      color: #fff;
+}
+
+.navbar-default .navbar-brand{
+      color: #fff;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #205f87;
+}
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: #205f87;
+}
+
 /*
  * Sidebar
  */
@@ -57,7 +92,7 @@ body {
 @media (min-width: 768px) {
   .sidebar {
     position: fixed;
-    top: 51px;
+    top: 48px;
     bottom: 0;
     left: 0;
     z-index: 1000;
@@ -79,12 +114,22 @@ body {
 .nav-sidebar > li > a {
   padding-right: 20px;
   padding-left: 20px;
+  background-color: #f6f7fa;
+  border-bottom: 1px solid #e1e1e1;
+  color: #000;
 }
+
+.nav-sidebar > li > a:hover,
+.nav-sidebar > li > a:focus {
+  color: #000;
+    background-color: #f6f7fa;
+}
+
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-  color: #fff;
-  background-color: #428bca;
+  color: #000;
+    background-color: #f6f7fa;
 }
 
 
@@ -140,7 +185,7 @@ body {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>    
 </head>
  <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -153,20 +198,19 @@ body {
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-@if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <i class="fa fa-plus"></i></span>
-                          </a>
-                          <ul class="dropdown-menu" role="menu">
-                           <li><a href="/servers/create">Server</a></li>
-                           <li><a href="/rack/create">Rack</a></li>
-                           <li><a href="/datacenters/create">Data Center</a></li>
-                            </ul>
-                        </li>
+             @if (Auth::guest())
+                <li><a href="{{ url('/login') }}">Login</a></li>
+                <li><a href="{{ url('/register') }}">Register</a></li>
+             @else
+                <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  <i class="fa fa-plus"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/servers/create">Server</a></li>
+                  <li><a href="/rack/create">Rack</a></li>
+                  <li><a href="/datacenters/create">Data Center</a></li>
+                  </ul>
+                </li>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
