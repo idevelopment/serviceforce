@@ -1,0 +1,30 @@
+body{
+   	background: #f1f1f1;
+    }
+.login-page {
+  margin: 7.5% auto;
+  width: 420px;
+}
+
+.reset-page {
+  margin: 7.5% auto;
+  width: 620px;
+}
+
+.login-panel {
+  border-radius: 6px;
+}
+.login-panel .panel-body {
+  padding: 30px;
+}
+.login-panel .panel-heading {
+  -moz-border-radius: 6px 6px 0px 0px;
+  -webkit-border-radius: 6px 6px 0px 0px;
+  border-radius: 6px 6px 0px 0px;
+  padding: 10px 10px;
+  position: relative;
+}
+.login-panel .panel-heading h4 {
+  position: relative;
+  z-index: 999;
+}
