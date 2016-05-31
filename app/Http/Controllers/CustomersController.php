@@ -33,10 +33,10 @@ class CustomersController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit()
+    public function edit($id)
     {
-        $data['customers'] = Customers::paginate(15);
-        return view('customers/index', $data);
+        $data['customer'] = Customers::where('id', $id)->get();
+        return view('customers/manage', $data);
     }
 
 }

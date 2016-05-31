@@ -10,7 +10,14 @@ return [
     | The following language lines are used for the customers pages
     |
     */
+    'overview'    => 'Overview',
+    'services'    => 'Services',
+    'security'    => 'Security',
+    'logs'        => 'Logs',    
+    'actions'     => 'Actions',
+    'suspend'    => 'Suspend account',
 
+    'number'     => 'Number',
     'company'    => 'Company',
     'contact'    => 'Contact person',
     'first_name' => 'First name',
@@ -27,6 +34,7 @@ return [
     
     'number'     => 'Customer number',
     'vat'        => 'VAT number',
+    'status'     => 'Status',
 
     'recent'     => 'Recently registered customers',
     'history'    => 'Customer history',

@@ -156,24 +156,11 @@ body {
   text-align: left; 
  }
 
-/*
- * Placeholder dashboard 
- */
-
-.placeholders {
-  margin-bottom: 30px;
-  text-align: center;
-}
-.placeholders h4 {
-  margin-bottom: 0;
-}
-.placeholder {
-  margin-bottom: 20px;
-}
-.placeholder img {
-  display: inline-block;
-  border-radius: 50%;
-}          
+.label-pill {
+  padding-right: .6em;
+  padding-left: .6em;
+  border-radius: 10rem;
+}         
 
 .fa-btn {
   margin-right: 6px;
