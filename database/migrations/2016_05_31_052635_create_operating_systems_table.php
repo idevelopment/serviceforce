@@ -17,8 +17,8 @@ class CreateOperatingSystemsTable extends Migration
     public function up()
     {
         Schema::create('operating_systems', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
+            $table->increments('id')->comment('The identifier for the Operating Systems resource');
+            $table->string('name')->comment('The name of the Operating Systems resource');
             $table->timestamps();
         });
     }
