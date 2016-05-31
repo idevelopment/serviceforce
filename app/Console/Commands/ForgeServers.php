@@ -42,9 +42,9 @@ class ForgeServers extends Command
     public function handle()
     {
         // GET the data from the api.
-        $path     = 'https://api.leaseweb.com/v1/bareMetals/202119';
+        $path     = 'https://api.leaseweb.com/v1/bareMetals/';
         $client   = new \GuzzleHttp\Client();
-        $response = $client->get($path, ['headers' => ['X-Lsw-Auth' => '0bbbb3c3-4120-4225-a83b-4ef86d0d17be']]);
+        $response = $client->get($path, ['headers' => ['X-Lsw-Auth' => '']]);
 
         $body = $response->getbody();
         $body->getContents();
