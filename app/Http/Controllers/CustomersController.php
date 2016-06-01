@@ -40,4 +40,13 @@ class CustomersController extends Controller
         return view('customers/manage', $data);
     }
 
+    /**
+     * Register a new customer.
+     * 
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function register()
+    {
+        return view('customers.create');
+    }
 }
