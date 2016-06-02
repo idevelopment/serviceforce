@@ -77,6 +77,9 @@ class CustomersController extends Controller
         // 1. Load customers data from Suitecrm and save it to serviceforce #43
         // 2. Set the customer status to new because we don't have any services assigned to this customer.
         // 3. Send notification to support@idevelopment.be that the user has been created and ready for services assignment.
+        // 4. Let the user know that the user is saved -> flash session.
+        //
+        // INFO: http://apidocs.sugarcrm.com/schema/6.5.23/ce/tables/accounts.html
 
         return redirect()->back(302);
     }
