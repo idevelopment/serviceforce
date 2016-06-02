@@ -50,11 +50,11 @@ class ForgeServers extends Command
         $body->getContents();
         $data = json_decode($body, true);
 
+
         // start the inserts.
         foreach($data as $info) {
-            $exist = BaseServers::where('bareMetalId', $info['bareMetalId'])->get();
-
-            if (count($exist) > 0) {
+            $exist = BaseServers::where('bareMetalId','=', $info['bareMetalId'])->count();
+            if ($exist === 0) {
                 // Location details.
                 $location          = new ServerLocation;
                 $location->Cabinet = $info['location']['cabinet'];
@@ -108,6 +108,10 @@ class ForgeServers extends Command
                 $baseServer->sla()->associate($sla);
                 $baseServer->networkInfo()->associate($network);
                 $baseServer->save();
+
+                $this->info('Servers added');
+            } else {
+                $this->error('There are no new servers');
             }
         }
     }
