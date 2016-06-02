@@ -74,4 +74,16 @@ class CustomersController extends Controller
     {
         return redirect()->back(302);
     }
+
+    /**
+     * Soft delete a customer in the application.
+     * 
+     * @param  int $id the customer id in the database
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
+    {
+        Customers::find($id)->delete();
+        return redirect()->back(302);
+    }
 }
