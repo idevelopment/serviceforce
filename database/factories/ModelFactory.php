@@ -26,7 +26,7 @@ $factory->define(App\AssetStates::class, function (Faker\Generator $faker) {
         'State_Label' => 'status label',
         'State_Name'  => 'status name',
         'Description' => 'description'
-    ],
+    ];
 });
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
