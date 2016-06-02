@@ -2,8 +2,6 @@
 
 namespace App\Traits;
 
-use App\Logs;
-
 /**
  * Class LoggerTrait
  *
@@ -37,29 +35,20 @@ trait LoggerTrait
     protected $logs;
 
     /**
-     * LoggerTrait constructor.
-     *
-     * @param Logs $log
-     */
-    public function __construct(Logs $log)
-    {
-        $this->logs = $log;
-    }
-    
-    /**
      * System is unusable.
      *
-     * @param string  $message  The log message.
-     * @param int     $id       The customer id.
+     * @param string $message The log message.
+     * @param  int $id The customer id.
+     * @return static
      */
-    public function emergency($message, $id)
+    public function LogEmergency($message, $id)
     {
         $data['Employee_id'] = auth()->user()->id;
         $data['Customer_id'] = $id;
         $data['Message']     = $message;
         $data['Level']       = self::$emergency;
 
-        $this->logs->create($data);
+        return \App\Logs::create($data);
     }
 
     /**
@@ -71,14 +60,14 @@ trait LoggerTrait
      * @param  int    $id       The customer id.
      * @return null
      */
-    public function alert($message,$id)
+    public function LogAlert($message,$id)
     {
         $data['Employee_id'] = auth()->user()->id;
         $data['Customer_id'] = $id;
         $data['Message']     = $message;
         $data['Level']       = self::$alert;
 
-        $this->logs->create($data);
+       return \App\Logs::create($data);
     }
 
     /**
@@ -90,14 +79,14 @@ trait LoggerTrait
      * @param  int    $id       The costumer id.
      * @return null
      */
-    public function critical($message, $id)
+    public function LogCritical($message, $id)
     {
         $data['Employee_id'] = auth()->user()->id;
         $data['Customer_id'] = $id;
         $data['Message']     = $message;
         $data['Level']       = self::$critical;
 
-        $this->logs->create($data);
+        return \App\Logs::create($data);
     }
 
     /**
@@ -108,14 +97,14 @@ trait LoggerTrait
      * @param  int    $id       The costumer id.
      * @return null
      */
-    public function error($message, $id)
+    public function LogError($message, $id)
     {
         $data['Employee_id'] = auth()->user()->id;
         $data['Customer_id'] = $id;
         $data['Message']     = $message;
         $data['Level']       = self::$error;
 
-        $this->logs->create($data);
+        return \App\Logs::create($data);
     }
 
     /**
@@ -128,14 +117,14 @@ trait LoggerTrait
      * @param  int    $id       The customer id.
      * @return null
      */
-    public function warning($message, $id)
+    public function LogWarning($message, $id)
     {
         $data['Employee_id'] = auth()->user()->id;
         $data['Customer_id'] = $id;
         $data['Message']     = $message;
         $data['Level']       = self::$warning;
 
-        $this->logs->create($data);
+        return \App\Logs::create($data);
     }
 
     /**
@@ -145,14 +134,14 @@ trait LoggerTrait
      * @param  int    $id       The customer id.
      * @return null
      */
-    public function notice($message, $id)
+    public function LogNotice($message, $id)
     {
         $data['Employee_id'] = auth()->user()->id;
         $data['Customer_id'] = $id;
         $data['Message']     = $message;
         $data['Level']       = self::$notice;
 
-        $this->logs->create($data);
+        return \App\Logs::create($data);
     }
 
     /**
@@ -164,14 +153,14 @@ trait LoggerTrait
      * @param  int    $id       The customer id.
      * @return null
      */
-    public function info($message, $id)
+    public function LogInfo($message, $id)
     {
         $data['Employee_id'] = auth()->user()->id;
         $data['Customer_id'] = $id;
         $data['Message']     = $message;
         $data['Level']       = self::$info;
 
-        $this->logs->create($data);
+        return \App\Logs::create($data);
     }
 
     /**
@@ -181,13 +170,13 @@ trait LoggerTrait
      * @param  int    $id      The customer id.
      * @return null
      */
-    public function debug($message, $id)
+    public function LogDebug($message, $id)
     {
         $data['Employee_id'] = auth()->user()->id;
         $data['Customer_id'] = $id;
         $data['Message']     = $message;
         $data['Level']       = self::$debug;
 
-        $this->logs->create($data);
+        return \App\Logs::create($data)->id;
     }
 }

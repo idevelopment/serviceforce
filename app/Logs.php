@@ -19,7 +19,7 @@ class Logs extends Model
      * @var array
      */
     protected $fillable = [
-        'Employee_id', 'Customer_id', 'level', 'message'
+        'Employee_id', 'Customer_id', 'Level', 'Message'
     ];
 
     /**
