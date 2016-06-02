@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\BaseServers;
 
 class ServersController extends Controller
 {
@@ -39,7 +40,8 @@ class ServersController extends Controller
          	
     public function getServers()
     {
-    	return view('servers.list');
+        $data["servers"] = BaseServers::all();
+    	return view('servers.list', $data);
     }
 
     /**
@@ -48,50 +50,22 @@ class ServersController extends Controller
      * @return \Illuminate\Http\Response
      */
          	
-    public function display()
+    public function display($id)
     {
     	
-    	$serverResource = '/bareMetals/202119';
-    	$powerResource = '/bareMetals/202119/powerStatus'; 
-    	$switchResource = '/bareMetals/202119/switchPort';
-    	$ipResource = '/bareMetals/202119/ips';
-
-    	$apiKey   = '';
-    	$apiUrl   = 'https://api.leaseweb.com/v1';
-
-    	// General server info
-    	$ch = curl_init();
-    	curl_setopt($ch, CURLOPT_URL, $apiUrl . $serverResource);
-    	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    	curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-Lsw-Auth: $apiKey"));
-    	$output = curl_exec($ch);
-    	$data["server"] = json_decode($output, true);
-        
-
-        $GetSwitchPort = curl_init();
-        curl_setopt($GetSwitchPort, CURLOPT_URL, $apiUrl . $switchResource);
-        curl_setopt($GetSwitchPort, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($GetSwitchPort, CURLOPT_HTTPHEADER, array("X-Lsw-Auth: $apiKey"));
-        $SwitchPort = curl_exec($GetSwitchPort);
-        $data["switch"] = json_decode($SwitchPort, true);
-
-        // retrieve the power status
-    	$GetPowerStatus = curl_init();
-    	curl_setopt($GetPowerStatus, CURLOPT_URL, $apiUrl . $powerResource);
-    	curl_setopt($GetPowerStatus, CURLOPT_RETURNTRANSFER, 1);
-    	curl_setopt($GetPowerStatus, CURLOPT_HTTPHEADER, array("X-Lsw-Auth: $apiKey"));
-    	$power = curl_exec($GetPowerStatus);
-     	$data["power"] = json_decode($power, true);
-
-        // retrieve the assigned ips
-    	$GetIps = curl_init();
-    	curl_setopt($GetIps, CURLOPT_URL, $apiUrl . $ipResource);
-    	curl_setopt($GetIps, CURLOPT_RETURNTRANSFER, 1);
-    	curl_setopt($GetIps, CURLOPT_HTTPHEADER, array("X-Lsw-Auth: $apiKey"));
-    	$ipData = curl_exec($GetIps);
-     	$data["ips"] = json_decode($ipData, true);     	
-
+    	$data['servers'] = BaseServers::where('bareMetalId', $id)->get();
     	return view('servers.details', $data);
-    }    
+    }
+
+    /**
+     * Request a new server.
+     *
+     * @return \Illuminate\Http\Response
+     */
+            
+    public function create()
+    {        
+        return view('servers.create');
+    }   
 
 }

@@ -4,36 +4,30 @@
 <div class="page-header">
 <h1>Servers</h1>
 </div>
-<table class="table table-bordered table-hovered">
+<table class="table table-hovered">
 	 <thead>
         <tr>
           <th>Tag</th>
-          <th>Hostname</th>
+          <th>Type</th>
           <th>Status</th>
-          <th>State</th> 
-          <th>created</th> 
-          <th>updated</th>                     
+          <th>State</th>
+          <th>SLA</th> 
+          <th>Created</th> 
+          <th>Updated</th>                     
         </tr>
       </thead>
       <tbody>
+      @foreach($servers as $item)
       	<tr class="warning">
-      	 <td><a href="{{ url('servers/display/1') }}">idev001</a></td>
-      	 <td></td>
-      	 <td>Running</td>
-      	 <td>New</td>
-      	 <td>2016-05-27 14:23:01</td>
-      	 <td>2016-05-27 14:23:01</td>
+      	 <td><a href="{{ url('servers/display') }}/{!! $item["bareMetalId"] !!}">{!! $item["serverName"] !!}</a></td>
+      	 <td>{!! $item["serverType"] !!}</td>
+      	 <td>{!! $item["status"] !!}</td>
+      	 <td>{!! $item["state"] !!}</td>
+         <td>{!! $item["sla_id"] !!}</td>
+      	 <td>{!! $item["created_at"] !!}</td>
+      	 <td>{!! $item["updated_at"] !!}</td>
       	 </tr>
-
-        <tr class="">
-         <td><a href="#">idev001</a></td>
-         <td>local.idevelopment.be</td>
-         <td>Running</td>
-         <td>Provisioned</td>
-         <td>2016-05-27 14:23:01</td>
-         <td>2016-05-27 14:23:01</td>
-         </tr>
-
+         @endforeach
       </tbody>
 </table>
 @endsection
