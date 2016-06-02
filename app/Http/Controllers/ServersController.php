@@ -58,18 +58,19 @@ class ServersController extends Controller
     }
 
     /**
-     * Request a new server.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
      * Create server view.
      * 
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
-    {        
+    {
+        // TODO:
+        //
+        // 1. get server racks from LSW api.
+        // 2. Weave them into the view.
+        //
+        // INFO: http://developer.leaseweb.com/paygbm-docs/#list-all-the-models-available-for-ordering
+
         return view('servers.create');
     }
 
@@ -78,6 +79,7 @@ class ServersController extends Controller
         // 1. fire request. -> end point '/payAsYouGo/bareMetals/instances';
         // 2. get the bare metal id out of the response.
         // 3. save id and his information throught the base server model.
+        //
         // INFO: http://developer.leaseweb.com/paygbm-docs/#create-a-new-pay-as-you-go-instance
     }
 
