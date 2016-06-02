@@ -112,7 +112,7 @@
             <select name="OperatingSystem" id="OperatingSystem" class="form-control">
              <option value="" selected="selected"></option>
               @foreach($osList as $item)
-               <option value="(none)">{!! $item["name"] !!}</option>
+               <option value="{!! $item["id"] !!}">{!! $item["name"] !!}</option>
               @endforeach
             </select>
 
