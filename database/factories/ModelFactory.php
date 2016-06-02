@@ -20,6 +20,15 @@ $factory->define(App\ServiceStatus::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\AssetStates::class, function (Faker\Generator $faker) {
+    return [
+        'Status'      => 'status',
+        'State_Label' => 'status label',
+        'State_Name'  => 'status name',
+        'Description' => 'description'
+    ],
+});
+
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,

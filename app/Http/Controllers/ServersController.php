@@ -62,7 +62,12 @@ class ServersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-            
+
+    /**
+     * Create server view.
+     * 
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {        
         return view('servers.create');

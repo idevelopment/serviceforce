@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(createCustomers::class);
         $this->call(ServiceStatusSeed::class);
+        $this->call(AssetStatesSeeder::class);
         factory(App\BaseServers::class)->create();
     }
 }
