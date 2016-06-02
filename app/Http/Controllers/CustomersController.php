@@ -72,6 +72,12 @@ class CustomersController extends Controller
      */
     public function store(Requests\CostumerValidator $input)
     {
+        // TODO: Function steps.
+        //
+        // 1. Load customers data from Suitecrm and save it to serviceforce #43
+        // 2. Set the customer status to new because we don't have any services assigned to this customer.
+        // 3. Send notification to support@idevelopment.be that the user has been created and ready for services assignment.
+
         return redirect()->back(302);
     }
 
