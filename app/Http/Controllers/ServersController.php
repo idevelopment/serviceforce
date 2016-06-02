@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 
 use App\Http\Requests;
 use App\BaseServers;
+use App\AssetStates;
+
+use App\OperatingSystems;
 
 class ServersController extends Controller
 {
@@ -29,7 +33,10 @@ class ServersController extends Controller
          	
     public function index()
     {
-    	return view('servers.index');
+        $data["osList"] = OperatingSystems::all();
+        $data["states"] = AssetStates::all();        
+
+    	return view('servers.index', $data);
     }
 
     /**
@@ -54,6 +61,7 @@ class ServersController extends Controller
     {
     	
     	$data['servers'] = BaseServers::where('bareMetalId', $id)->get();
+        $data["osList"] = OperatingSystems::all();
     	return view('servers.details', $data);
     }
 
@@ -71,7 +79,7 @@ class ServersController extends Controller
         //
         // INFO: http://developer.leaseweb.com/paygbm-docs/#list-all-the-models-available-for-ordering
 
-        return view('servers.create');
+       return view('servers.create');
     }
 
     public function store()

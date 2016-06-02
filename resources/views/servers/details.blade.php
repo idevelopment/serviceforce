@@ -286,11 +286,13 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
          </button>
-        <h4 class="modal-title" id="provisionLabel">Provision Server</h4>
+        <h4 class="modal-title" id="provisionLabel">Reinstall Server</h4>
       </div>
       <form action="" method="POST">
       <div class="modal-body">
-       <p>Provisioning a server is a destructive process. Be certain that you want to do this. The provisioner will:</p>
+       <p>Provisioning a server is a destructive process.<br>
+          Be certain that you want to do this. The provisioner will:</p>
+
         <ul>
          <li>Verify the server is stable</li>
          <li>Power it off</li>
@@ -301,25 +303,14 @@
     <input type="hidden" name="status" value="Maintenance">
 
 <div class="form-group">
-<label for="profile" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Profile</label>
+<label for="profile" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Operating system</label>
 <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
-   <select name="state" class="form-control" id="state">
-     <option value="" selected="selected"></option>         
-          <option value="adminwebnode">Admin Web Server</option>
-          <option value="collinsnode">Collins Server</option>
-          <option value="dhcpnode">DHCP/iPXE Server</option>
-          <option value="mysqlnode">Mysql Database Server</option>
-          <option value="devnode">Dev Machine</option>        
-          <option value="gitlabnode">Gitlab Server</option>       
-          <option value="icinganode">Icinga Server</option>         
-          <option value="mailrelaynode">Mail Relay Server</option>
-          <option value="servicenode">Platform Service Server</option>
-          <option value="puppetnode">Puppet Master</option>
-          <option value="redisnode">Redis Server</option>
-          <option value="utilnode">Utility Server</option>
-          <option value="varnishnode">Varnish Server</option>
-          <option value="webnode">Web Server</option>
-          </select>
+   <select name="OperatingSystem" id="OperatingSystem" class="form-control">
+    <option value="" selected="selected"></option>
+    @foreach($osList as $item)
+    <option value="(none)">{!! $item["State_Name"] !!}</option>
+    @endforeach
+  </select>
  <div class="input-group-addon">
   <span class="help-inline">
       <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="A state representing the operational state of the asset (i.e. network problem, hardware problem, IPMI problem, NOOP, etc)"></i>

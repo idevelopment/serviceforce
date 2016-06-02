@@ -1,6 +1,6 @@
 @extends('layouts.app')
-
 @section('content')
+
 <form action="{{ url('servers/lookup') }}" method="GET" class="form-horizontal">
  <div class="page-header">
       <h1>Search servers <small>Query your assets by attribute.</small></h1>
@@ -73,20 +73,10 @@
  <label for="state" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">State</label>
   <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
               <select name="state" id="state" class="form-control">
-                <option value="" selected="selected"></option>
-                  <option value="FAILED">Failed</option>
-                  <option value="NEW">New</option>
-                  <option value="RUNNING">Running</option>
-                  <option value="STARTING">Starting</option>
-                  <option value="STOPPING">Stopping</option>
-                  <option value="TERMINATED">Terminated</option>
-                  <option value="HARDWARE_PROBLEM">Maintenance - Hardware Problem</option>
-                  <option value="HW_TESTING">Maintenance - Hardware Testing</option>
-                  <option value="HARDWARE_UPGRADE">Maintenance - Hardware Upgrade</option>
-                  <option value="IPMI_PROBLEM">Maintenance - IPMI Problem</option>
-                  <option value="MAINT_NOOP">Maintenance - Maintenance NOOP</option>
-                  <option value="NETWORK_PROBLEM">Maintenance - Network Problem</option>
-                  <option value="RELOCATION">Maintenance - Relocation</option>
+               <option value="" selected=""></option>
+                    @foreach($states as $state_item)
+                    <option value="{!! $state_item['State_label'] !!}">{{ $state_item["State_Name"] }}</option>
+                    @endforeach
               </select>
 
 <div class="input-group-addon">
@@ -173,11 +163,13 @@
 </div>           
 
 <div class="form-group">
- <label for="PRIMARY_ROLE" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Primary Role</label>
+ <label for="OperatingSystem" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Operating system</label>
   <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
-   <select name="PRIMARY_ROLE" id="PRIMARY_ROLE" class="form-control">
+   <select name="OperatingSystem" id="OperatingSystem" class="form-control">
     <option value="" selected="selected"></option>
-    <option value="(none)">(None)</option>
+    @foreach($osList as $item)
+    <option value="(none)">{!! $item["name"] !!}</option>
+    @endforeach
   </select>
 
 
