@@ -66,6 +66,13 @@ class ServersController extends Controller
     public function create()
     {        
         return view('servers.create');
-    }   
+    }
+
+    public function store()
+    {
+        // 1. fire request. -> end point '/payAsYouGo/bareMetals/instances';
+        // 2. get the bare metal id out of the response.
+        // 3. save id and his information throught the base server model.
+    }
 
 }
