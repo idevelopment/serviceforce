@@ -189,6 +189,16 @@
       </table>      
       </div>
     </div> 
+        <div class="row">
+      <div class="col-sm-11">
+        <div class="form-group pull-right">
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary">Start provisioning</button>
+            <button type="reset" class="btn btn-default">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </form>
 
 <script type="text/javascript">
