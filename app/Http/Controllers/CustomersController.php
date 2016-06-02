@@ -32,6 +32,7 @@ class CustomersController extends Controller
     /**
      * The customer index view.
      *
+     * @param  int $id The customer id in the database.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
