@@ -23,28 +23,15 @@
                       <input type="password" name="password" placeholder="Password" class="form-control">
                      </div>
                     </div>
-
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <div class="checkbox checkbox-primary">
-                                <input type="checkbox" id="checkbox-signup" name="remember">
-                                <label for="checkbox-signup">
-                                    Remember me
-                                </label>
-                            </div>
-                            
-                        </div>
-                    </div>
                     
                     <div class="form-group text-center">
                         <div class="col-xs-12">
                             <button class="btn  btn-default" type="submit">Log In</button>
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-7">
-                            <a href="{{ url('password/reset')}}"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
+                            <a class="btn btn-primary "href="{{ url('password/reset')}}">
+                                <i class="fa fa-lock m-r-5"></i> Forgot your password?
+                            </a>
+
                         </div>
                     </div>
                 </form> 

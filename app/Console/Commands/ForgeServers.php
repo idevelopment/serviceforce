@@ -52,59 +52,63 @@ class ForgeServers extends Command
 
         // start the inserts.
         foreach($data as $info) {
-            // Location details.
-            $location          = new ServerLocation;
-            $location->Cabinet = $info['location']['cabinet'];
-            $location->Site    = $info['location']['site'];
-            $location->save();
+            $exist = BaseServers::where('bareMetalId', $info['bareMetalId'])->get();
 
-            // network details.
-            $network = new NetworkInformation;
-            $network->dataPack = $info['network']['dataPack'];
-            $network->ipsAssigned = $info['network']['ipsAssigned'];
-            $network->ipsFreeOfCharge = $info['network']['ipsFreeOfCharge'];
-            $network->save();
+            if (count($exist) > 0) {
+                // Location details.
+                $location          = new ServerLocation;
+                $location->Cabinet = $info['location']['cabinet'];
+                $location->Site    = $info['location']['site'];
+                $location->save();
 
-            // server details
-            $server                 = new Server;
-            $server->hardDisks      = $info['server']['hardDisks'];
-            $server->hardwareRaid   = $info['server']['hardwareRaid'];
-            $server->kvm            = $info['server']['kvm'];
-            $server->numberOfCores  = $info['server']['numberOfCores'];
-            $server->numberOfCpus   = $info['server']['numberOfCpus'];
-            $server->processorSpeed = $info['server']['processorSpeed'];
-            $server->processorType  = $info['server']['processorType'];
-            $server->ram            = $info['server']['ram'];
-            $server->serverType     = $info['server']['serverType'];
-            $server->save();
+                // network details.
+                $network = new NetworkInformation;
+                $network->dataPack = $info['network']['dataPack'];
+                $network->ipsAssigned = $info['network']['ipsAssigned'];
+                $network->ipsFreeOfCharge = $info['network']['ipsFreeOfCharge'];
+                $network->save();
 
-            // server hosting pack details.
-            $hostingPack               = new serverHostingPack;
-            $hostingPack->bareMetalId  = $info['serverHostingPack']['bareMetalId'];
-            $hostingPack->contractTerm = $info['serverHostingPack']['contractTerm'];
-            $hostingPack->serverName   = $info['serverHostingPack']['serverName'];
-            $hostingPack->serverType   = $info['serverHostingPack']['serverType'];
-            $hostingPack->startDate    = $info['serverHostingPack']['startDate'];
-            $hostingPack->save();
+                // server details
+                $server                 = new Server;
+                $server->hardDisks      = $info['server']['hardDisks'];
+                $server->hardwareRaid   = $info['server']['hardwareRaid'];
+                $server->kvm            = $info['server']['kvm'];
+                $server->numberOfCores  = $info['server']['numberOfCores'];
+                $server->numberOfCpus   = $info['server']['numberOfCpus'];
+                $server->processorSpeed = $info['server']['processorSpeed'];
+                $server->processorType  = $info['server']['processorType'];
+                $server->ram            = $info['server']['ram'];
+                $server->serverType     = $info['server']['serverType'];
+                $server->save();
 
-            // sla details.
-            $sla = new Sla;
-            $sla->slaName = $info['serviceLevelAgreement']['sla'];
-            $sla->save();
+                // server hosting pack details.
+                $hostingPack               = new serverHostingPack;
+                $hostingPack->bareMetalId  = $info['serverHostingPack']['bareMetalId'];
+                $hostingPack->contractTerm = $info['serverHostingPack']['contractTerm'];
+                $hostingPack->serverName   = $info['serverHostingPack']['serverName'];
+                $hostingPack->serverType   = $info['serverHostingPack']['serverType'];
+                $hostingPack->startDate    = $info['serverHostingPack']['startDate'];
+                $hostingPack->save();
 
-            // Base server details.
-            $baseServer              = new BaseServers;
-            $baseServer->bareMetalId = $info['bareMetalId'];
-            $baseServer->serverName  = $info['serverName'];
-            $baseServer->serverType  = $info['serverType'];
+                // sla details.
+                $sla = new Sla;
+                $sla->slaName = $info['serviceLevelAgreement']['sla'];
+                $sla->save();
 
-            // Base server relations
-            $baseServer->serverLocation()->associate($location);
-            $baseServer->serverInfo()->associate($server);
-            $baseServer->hostingPack()->associate($hostingPack);
-            $baseServer->sla()->associate($sla);
-            $baseServer->networkInfo()->associate($network);
-            $baseServer->save();
+                // Base server details.
+                $baseServer              = new BaseServers;
+                $baseServer->bareMetalId = $info['bareMetalId'];
+                $baseServer->serverName  = $info['serverName'];
+                $baseServer->serverType  = $info['serverType'];
+
+                // Base server relations
+                $baseServer->serverLocation()->associate($location);
+                $baseServer->serverInfo()->associate($server);
+                $baseServer->hostingPack()->associate($hostingPack);
+                $baseServer->sla()->associate($sla);
+                $baseServer->networkInfo()->associate($network);
+                $baseServer->save();
+            }
         }
     }
 }

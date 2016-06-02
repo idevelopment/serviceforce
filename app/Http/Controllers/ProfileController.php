@@ -37,9 +37,10 @@ class ProfileController extends Controller
     /**
      * Update the account information.
      *
+     * @param  Requests\AccountInfoValidator $input
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeInformation()
+    public function storeInformation(Requests\AccountInfoValidator $input)
     {
         return redirect()->back(302);
     }
@@ -47,9 +48,10 @@ class ProfileController extends Controller
     /**
      * Update the password.
      *
+     * @param  Requests\PasswordValidator $input
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateCredentials()
+    public function updateCredentials(Requests\PasswordValidator $input)
     {
         return redirect()->back(302);
     }

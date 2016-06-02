@@ -16,6 +16,9 @@ Route::auth();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
+// Profile
+Route::get('/profile', 'ProfileController@index')->name('profile.index');
+
 // Customers routes
 Route::get('/customers', 'CustomersController@index')->name('customers.index');
 Route::get('/customers/register', 'CustomersController@register')->name('customers.register');
