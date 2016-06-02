@@ -55,6 +55,17 @@ class ServersController extends Controller
     	
     	$data['servers'] = BaseServers::where('bareMetalId', $id)->get();
     	return view('servers.details', $data);
-    }    
+    }
+
+    /**
+     * Request a new server.
+     *
+     * @return \Illuminate\Http\Response
+     */
+            
+    public function create()
+    {        
+        return view('servers.create');
+    }   
 
 }
