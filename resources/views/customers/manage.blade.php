@@ -94,7 +94,7 @@
     </table>
      </div>
      <div role="tabpanel" class="tab-pane" id="log-info">
-      <table class="table table-bordered table-hover table-condensed">
+      <table class="table table-hover table-condensed">
         <thead>
         <tr>
           <th>Date</th>
@@ -112,9 +112,11 @@
       </tr>
       </tbody>
       </table>
-     </div>
-          <div role="tabpanel" class="tab-pane" id="services-info">
-      <table class="table table-hover table-condensed">
+    </div>
+      
+    <div role="tabpanel" class="tab-pane" id="services-info">
+      <div class="clearfix">&nbsp;</div>
+      <table id="services" class="table border-column table-bordered table-hover table-condensed">
         <thead>
         <tr>
           <th>ID</th>
@@ -161,11 +163,21 @@
        <td>Cancelled</td>
        <td><a href="#"><i class="fa fa-wrench fa-lg" data-toggle="tooltip" title="Settings" data-placement="bottom"></i></a></td>
       </tr>
-      </tbody>
+     </tbody>
       </table>
      </div>
     </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#services').DataTable({
+      "bPaginate" : $('#services tbody tr').length>10,
+      "iDisplayLength": 15,
+    });
+} );
+</script>
 
   </div>
+  </div>
+
  @endforeach
 @endsection

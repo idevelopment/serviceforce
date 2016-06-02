@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+@foreach($servers as $item)
 <div class="page-header">
   <h1>Server <small>idev001</small></h1>
   <h4 class="asset-status-label">
@@ -56,7 +56,7 @@
       <tbody>
         <tr>
           <th>{{ trans('servers.assetTag') }}</th>
-            <td>{!! $server["bareMetal"]["serverHostingPack"]["bareMetalId"] !!}</td>
+            <td>{!! $item["bareMetalId"] !!}</td>
             <td></td>
         </tr>
         <tr>
@@ -66,7 +66,7 @@
         </tr>
         <tr>
           <th>{{ trans('servers.serverType') }}</th>
-          <td>{!! $server["bareMetal"]["serverType"] !!}</td>
+          <td>{!! $item["serverType"] !!}</td>
           <td></td>
         </tr>
         <tr class="warning">
@@ -81,24 +81,24 @@
         </tr>
         <tr class="success">
           <th>{{ trans('servers.switchportStatus') }}</th>
-          <td>{!! $switch["switchPort"]["status"] !!}</td>
+          <td></td>
           <td></td>
         </tr>        
         <tr>
           <th>{{ trans('servers.chassisTag') }}</th>
-          <td>{!! $server["bareMetal"]["serverName"] !!}</td>
+          <td></td>
           <td>Tag for asset chassis</td>
         </tr>
         
         <tr>
           <th>{{ trans('servers.totalDisk') }}</th>
-          <td>{!! $server["bareMetal"]["server"]["hardDisks"] !!}</td>
+          <td></td>
           <td>Total amount of available storage</td>
         </tr>
 
         <tr>
           <th>{{ trans('servers.sla') }}</th>
-          <td>{!! $server["bareMetal"]["serviceLevelAgreement"]["sla"]; !!}</td>
+          <td></td>
           <td>Service Level Agreement Response time</td>
         </tr>
         <tr>
@@ -155,19 +155,19 @@
       <tbody>
         <tr>
           <td>Vendor Product</td>
-          <td>{!! $server["bareMetal"]["server"]["serverType"]; !!}</td>
+          <td></td>
         </tr>
         <tr>
           <td>Processor Type</td>
-          <td>{!! $server["bareMetal"]["server"]["processorType"]; !!} {!! $server["bareMetal"]["server"]["processorSpeed"]; !!}</td>
+          <td></td>
         </tr>
         <tr>
           <td>Total cpu</td>
-          <td>{!! $server["bareMetal"]["server"]["numberOfCpus"]; !!}</td>
+          <td></td>
         </tr>
          <tr>
           <td>Total cores</td>
-          <td>{!! $server["bareMetal"]["server"]["numberOfCores"]; !!}</td>
+          <td></td>
         </tr>
       </tbody>
     </table>
@@ -183,7 +183,7 @@
       <tbody>
         <tr>
           <td>Total memory</td>
-          <td>{!! $server["bareMetal"]["server"]["ram"]; !!}</td>
+          <td></td>
         </tr>
       </tbody>
 </table>
@@ -328,9 +328,9 @@
 </div>
 </div>
 
-
-      <div class="form-group">
-        <textarea name="description" id="maintenanceDescription" class="form-control" rows="3" placeholder="Description"></textarea>
+    <div class="form-group">
+     <textarea name="description" id="maintenanceDescription" class="form-control" rows="3" placeholder="Description">       
+     </textarea>
       </div>
 
     </div>
@@ -344,4 +344,7 @@
     </div>
   </div>
 </div>
+
+
+@endforeach
  @endsection
