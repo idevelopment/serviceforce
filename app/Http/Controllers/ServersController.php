@@ -73,6 +73,7 @@ class ServersController extends Controller
         // 1. fire request. -> end point '/payAsYouGo/bareMetals/instances';
         // 2. get the bare metal id out of the response.
         // 3. save id and his information throught the base server model.
+        // INFO: http://developer.leaseweb.com/paygbm-docs/#create-a-new-pay-as-you-go-instance
     }
 
 }
