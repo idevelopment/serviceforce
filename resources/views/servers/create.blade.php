@@ -109,12 +109,12 @@
           <div class="form-group">
            <label for="operatingSystem" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Operating system</label>
            <div class="input-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-             <select name="operatingSystem" id="operatingSystem" class="form-control">
-              <option value="" selected="selected"></option>
-              <option value="">Ubuntu</option>
-              <option value="">Centos</option>
-              <option value="">FreeBSD</option>
-              </select>
+            <select name="OperatingSystem" id="OperatingSystem" class="form-control">
+             <option value="" selected="selected"></option>
+              @foreach($osList as $item)
+               <option value="(none)">{!! $item["name"] !!}</option>
+              @endforeach
+            </select>
 
               <div class="input-group-addon">
                <span class="help-inline">

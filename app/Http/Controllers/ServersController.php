@@ -79,7 +79,8 @@ class ServersController extends Controller
         //
         // INFO: http://developer.leaseweb.com/paygbm-docs/#list-all-the-models-available-for-ordering
 
-       return view('servers.create');
+        $data["osList"] = OperatingSystems::all();
+       return view('servers.create', $data);
     }
 
     public function store()
