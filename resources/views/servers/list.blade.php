@@ -18,11 +18,17 @@
       </thead>
       <tbody>
       @foreach($servers as $item)
-      	<tr class="warning">
+       @if ($item["serverStatus"] === "Provisioned")
+        <tr class="">
+        @elseif ($item["serverStatus"] === "Maintenance")
+        <tr class="danger">
+@else
+        <tr class="warning">
+@endif      	
       	 <td><a href="{{ url('servers/display') }}/{!! $item["bareMetalId"] !!}">{!! $item["serverName"] !!}</a></td>
       	 <td>{!! $item["serverType"] !!}</td>
-      	 <td>{!! $item["status"] !!}</td>
-      	 <td>{!! $item["state"] !!}</td>
+      	 <td>{!! $item["serverStatus"] !!}</td>
+      	 <td>{!! $item["serverState"] !!}</td>
          <td>{!! $item["sla_id"] !!}</td>
       	 <td>{!! $item["created_at"] !!}</td>
       	 <td>{!! $item["updated_at"] !!}</td>

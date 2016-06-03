@@ -3,7 +3,7 @@
 
 <form action="{{ url('servers/lookup') }}" method="GET" class="form-horizontal">
  <div class="page-header">
-      <h1>Search servers <small>Query your assets by attribute.</small></h1>
+      <h1>Search servers</h1>
     </div>
     <input type="hidden" name="operation" value="and">
     <div class="row">
@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-sm-12 col-md-11 col-lg-9 col-lg-offset-1">
            <div class="form-group">
- <label for="tag" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Asset Tag</label>
+ <label for="tag" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">{{trans('servers.assetTag')}}</label>
   <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
    <input type="text" class="focus form-control" placeholder="Asset Tag" id="tag" name="tag">
     <div class="input-group-addon">
@@ -23,7 +23,7 @@
 </div>
 
 <div class="form-group">
-<label for="IP_ADDRESS" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">IP Address</label>
+<label for="IP_ADDRESS" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">{{trans('servers.ip')}}</label>
 <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
  <input type="text" id="IP_ADDRESS" name="IP_ADDRESS" placeholder="IP Address" class="form-control">
   <div class="input-group-addon">
@@ -35,7 +35,7 @@
 </div>
 
     <div class="form-group">
-     <label for="HOSTNAME" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Hostname</label>
+     <label for="HOSTNAME" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">{{trans('servers.hostname')}}</label>
       <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
        <input type="text" id="HOSTNAME" placeholder="Hostname" class="form-control" name="HOSTNAME">
         <div class="input-group-addon">
@@ -46,7 +46,7 @@
       </div>
      </div>
 <div class="form-group">
- <label for="status" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Status</label>
+ <label for="status" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">{{trans('servers.assetStatus')}}</label>
   <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
    <select name="status" id="status" class="form-control">
     <option value="" selected="selected"></option>
@@ -70,7 +70,7 @@
 </div>
 
 <div class="form-group">
- <label for="state" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">State</label>
+ <label for="state" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">{{trans('servers.serverState')}}</label>
   <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
               <select name="state" id="state" class="form-control">
                <option value="" selected=""></option>
@@ -89,7 +89,7 @@
 
 
 <div class="form-group">
-<label for="type" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Type</label>
+<label for="type" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">{{trans('servers.serverType')}}</label>
 <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
               <select name="type" id="type" class="form-control">
                 <option value="" selected="selected"></option>
@@ -121,20 +121,7 @@
      </div>
 </div>
 
-<div class="form-group">
- <label  class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Updated Between</label>
- <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
-  <div class="input-group date" data-type="date" data-date-format="yyyy-mm-dd" data-date="2011-11-01">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-    <input type="text" id="updatedAfter" name="updatedAfter" placeholder="Start" readonly class="form-control">
-  </div>
-    and
-   <div class="input-group date" data-type="date" data-date-format="yyyy-mm-dd" data-date="2012-09-23">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-    <input type="text" id="updatedBefore" name="updatedBefore" placeholder="End" readonly class="form-control">
-   </div>
-  </div>
- </div>
+
 
   </div>
   </div>
@@ -195,9 +182,9 @@
   </div>
 
 <div class="form-group">
-<label for="CHASSIS_TAG" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Chassis Tag</label>
+<label for="CHASSIS_TAG" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ trans('servers.site') }}</label>
  <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
-  <input type="text" id="CHASSIS_TAG" placeholder="Chassis Tag" class="form-control" name="CHASSIS_TAG">
+  <input type="text" id="site" name="site" class="form-control">
  <div class="input-group-addon">
   <span class="help-inline">
     <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Tag for asset chassis"></i>
@@ -208,9 +195,9 @@
             
 
 <div class="form-group">
-<label for="RACK_POSITION" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Rack Position</label>
+<label for="cabinet" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ trans('servers.cabinet') }}</label>
  <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
- <input type="text" id="RACK_POSITION" placeholder="Rack Position" class="form-control" name="RACK_POSITION"> 
+ <input type="text" id="cabinet" name="cabinet" class="form-control"> 
   <div class="input-group-addon">
   <span class="help-inline">
     

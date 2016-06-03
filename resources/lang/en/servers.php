@@ -21,9 +21,11 @@ return [
     'graphs'            => 'Graphs',
     // overview
     'overviewTitle'     => 'General overview',
-    'assetTag'          => 'Asset tag',
+    'assetTag'          => 'Asset Tag',
     'customer'          => 'Customer',
     'serverType'        => 'Server Type',
+    'cabinet'           => 'Cabinet',
+    'site'              => 'Site',
     'assetStatus'       => 'Asset Status',
     'serverState'       => 'Server State',
     'switchportStatus'  => 'Switch port status',
@@ -34,7 +36,7 @@ return [
     'dateModified'      => 'Last Updated',
     // IP details
     'ipOverview'        => 'IP overview',
-    'ip'                => 'IP',
+    'ip'                => 'IP Address',
     'ptr'               => 'PTR',
 
     // Reinstall

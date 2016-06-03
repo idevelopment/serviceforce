@@ -71,12 +71,27 @@
           <td>{!! $item["serverType"] !!}</td>
           <td></td>
         </tr>
+        <tr>
+          <th>{{ trans('servers.site') }}</th>
+          <td>{!! $item["serverName"] !!}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>{{ trans('servers.cabinet') }}</th>
+          <td>{!! $item["serverName"] !!}</td>
+          <td></td>
+        </tr>        
+        <tr>
+          <th>{{ trans('servers.chassisTag') }}</th>
+          <td>{!! $item["serverName"] !!}</td>
+          <td>Tag for asset chassis</td>
+        </tr>        
         <tr class="warning">
           <td><strong>{{ trans('servers.assetStatus') }}</strong></td>
           <td>New</td>          
           <td>Asset has been entered into the system</td>
         </tr>
-        <tr class="success">
+        <tr class="warning">
           <th>{{ trans('servers.serverState') }}</th>
           <td>New</td>
           <td>A service in this state is inactive. It does minimal work and consumes minimal resources.</td>
@@ -88,7 +103,7 @@
         </tr>        
         <tr>
           <th>{{ trans('servers.chassisTag') }}</th>
-          <td></td>
+          <td>{!! $item["serverName"] !!}</td>
           <td>Tag for asset chassis</td>
         </tr>
         
@@ -100,7 +115,7 @@
 
         <tr>
           <th>{{ trans('servers.sla') }}</th>
-          <td></td>
+          <td>{!! $item["sla"]["slaName"] !!}</td>
           <td>Service Level Agreement Response time</td>
         </tr>
         <tr>
