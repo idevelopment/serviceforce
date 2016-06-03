@@ -42,6 +42,9 @@ class ProfileController extends Controller
      */
     public function storeInformation(Requests\AccountInfoValidator $input)
     {
+        $id = auth()->user()->id;
+        User::find($id)->update($input->except('_token'));
+        session()->flash('mesage', 'Profile information saved');
         return redirect()->back(302);
     }
 
