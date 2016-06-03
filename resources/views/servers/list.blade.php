@@ -19,7 +19,7 @@
       <tbody>
       @foreach($servers as $item)
       	<tr class="warning">
-      	 <td><a href="{{ url('servers/display') }}/{!! $item["bareMetalId"] !!}">{!! $item["serverName"] !!}</a></td>
+      	 <td><a href="{{ url('servers/display') }}/{!! $item["id"] !!}">{!! $item["serverName"] !!}</a></td>
       	 <td>{!! $item["serverType"] !!}</td>
       	 <td>{!! $item["status"] !!}</td>
       	 <td>{!! $item["state"] !!}</td>

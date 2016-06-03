@@ -60,8 +60,8 @@ class ServersController extends Controller
          	
     public function display($id)
     {
-    	
-    	$data['servers'] = BaseServers::where('bareMetalId', $id)->get();
+    	$relations = ['sla', 'serverLocation', 'hostingPack', 'serverInfo', 'networkInfo'];
+    	$data['server'] = BaseServers::with($relations)->find($id);
         $data["osList"] = OperatingSystems::all();
     	return view('servers.details', $data);
     }
