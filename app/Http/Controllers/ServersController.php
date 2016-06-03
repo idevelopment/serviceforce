@@ -54,6 +54,7 @@ class ServersController extends Controller
     /**
      * Show the server overview.
      *
+     * @param  int $id the id for the data record in the database about the server.
      * @return \Illuminate\Http\Response
      */
          	
@@ -75,12 +76,13 @@ class ServersController extends Controller
         // TODO:
         //
         // 1. get server racks from LSW api.
-        // 2. Weave them into the view.
+        // 2. Set it to the database through artisan commands.
+        // 3. Weave them into the view.
         //
         // INFO: http://developer.leaseweb.com/paygbm-docs/#list-all-the-models-available-for-ordering
 
-        $data["osList"] = OperatingSystems::all();
-       return view('servers.create', $data);
+        $data["osList"]  = OperatingSystems::all();
+        return view('servers.create', $data);
     }
 
     public function store()
