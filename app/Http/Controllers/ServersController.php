@@ -54,6 +54,7 @@ class ServersController extends Controller
     /**
      * Show the server overview.
      *
+     * @param  int $id the id for the data record in the database about the server.
      * @return \Illuminate\Http\Response
      */
          	

@@ -13,7 +13,7 @@ class CostumerValidator extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class CostumerValidator extends Request
     public function rules()
     {
         return [
-            //
+            'company' => 'required',
+            'fname'   => 'required',
+            'name'    => 'required',
+            'address' => 'required',
+            'zipcode' => 'required',
+            'city'    => 'required',
+            'country' => 'required',
+            'phone'   => 'required',
+            'email'   => 'required',
+            'vat'     => 'required',
         ];
     }
 }
