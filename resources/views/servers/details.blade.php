@@ -3,7 +3,7 @@
 @section('content')
 @foreach($servers as $item)
 <div class="page-header">
-  <h1>Server <small>idev001</small></h1>
+  <h1>Manage server: <small>{!! $item["bareMetalId"] !!}</small></h1>
   <h4 class="asset-status-label">
     <span data-toggle="tooltip" title="Asset has been entered into the system - A service in this state is inactive. It does minimal work and consumes minimal resources." data-placement="bottom" class="label label-warning">New</span></h4>
 </div>
@@ -26,21 +26,23 @@
            </li>
           <li class="divider"></li>
           <li>
-           <a href="#maintenance" role="button" data-keyboard="true" data-toggle="modal">
-           <i class="glyphicon glyphicon-wrench"></i> {{ trans('servers.maintenanceStart') }}</a>
+           <a href="#maintenance" role="button"  data-backdrop="static" data-keyboard="true" data-toggle="modal">
+           <i class="glyphicon glyphicon-wrench"></i> {{ trans('servers.maintenance') }}</a>
           </li>
           <li>
-           <a href="#power-server" role="button" data-keyboard="true" data-toggle="modal">
+           <a href="#power-server" role="button"  data-backdrop="static" data-keyboard="true" data-toggle="modal">
             <i class="fa fa-power-off"></i> {{ trans('servers.powerManagement') }}</a>
           </li>
           <li>
-           <a href="#provision-server" role="button" data-keyboard="true" data-toggle="modal">
-            <i class="fa fa-play"></i> {{ trans('servers.startProvisioning') }}</a>
+           <a href="#provision-server" role="button" data-backdrop="static" data-keyboard="true" data-toggle="modal">
+            <i class="fa  fa-recycle"></i> {{ trans('servers.startReinstall') }}</a>
           </li>          
         </ul>
       </li>
       
-        <li class="disabled" data-rel="tooltip" data-original-title="This asset is not graphable"><a href="javascript:void(0);">{{ trans('servers.graphs') }}</a></li>
+        <li>
+         <a href="#datatraffic-info">{{ trans('servers.graphs') }}</a>
+        </li>
      </ul>
 
      <!-- Tab panes -->
@@ -243,8 +245,8 @@
     <input type="hidden" name="status" value="Maintenance">
 
 <div class="form-group">
-<label for="state" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ trans('maintenance.state') }}</label>
-<div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
+<label for="state" class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4">{{ trans('maintenance.state') }}</label>
+<div class="input-group col-lg-8 col-md-8 col-sm-8 col-xs-8">
    <select name="state" class="form-control" id="state">
      <option value="" selected="selected"></option>
      <option value="HARDWARE_PROBLEM" >Hardware Problem</option>
@@ -258,8 +260,8 @@
 </div>
 
    <div class="form-group">
-   <label for="state" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ trans('maintenance.description') }}</label>
-    <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
+   <label for="state" class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4">{{ trans('maintenance.description') }}</label>
+    <div class="input-group col-lg-8 col-md-8 col-sm-8 col-xs-8">
     <textarea name="maintenanDescription" id="maintenanceDescription" rows="3" class="form-control"></textarea>
     </div>
     </div>
@@ -271,10 +273,9 @@
       </div>
     </div>
     </div>
+   </div>
 
    </form>
-
-    </div>
   </div>
 </div>
 
@@ -286,48 +287,51 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
          </button>
-        <h4 class="modal-title" id="provisionLabel">Reinstall Server</h4>
+        <h4 class="modal-title" id="provisionLabel">{{ trans('servers.ReinstallTitle') }}</h4>
       </div>
       <form action="" method="POST">
       <div class="modal-body">
-       <p>Provisioning a server is a destructive process.<br>
-          Be certain that you want to do this. The provisioner will:</p>
+       <p>{{ trans('servers.ReinstallDesc1') }}<br>
+          {{ trans('servers.ReinstallDesc2') }}<br><br>
+          {{ trans('servers.ReinstallDesc3') }}</p>
 
         <ul>
-         <li>Verify the server is stable</li>
-         <li>Power it off</li>
-         <li>Reinstall the operating system</li>
-         <li>Come back online without old data on disks</li>
+         <li>{{ trans('servers.ReinstallDesc4') }}</li>
+         <li>{{ trans('servers.ReinstallDesc5') }}</li>
+         <li>{{ trans('servers.ReinstallDesc6') }}</li>
+         <li>{{ trans('servers.ReinstallDesc7') }}</li>
         </ul>
-    <p>If that all sounds good, choose an appropriate profile below.</p>
+    <p>If that all sounds good, choose an appropriate operating system below.</p>
     <input type="hidden" name="status" value="Maintenance">
 
 <div class="form-group">
-<label for="profile" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Operating system</label>
-<div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
+<label for="OperatingSystem" class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4">{{ trans('servers.ReinstallOs') }} <span class="text-danger">*</span> </label>
+<div class="input-group col-lg-8 col-md-8 col-sm-8 col-xs-8">
    <select name="OperatingSystem" id="OperatingSystem" class="form-control">
     <option value="" selected="selected"></option>
     @foreach($osList as $item)
-    <option value="(none)">{!! $item["State_Name"] !!}</option>
+     <option value="{!! $item["id"] !!}">{!! $item["name"] !!}</option>
     @endforeach
   </select>
  <div class="input-group-addon">
   <span class="help-inline">
-      <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="A state representing the operational state of the asset (i.e. network problem, hardware problem, IPMI problem, NOOP, etc)"></i>
+      <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom" title="{{ trans('servers.ReinstallOShelper') }}"></i>
   </span>
 </div>
 </div>
 </div>
 
     <div class="form-group">
-     <textarea name="description" id="maintenanceDescription" class="form-control" rows="3" placeholder="Description">       
-     </textarea>
+     <label for="reinstallDescription" class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4">{{ trans('servers.ReinstallDescription') }} <span class="text-danger">*</span></label>   
+      <div class="input-group col-lg-8 col-md-8 col-sm-8 col-xs-8">
+       <textarea name="reinstallDescription" id="reinstallDescription" class="form-control" rows="3" placeholder="{{trans('servers.ReinstallDescriptionHelper')}}"></textarea>
       </div>
-
+    </div>
+     
     </div>
     <div class="modal-footer">
       <div class="btn-group">
-       <button type="submit" class="btn btn-success">Provision server</button>
+       <button type="submit" id="submitReinstall" class="btn btn-sm btn-success">{{ trans('servers.startProvisioning') }}</button>
       </div>
     </div>
    </form>
@@ -336,6 +340,41 @@
   </div>
 </div>
 
+
+<script type="text/javascript">
+$(document).ready(function() {
+// When User Fills Out Form Completely
+$("#submitReinstall").attr('disabled', 'disabled');
+$("#submitReinstall").removeClass('btn-success');
+$("#submitReinstall").addClass("btn-danger");
+
+$("form").keyup(function() {
+// To Disable Submit Button
+$("#submitReinstall").attr('disabled', 'disabled');
+$("#submitReinstall").removeClass('btn-success');
+$("#submitReinstall").addClass("btn-danger");
+// Validating Fields
+var OperatingSystem = $("#OperatingSystem").val();
+var reinstallDescription = $("#reinstallDescription").val();
+if (!(OperatingSystem == "" || reinstallDescription == "")) {
+// To Enable Submit Button
+$("#submitReinstall").removeAttr('disabled');
+$("#submitReinstall").removeClass('btn-danger');
+$("#submitReinstall").addClass("btn-success");
+}
+});
+// On Click Of Submit Button
+$("#submitReinstall").click(function() {
+$("#submitReinstall").css({
+"cursor": "default",
+"box-shadow": "none"
+});
+ 
+ alert("Starting provisioning..!!");
+ 
+ });
+});
+</script>
 
 @endforeach
  @endsection
