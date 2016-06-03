@@ -38,6 +38,10 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Countries::class, function(Faker\Generator $faker) {
+    return [ 'name' => $faker->country ];
+});
+
 $factory->define(App\Sla::class, function(Faker\Generator $faker) {
     return [
         'slaName'       => $faker->name,

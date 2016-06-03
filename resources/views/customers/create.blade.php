@@ -85,6 +85,9 @@
                     <div class="col-md-8">
                         <select name="country" id="country" class="form-control">
                             <option value="" selected="">Select your country</option>
+                            @foreach($countries as $c)
+                                <option value="{!! $c->country !!}"> {!! $c->country !!} </option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

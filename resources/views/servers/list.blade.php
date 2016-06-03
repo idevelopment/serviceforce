@@ -24,9 +24,9 @@
         <tr class="danger">
 @else
         <tr class="warning">
-@endif      	
-      	 <td><a href="{{ url('servers/display') }}/{!! $item["bareMetalId"] !!}">{!! $item["serverName"] !!}</a></td>
-      	 <td>{!! $item["serverType"] !!}</td>
+@endif  
+        <td><a href="{{ url('servers/display') }}/{!! $item["id"] !!}">{!! $item["serverName"] !!}</a></td>
+        <td>{!! $item["serverType"] !!}</td>
       	 <td>{!! $item["serverStatus"] !!}</td>
       	 <td>{!! $item["serverState"] !!}</td>
          <td>{!! $item["sla_id"] !!}</td>

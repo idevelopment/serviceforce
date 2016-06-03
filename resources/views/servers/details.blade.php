@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="page-header">
+  <h1>Server <small>idev001</small></h1>
 @foreach($servers as $item)
 <div class="page-header">
   <h1>Manage server: <small>{!! $item["bareMetalId"] !!}</small></h1>
@@ -58,7 +60,7 @@
       <tbody>
         <tr>
           <th>{{ trans('servers.assetTag') }}</th>
-            <td>{!! $item["bareMetalId"] !!}</td>
+            <td>{!! $server->bareMetalId !!}</td>
             <td></td>
         </tr>
         <tr>
@@ -68,7 +70,7 @@
         </tr>
         <tr>
           <th>{{ trans('servers.serverType') }}</th>
-          <td>{!! $item["serverType"] !!}</td>
+          <td>{!! $server->serverType !!}</td>
           <td></td>
         </tr>
         <tr>
@@ -116,6 +118,7 @@
         <tr>
           <th>{{ trans('servers.sla') }}</th>
           <td>{!! $item["sla"]["slaName"] !!}</td>
+          <td> {!! $server->sla->slaName !!} </td>
           <td>Service Level Agreement Response time</td>
         </tr>
         <tr>
@@ -176,15 +179,17 @@
         </tr>
         <tr>
           <td>Processor Type</td>
-          <td></td>
+          <td>
+              {!! $server->serverInfo->processorType !!} ({!! $server->serverInfo->processorSpeed !!})
+          </td>
         </tr>
         <tr>
           <td>Total cpu</td>
-          <td></td>
+          <td> {!! $server->serverInfo->numberOfCpus !!} </td>
         </tr>
          <tr>
           <td>Total cores</td>
-          <td></td>
+          <td> {!! $server->serverInfo->numberOfCores !!} </td>
         </tr>
       </tbody>
     </table>
@@ -200,7 +205,7 @@
       <tbody>
         <tr>
           <td>Total memory</td>
-          <td></td>
+          <td> {!! $server->serverInfo->ram !!} </td>
         </tr>
       </tbody>
 </table>
@@ -390,6 +395,5 @@ $("#submitReinstall").css({
  });
 });
 </script>
-
-@endforeach
  @endsection
+@endforeach
