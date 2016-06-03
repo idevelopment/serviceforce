@@ -50,7 +50,7 @@ $factory->define(App\serverHostingPack::class, function(Faker\Generator $faker) 
         'reference'    => 'reference',
         'bareMetalId'  => $faker->numberBetween(0, 250),
         'serverName'   => 'Server name',
-        'serverType'   => 'Dedicated',
+        'serverType'   => 'Bare Metal',
         'startDate'    => $faker->time(),
         'endDate'      => $faker->time(),
         'contractTerm' => '1 Year'
@@ -61,7 +61,7 @@ $factory->define(App\Server::class, function(Faker\Generator $faker) {
     return [
         'ram'            => '8GB',
         'kvm'            => 'yes',
-        'serverType'     => 'dedicated',
+        'serverType'     => 'Bare Metal',
         'processorType'  => 'I7',
         'processorSpeed' => '3.3Ghz',
         'numberOfCpus'   => 4,
@@ -84,7 +84,9 @@ $factory->define(App\BaseServers::class, function(Faker\Generator $faker) {
     return [
         'bareMetalId'             => $faker->numberBetween(0, 250),
         'serverName'              => $faker->name,
-        'serverType'              => 'dedicated',
+        'serverType'              => 'Bare Metal',
+        'serverState'             => 'New',
+        'serverStatus'            => 'New',
         'reference'               => $faker->text(200),
 
         // Relations

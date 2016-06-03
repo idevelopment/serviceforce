@@ -100,6 +100,8 @@ class ForgeServers extends Command
                 $baseServer->bareMetalId = $info['bareMetalId'];
                 $baseServer->serverName  = $info['serverName'];
                 $baseServer->serverType  = $info['serverType'];
+                $baseServer->serverStatus = 'Provisioned';
+                $baseServer->serverState = 'Running';                
 
                 // Base server relations
                 $baseServer->serverLocation()->associate($location);

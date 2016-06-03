@@ -18,6 +18,8 @@ class CreateBaseServersTable extends Migration
             $table->integer('bareMetalId')->comment('The identifier of the bare metal resource.');
             $table->string('serverName')->comment('The name of the bare metal server.');
             $table->string('serverType')->comment('The type of the bare metal server.');
+            $table->string('serverState')->comment('The type of the bare metal server.');
+            $table->string('serverStatus')->comment('The type of the bare metal server.');
             $table->string('reference')->comment('A reference to the bare metal server.');
             $table->integer('ServerLocation_id')->comment('An object with the location information');
             $table->integer('Server_id')->comment('An object with the server information');
