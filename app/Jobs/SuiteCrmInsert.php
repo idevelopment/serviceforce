@@ -40,6 +40,6 @@ class SuiteCrmInsert extends Job implements ShouldQueue
      */
     public function handle()
     {
-        
+       //
     }
 }

@@ -95,8 +95,8 @@ class CustomersController extends Controller
         //
         // INFO: http://apidocs.sugarcrm.com/schema/6.5.23/ce/tables/accounts.html
 
-        $data = $input->except('_token');
-        $this->dispatch(new SuiteCrmInsert($data));
+        $data = $input->all();
+        $this->dispatch(new SuiteCrmInsert($input->all()));
         $this->dispatch(new MailNewCustomer($data));
 
         Customers::create($data);
