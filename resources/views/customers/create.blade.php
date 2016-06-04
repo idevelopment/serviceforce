@@ -7,7 +7,7 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <form action="{{ url('customers') }}" method="post" class="form-horizontal">
+            <form action="{{ route('customers.store') }}" method="post" class="form-horizontal">
                 {!! csrf_field() !!}
 
                 <div class="form-group {{ $errors->has('company') ? ' has-error' : '' }}">

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Countries;
+use App\Jobs\MailNewCustomer;
+use App\Jobs\SuiteCrmDelete;
+use App\Jobs\SuiteCrmInsert;
+use App\Jobs\SuiteCrmUpdate;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -55,7 +59,11 @@ class CustomersController extends Controller
      */
     public function update(Requests\CostumerValidator $input, $id)
     {
+        /** @var array $input the input fields out off the forms */
+        $this->dispatch(new SuiteCrmUpdate($input));
+            
         Customers::find($id)->update($input->except('_token'));
+        
         session()->flash('message', 'Costumer updated.');
         return redirect()->back(302);
     }
@@ -84,10 +92,16 @@ class CustomersController extends Controller
         // 1. Load customers data from Suitecrm and save it to serviceforce #43
         // 2. Set the customer status to new because we don't have any services assigned to this customer.
         // 3. Send notification to support@idevelopment.be that the user has been created and ready for services assignment.
-        // 4. Let the user know that the user is saved -> flash session.
         //
         // INFO: http://apidocs.sugarcrm.com/schema/6.5.23/ce/tables/accounts.html
 
+        $data = $input->except('_token');
+        $this->dispatch(new SuiteCrmInsert($data));
+        $this->dispatch(new MailNewCustomer($data));
+
+        Customers::create($data);
+
+        session()->flash('message', 'The user has been created');
         return redirect()->back(302);
     }
 
@@ -100,6 +114,8 @@ class CustomersController extends Controller
     public function destroy($id)
     {
         Customers::find($id)->delete();
+        $this->dispatch(new SuiteCrmDelete(/* params */));
+        session()->flash('message', 'The user has been deleted.');
         return redirect()->back(302);
     }
 }
