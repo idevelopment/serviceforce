@@ -3,9 +3,8 @@
 @section('content')
     <div class="page-header">
   <h1>Server <small>idev001</small></h1>
-@foreach($servers as $item)
 <div class="page-header">
-  <h1>Manage server: <small>{!! $item["bareMetalId"] !!}</small></h1>
+  <h1>Manage server: <small>{!! $server->bareMetalId !!}</small></h1>
   <h4 class="asset-status-label">
     <span data-toggle="tooltip" title="Asset has been entered into the system - A service in this state is inactive. It does minimal work and consumes minimal resources." data-placement="bottom" class="label label-warning">New</span></h4>
 </div>
@@ -75,17 +74,17 @@
         </tr>
         <tr>
           <th>{{ trans('servers.site') }}</th>
-          <td>{!! $item["serverName"] !!}</td>
+          <td>{!! $server->serverLocation->Site !!}</td>
           <td></td>
         </tr>
         <tr>
           <th>{{ trans('servers.cabinet') }}</th>
-          <td>{!! $item["serverName"] !!}</td>
+          <td>{!! $server->serverLocation->Cabinet !!}</td>
           <td></td>
         </tr>        
         <tr>
           <th>{{ trans('servers.chassisTag') }}</th>
-          <td>{!! $item["serverName"] !!}</td>
+          <td>{!! $server->serverName !!}</td>
           <td>Tag for asset chassis</td>
         </tr>        
         <tr class="warning">
@@ -105,7 +104,7 @@
         </tr>        
         <tr>
           <th>{{ trans('servers.chassisTag') }}</th>
-          <td>{!! $item["serverName"] !!}</td>
+          <td>{!! $server->serverName !!}</td>
           <td>Tag for asset chassis</td>
         </tr>
         
@@ -117,7 +116,6 @@
 
         <tr>
           <th>{{ trans('servers.sla') }}</th>
-          <td>{!! $item["sla"]["slaName"] !!}</td>
           <td> {!! $server->sla->slaName !!} </td>
           <td>Service Level Agreement Response time</td>
         </tr>
@@ -175,7 +173,7 @@
       <tbody>
         <tr>
           <td>Vendor Product</td>
-          <td></td>
+          <td>{!! $server->serverInfo->serverType !!}</td>
         </tr>
         <tr>
           <td>Processor Type</td>
@@ -396,4 +394,3 @@ $("#submitReinstall").css({
 });
 </script>
  @endsection
-@endforeach

@@ -98,18 +98,30 @@
         <thead>
         <tr>
           <th>Date</th>
-          <th>User</th>
           <th>Type</th>
           <th>Message</th>
+            <th></th>
         </tr>
       </thead>
       <tbody>
-      <tr>
-       <td>2016-05-31 04:58:00</td>
-       <td>Administrator</td>
-       <td><span class="label label-info">INFORMATIONAL</span></td>
-       <td>Customer has been registrered to the platform</td>
-      </tr>
+      @foreach($logs as $log)
+          <tr>
+              <td>{!! $log->created_at !!}</td>
+
+              <td>
+                  @if($log->Level === 7)
+                      <span class="label label-info">INFORMATIONAL</span>
+                  @endif
+              </td>
+
+              <td>{!! $log->Message !!}</td>
+              <td>
+                  <a href="" class="btn btn-xs btn-primary">
+                    <span class="fa fa-close"></span> Delete
+                  </a>
+              </td>
+          </tr>
+      @endforeach
       </tbody>
       </table>
     </div>

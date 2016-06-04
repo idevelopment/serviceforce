@@ -7,6 +7,8 @@ use App\Jobs\MailNewCustomer;
 use App\Jobs\SuiteCrmDelete;
 use App\Jobs\SuiteCrmInsert;
 use App\Jobs\SuiteCrmUpdate;
+use App\Logs;
+use App\Traits\LoggerTrait;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -18,6 +20,8 @@ use App\Customers;
  */
 class CustomersController extends Controller
 {
+    use LoggerTrait;
+
     /**
      * CustomersController constructor.
      */
@@ -47,6 +51,8 @@ class CustomersController extends Controller
     public function edit($id)
     {
         $data['customer'] = Customers::where('id', $id)->get();
+        $data['logs']     = Logs::where('Customer_id', $id)->get();
+
         return view('customers/manage', $data);
     }
 
@@ -95,11 +101,12 @@ class CustomersController extends Controller
         //
         // INFO: http://apidocs.sugarcrm.com/schema/6.5.23/ce/tables/accounts.html
 
-        $data = $input->all();
+        $data     = $input->all();
+        $customer = Customers::create($data)->id;
+
         $this->dispatch(new SuiteCrmInsert($input->all()));
         $this->dispatch(new MailNewCustomer($data));
-
-        Customers::create($data);
+        $this->LogInfo('Customer has been registrered to the platform', $customer);
 
         session()->flash('message', 'The user has been created');
         return redirect()->back(302);
