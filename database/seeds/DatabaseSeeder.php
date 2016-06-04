@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ServiceStatusSeed::class);
         $this->call(AssetStatesSeeder::class);
         $this->call(CountrySeeder::class);
+        $this->call(CustomerStatusSeed::class);
         factory(App\BaseServers::class)->create();
     }
 }

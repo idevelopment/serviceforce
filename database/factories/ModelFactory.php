@@ -61,6 +61,14 @@ $factory->define(App\serverHostingPack::class, function(Faker\Generator $faker) 
     ];
 });
 
+$factory->define(App\CustomerStatusses::class, function(Faker\Generator $faker) {
+    return [
+        'status'      => 'Active',
+        'description' => 'The user is active',
+        'background'  => 'success',
+    ];
+});
+
 $factory->define(App\Server::class, function(Faker\Generator $faker) {
     return [
         'ram'            => '8GB',

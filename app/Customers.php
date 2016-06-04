@@ -17,7 +17,7 @@ class Customers extends Model
      */
     protected $fillable = [
         'company', 'fname', 'name', 'address', 'zipcode', 'city',
-        'country', 'phone', 'email', 'vat'
+        'country', 'phone', 'email', 'vat', 'Status_id'
     ];
 
     /**

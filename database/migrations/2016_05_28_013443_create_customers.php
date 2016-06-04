@@ -24,6 +24,7 @@ class CreateCustomers extends Migration
             $table->string('phone');
             $table->string('mobile');
             $table->string('email');
+            $table->integer('status_id');
             $table->string('vat');         
             $table->timestamps();
         });
