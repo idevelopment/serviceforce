@@ -43,6 +43,35 @@ class CustomersController extends Controller
     }
 
     /**
+     * Suspend a customer.
+     *
+     * @param  int $id the customer id.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function SuspendCustomer($id)
+    {
+        // TODO: Set the update query.
+
+        session()->flash('message', 'Customer is suspended');
+        return redirect()->route('customers.index');
+    }
+
+    /**
+     * Activate a customer.
+     *
+     * @param  int $id the customer id.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function ActivateCustomer($id)
+    {
+        // TODO: Set the update query.
+
+        $this->LogInfo('Account is suspended due problems.', $customer);
+        session()->flash('message', 'Customer is activated');
+        return redirect()->route('customers.index');
+    }
+
+    /**
      * The customer index view.
      *
      * @param  int $id The customer id in the database.
@@ -66,10 +95,8 @@ class CustomersController extends Controller
     public function update(Requests\CostumerValidator $input, $id)
     {
         /** @var array $input the input fields out off the forms */
-        $this->dispatch(new SuiteCrmUpdate($input));
-            
+        $this->dispatch(new SuiteCrmUpdate($input->except('_token')));
         Customers::find($id)->update($input->except('_token'));
-        
         session()->flash('message', 'Costumer updated.');
         return redirect()->back(302);
     }
@@ -121,7 +148,7 @@ class CustomersController extends Controller
     public function destroy($id)
     {
         Customers::find($id)->delete();
-        $this->dispatch(new SuiteCrmDelete(/* params */));
+        $this->dispatch(new SuiteCrmDelete($id));
         session()->flash('message', 'The user has been deleted.');
         return redirect()->back(302);
     }

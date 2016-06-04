@@ -25,6 +25,9 @@ Route::get('/customers/register', 'CustomersController@register')->name('custome
 Route::get('/customers/display/{id}', 'CustomersController@edit')->name('customers.display');
 Route::post('/customers/register', 'CustomersController@store')->name('customers.store');
 
+Route::get('/customers/active/{id}', 'CustomersController@ActivateCustomer')->name('customers.active');
+Route::get('/customers/suspend/{id}', 'CustomersController@SuspendCustomer')->name('customers.suspend');
+
 // Servers routes
 Route::get('/servers', 'ServersController@index')->name('servers.index');
 Route::get('/servers/lookup', 'ServersController@getServers')->name('servers.lookup');
