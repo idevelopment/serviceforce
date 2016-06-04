@@ -16,7 +16,7 @@ class BaseServers extends Model
      * @var array
      */
     protected $fillable = [
-        'bareMetalId', 'serverName', 'serverType', 'serverStatus', 'serverState' 'reference', 'ServerLocation_id',
+        'bareMetalId', 'serverName', 'serverType', 'serverStatus', 'serverState', 'reference', 'ServerLocation_id',
         'Server_id', 'network_informations_id', 'serverHostingPack', 'sla_id'
     ];
 
