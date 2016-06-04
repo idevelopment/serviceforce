@@ -32,3 +32,6 @@ Route::get('/servers/display/{id}', 'ServersController@display')->name('servers.
 
 Route::get('/servers/create', 'ServersController@create')->name('servers.create');
 Route::post('/servers/create', 'ServersController@create')->name('servers.create');
+
+// Webhosting
+Route::get('/webhosting', 'WebhostingController@index')->name('webhosting.index');
