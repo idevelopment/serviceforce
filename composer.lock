@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "314911c03524ce9da29f8a2a10c12e45",
-    "content-hash": "cf7dd20ace7993406b072dd6ef3b8af9",
+    "hash": "366170c24f96dfbca4c06b9d718a96e3",
+    "content-hash": "4e0cc354f4771a6fe71fe55c2dfd8a93",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1187,6 +1187,50 @@
                 "random"
             ],
             "time": "2016-03-18 20:34:03"
+        },
+        {
+            "name": "pmill/php-plesk",
+            "version": "v0.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pmill/php-plesk.git",
+                "reference": "a16a9d2bc42f9cd7d7a940fe1418bc7704b8ecc2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pmill/php-plesk/zipball/a16a9d2bc42f9cd7d7a940fe1418bc7704b8ecc2",
+                "reference": "a16a9d2bc42f9cd7d7a940fe1418bc7704b8ecc2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "pmill\\Plesk": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "pmill",
+                    "email": "dev.pmill@gmail.com",
+                    "homepage": "https://github.com/pmill",
+                    "role": "Author"
+                }
+            ],
+            "description": "PHP client for the Plesk RPC API",
+            "homepage": "https://github.com/pmill/php-plesk",
+            "keywords": [
+                "api",
+                "php",
+                "plesk"
+            ],
+            "time": "2014-10-08 00:00:00"
         },
         {
             "name": "predis/predis",
