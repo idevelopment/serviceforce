@@ -1,36 +1,36 @@
 body {
-      font-family: 'Lato';
-      position: relative;
-      padding-top: 50px;
-
-      }
+  font-family: 'Lato';
+  padding-top: 50px;
+  position: relative;
+}
 
 .sub-header {
+  border-bottom: 1px solid $general-white;
   padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
 }
 
 .main {
   padding: 20px;
+
+  // .main .page-header
+  .page-header {
+    margin-top: 0;
+  }
 }
 
 @media (min-width: 768px) {
   .main {
-    padding-right: 40px;
     padding-left: 40px;
+    padding-right: 40px;
   }
 }
 
-.main .page-header {
-  margin-top: 0;
-}
-
 .label-pill {
-  padding-right: .6em;
-  padding-left: .6em;
   border-radius: 10rem;
-}         
+  padding-left: .6em;
+  padding-right: .6em;
+}
 
 .fa-btn {
   margin-right: 6px;
- }
+}

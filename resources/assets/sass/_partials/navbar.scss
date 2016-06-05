@@ -2,37 +2,51 @@
   border: 0;
 }
 
-.navbar-default{
-      background-color: #246c99;
-      color: #fff;
+.navbar-default {
+  background-color: $navbar-blue;
+  color: $white;
+
+  // .navbar-default .navbar-nav > li > a‡
+  .navbar-nav > li > a {
+    color: $white;
+
+    // .navbar-default .navbar-nav > li > a:hover
+    &:hover {
+      color: $white;
+    }
+
+    // .navbar-default .navbar-nav > li > a:focus
+    &:focus {
+      color: $white;
+    }
+  }
+
+  // .navbar-default .navbar-brand
+  .navbar-brand {
+    color: $white;
+
+    // .navbar-default .navbar-brand:hover
+    &:hover {
+      color: $white;
+    }
+
+    // .navbar-default .navbar-brand:focus
+    &:focus {
+      color: $white;
+    }
+  }
 }
 
-.navbar-default .navbar-brand{
-      color: #fff;
-}
-
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
-    color: #fff;
-}
-
-.navbar-default .navbar-nav > li > a {
-    color: #fff;
-}
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-    color: #fff;
-}
-
-.navbar-default .navbar-nav > .active > a, 
-.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-    color: #fff;
-    background-color: #205f87;
+  color: $white;
+  background-color: #205f87;
 }
-.navbar-default .navbar-nav > .open > a, 
-.navbar-default .navbar-nav > .open > a:hover, 
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-    color: #fff;
-    background-color: #205f87;
+  color: $white;
+  background-color: #205f87;
 }
