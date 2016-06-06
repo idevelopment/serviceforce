@@ -38,3 +38,6 @@ Route::post('/servers/create', 'ServersController@create')->name('servers.create
 
 // Webhosting
 Route::get('/webhosting', 'WebhostingController@index')->name('webhosting.index');
+Route::get('/webhosting/lookup', 'WebhostingController@list')->name('webhosting.list');
+Route::get('/webhosting/manage/{name}', 'WebhostingController@edit')->name('webhosting.manage');
+
