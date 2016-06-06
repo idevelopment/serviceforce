@@ -1,5 +1,6 @@
 <?php
 
+use App\CustomerStatusses;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -17,23 +18,23 @@ class CustomerStatusSeed extends Seeder
     {
         $data = [
             [
-                'status'      => 'Active',
+                'name'        => 'Active',
                 'description' => 'The user is active',
                 'background'  => 'success',
             ],
             [
-                'status'      => 'Suspended',
+                'name'        => 'Suspended',
                 'description' => 'Suspended due billing or abuse issues.',
                 'background'  => 'warning'
             ],
             [
-                'status'      => 'Terminated',
+                'name'        => 'Terminated',
                 'description' => 'All services are terminated for this account',
                 'background'  => 'danger'
             ]
         ];
 
         DB::table('service_statuses')->delete();
-        CustomerStatusses::create($data);
+        DB::table('service_statuses')->insert($data);
     }
 }
