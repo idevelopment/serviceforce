@@ -21,10 +21,10 @@ class CreateCustomers extends Migration
             $table->string('zipcode');
             $table->string('city');
             $table->string('country');
-            $table->string('phone');
+            $table->string('phone')->unique();
             $table->string('mobile');
-            $table->string('email');
-            $table->integer('status_id');
+            $table->string('email')->unique();
+            $table->integer('status_id')->default(1);
             $table->string('vat');         
             $table->timestamps();
         });

@@ -10,6 +10,22 @@
 | database. Just tell the factory how a default model should look.
 |
 */
+$factory->define(App\Customers::class, function (Faker\Generator $faker) {
+    return [
+        'company'   => 'Company name', 
+        'fname'     => 'Jhon', 
+        'name'      => 'Doe',
+        'address'   => 'FooBar street', 
+        'zipcode'   => 2300, 
+        'city'      => 'Turnhout', 
+        'country'   => 'Belguim',
+        'phone'     => 'test',
+        'mobile'    => 'test',
+        'email'     => 'jhondoe@example.tld',
+        'status_id' => 0,
+        'vat'       => 'var number'
+    ];
+});
 
 $factory->define(App\ServiceStatus::class, function (Faker\Generator $faker) {
     return [

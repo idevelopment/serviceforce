@@ -24,9 +24,9 @@ Route::get('/customers', 'CustomersController@index')->name('customers.index');
 Route::get('/customers/register', 'CustomersController@register')->name('customers.register');
 Route::get('/customers/display/{id}', 'CustomersController@edit')->name('customers.display');
 Route::post('/customers/register', 'CustomersController@store')->name('customers.store');
-
 Route::get('/customers/active/{id}', 'CustomersController@ActivateCustomer')->name('customers.active');
 Route::get('/customers/suspend/{id}', 'CustomersController@SuspendCustomer')->name('customers.suspend');
+Route::get('/customers/delete/{id}', 'CustomersController@destroy')->name('customers.destroy');
 
 // Servers routes
 Route::get('/servers', 'ServersController@index')->name('servers.index');
@@ -38,6 +38,6 @@ Route::post('/servers/create', 'ServersController@create')->name('servers.create
 
 // Webhosting
 Route::get('/webhosting', 'WebhostingController@index')->name('webhosting.index');
-Route::get('/webhosting/lookup', 'WebhostingController@list')->name('webhosting.list');
+Route::get('/webhosting/lookup', 'WebhostingController@listWebHostingAccounts')->name('webhosting.list');
 Route::get('/webhosting/manage/{name}', 'WebhostingController@edit')->name('webhosting.manage');
 

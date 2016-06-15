@@ -31,18 +31,17 @@ class WebhostingController extends Controller
     }
 
     /**
-     * list webhosting accouts.
+     * list webhosting accounts.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function list()
+    public function listWebHostingAccounts()
     {
-    	$pleskConfig = array(
+    	$pleskConfig = [
     		'host'     => env('PLESK_HOST'),
     		'username' => env('PLESK_USER'),
     		'password' => env('PLESK_PASS'),
-    		);
+		];
     
       	$request = new \pmill\Plesk\ListSubscriptions($pleskConfig);
     	$data["subscriptions"] = $request->process();

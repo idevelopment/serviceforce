@@ -18,23 +18,23 @@ class CustomerStatusSeed extends Seeder
     {
         $data = [
             [
-                'name'        => 'Active',
+                'status'        => 'Active',
                 'description' => 'The user is active',
                 'background'  => 'success',
             ],
             [
-                'name'        => 'Suspended',
+                'status'        => 'Suspended',
                 'description' => 'Suspended due billing or abuse issues.',
                 'background'  => 'warning'
             ],
             [
-                'name'        => 'Terminated',
+                'status'        => 'Terminated',
                 'description' => 'All services are terminated for this account',
                 'background'  => 'danger'
             ]
         ];
 
-        DB::table('service_statuses')->delete();
-        DB::table('service_statuses')->insert($data);
+        DB::table('customer_statusses')->delete();
+        DB::table('customer_statusses')->insert($data);
     }
 }

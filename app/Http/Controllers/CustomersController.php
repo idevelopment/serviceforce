@@ -51,6 +51,10 @@ class CustomersController extends Controller
     public function SuspendCustomer($id)
     {
         // TODO: Set the update query.
+        // 2 = db id suspended. 
+        $customer = Customers::find($id);
+        $customer->status()->associate(2);
+        $customer->save();
 
         session()->flash('message', 'Customer is suspended');
         return redirect()->route('customers.index');
@@ -64,9 +68,11 @@ class CustomersController extends Controller
      */
     public function ActivateCustomer($id)
     {
-        // TODO: Set the update query.
+        $customer = Customers::find($id);
+        $customer->status()->associate(1);
+        $customer->save();
 
-        $this->LogInfo('Account is suspended due problems.', $customer);
+        $this->LogInfo('Account is suspended activated.', $customer);
         session()->flash('message', 'Customer is activated');
         return redirect()->route('customers.index');
     }
@@ -149,6 +155,7 @@ class CustomersController extends Controller
     {
         Customers::find($id)->delete();
         $this->dispatch(new SuiteCrmDelete($id));
+
         session()->flash('message', 'The user has been deleted.');
         return redirect()->back(302);
     }

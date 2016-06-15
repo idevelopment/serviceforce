@@ -17,7 +17,7 @@ class Customers extends Model
      */
     protected $fillable = [
         'company', 'fname', 'name', 'address', 'zipcode', 'city',
-        'country', 'phone', 'email', 'vat', 'Status_id'
+        'country', 'phone', 'mobile', 'email', 'vat', 'status_id'
     ];
 
     /**
@@ -26,4 +26,14 @@ class Customers extends Model
      * @var array
      */
     protected $hidden = ['created_at', 'updated_at'];
+
+    /**
+     * Customert status 
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function status()
+    {
+        return $this->belongsTo('App\CustomerStatusses', 'status_id', 'id');
+    }
 }
