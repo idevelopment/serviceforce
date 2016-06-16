@@ -1,0 +1,6 @@
+scss_files: 'resources/assets/sass/**/*.scss'
+eclude: './node_modules/**/*'
+
+linters:
+  SelectorDepth:
+    enabled: false

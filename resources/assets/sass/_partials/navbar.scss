@@ -40,13 +40,13 @@
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
+  background-color: $navbar-blue-2;
   color: $white;
-  background-color: #205f87;
 }
 
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
+  background-color: $navbar-blue-2;
   color: $white;
-  background-color: #205f87;
 }
