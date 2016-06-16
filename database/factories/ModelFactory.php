@@ -136,6 +136,18 @@ $factory->define(App\BaseServers::class, function(Faker\Generator $faker) {
     ];
 });
 
+$dactory->define(App\InstanceServers::class, function (Faker\Generator $faker) {
+    return [
+        'bareMetalId'         => '011',
+        'model_id'            => '0544',
+        'LWS_customer_number' => '57654',
+        'pricePerHour'        => '0.50',
+        'pricePerHour'        => '1.00',
+        'startedAt'           => new DateTime,
+        'destroyedAt'         => new DateTime,
+    ];
+});
+
 $factory->define(App\NetworkInformation::class, function(Faker\Generator $faker) {
     return [
         'dataPack'        => $faker->name,
