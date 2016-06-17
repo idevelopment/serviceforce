@@ -1,47 +1,120 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-sm-12 col-md-11 col-lg-8 col-lg-offset-2">
+{{-- Tab menu --}}
+  <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
+          <span class="fa fa-user"></span> Profiel info
+        </a>
+      </li>
+      <li role="presentation">
+        <a href="#security" aria-controls="security" role="tab" data-toggle="tab">
+          <span class="fa fa-cogs"></span> Account beveiliging
+        </a>
+      </li>
+    </ul>
+  </div>
+{{-- END menu --}}
 
-<div class="panel panel-default">
-  <div class="panel-heading">Profile Management</div>
-  <div class="panel-body">
-  <form class="form-horizontal">
-      <div class="form-group">
-    <label for="fname" class="col-sm-2 control-label">First name</label>
-    <div class="col-sm-6">
-      <input type="text" id="fname" name="fname" class="form-control">
-    </div>
-  </div>
+{{-- Panels --}}
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    {{-- Tabs --}}
+    <div class="tab-content">
+      {{-- Profile information tab --}}
+        <div role="tabpanel" class="tab-pane fade in active" id="profile">
+          <form style="margin-top: 10px" class="form-horizontal" method="POST" action="{!! route('profile.update.information') !!}">
+            {{-- CSRF TOKEN --}}
+            {!! csrf_field() !!}
 
-    <div class="form-group">
-    <label for="name" class="col-sm-2 control-label">Name</label>
-    <div class="col-sm-6">
-      <input type="text" id="name" name="name" class="form-control">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="email" class="col-sm-2 control-label">Email</label>
-    <div class="col-sm-6">
-      <input type="email" id="email" name="email" class="form-control">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="password" class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-6">
-      <input type="password" id="password" name="password" class="form-control">
-    </div>
-  </div>
+            {{-- Name form-group --}}
+            <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+              <label for="name" class="col-md-3 control-label">
+                Name <strong class="text-danger">*</strong>
+              </label>
+              <div class="col-md-6">
+                <input type="text" id="name" name="name" value="{{ $query->name }}" class="form-control">
 
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Sign in</button>
-    </div>
-  </div>
-</form>
-  </div>
- </div>
-</div>
-</div>
+                @if ($errors->has('name'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('name') }}</strong>
+                  </span>
+                @endif
+              </div>              
+            </div>
 
+            {{-- Email form-group --}}
+            <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                <label for="email" class="col-md-3 control-label">
+                    Email: <strong class="text-danger">*</strong>
+                </label>
+                <div class="col-md-6">
+                    <input type="text" id="email" name="email" value="{{ $query->email }}" class="form-control">
+
+                    @if ($errors->has('email'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                      </span>
+                    @endif
+                </div>
+            </div>
+
+            {{-- SUBMIT & RESET button --}}
+            <button type="submit" class="btn btn-success">Update</button>
+            <button type="reset" class="btn btn-danger">Reset</button>
+
+          </form>
+        </div>
+      {{-- END profile information tab --}}
+
+      {{-- Account security tab --}}
+        <div role="tabpanel" class="tab-pane fade in" id="security">
+          <form style="margin-top: 10px;" class="form-horizontal" method="POST" action="{!! route('profile.update.credentials') !!}">  
+            {{-- CSRF TOKEN --}}
+            {!! csrf_field() !!}
+
+            {{-- Password form-group --}}
+            <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+              <label for="password" class="col-md-3 control-label"> 
+                Password: <strong class="text-danger"></strong>
+              </label>
+              <div class="col-md-6">
+                  <input type="text" id="password" placeholder="Password" name="password" class="form-control">
+
+                  @if ($errors->has('password'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                  @endif
+                </div>
+            </div>
+
+            {{-- Password confirmation form-group --}}
+            <div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
+              <label for="password2" class="col-md-3 control-label"> 
+                Confirm password: <strong class="text-danger">*</strong>
+              </label>
+              <div class="col-md-6">
+                  <input type="text" id="password2" placeholder="Repeat password" name="password_confirmation" class="form-control">
+
+                  @if ($errors->has('password_confirmation'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('password_confirmation') }}</strong>
+                    </span>
+                  @endif
+              </div>
+            </div>
+
+
+            {{-- SUBMIT & RESET BUTTON --}}
+            <button type="submit" class="btn btn-success">Update</button>
+            <button type="reset" class="btn btn-danger">Reset</button>
+          </form>
+        </div>
+      {{-- END account security tab --}}
+    </div>
+    {{-- END tabs --}}
+  </div>
+{{-- END Panels --}}
 @endsection

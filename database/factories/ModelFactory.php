@@ -136,7 +136,7 @@ $factory->define(App\BaseServers::class, function(Faker\Generator $faker) {
     ];
 });
 
-$dactory->define(App\InstanceServers::class, function (Faker\Generator $faker) {
+$factory->define(App\InstanceServers::class, function (Faker\Generator $faker) {
     return [
         'bareMetalId'         => '011',
         'model_id'            => '0544',

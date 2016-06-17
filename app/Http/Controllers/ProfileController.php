@@ -30,7 +30,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $data['user'] = User::find(auth()->user()->id);
+        $data['query'] = User::find(auth()->user()->id);
         return view('profile.settings', $data);
     }
 
@@ -56,6 +56,11 @@ class ProfileController extends Controller
      */
     public function updateCredentials(Requests\PasswordValidator $input)
     {
+        $id = auth()->user()->id; 
+        $data = ['_token', 'password_confirmation'];
+
+        User::find($id)->update($data);
+        session()->flash('message', 'Your password is updated');
         return redirect()->back(302);
     }
 }

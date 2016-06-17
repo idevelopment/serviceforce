@@ -13,7 +13,7 @@ class PasswordValidator extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class PasswordValidator extends Request
     public function rules()
     {
         return [
-            //
+            'password' => 'required|min:6|confirmed'
         ];
     }
 }

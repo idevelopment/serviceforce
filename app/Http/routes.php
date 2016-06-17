@@ -18,6 +18,8 @@ Route::get('/home', 'HomeController@index');
 
 // Profile
 Route::get('/profile', 'ProfileController@index')->name('profile.index');
+Route::post('/profile/update/info', 'ProfileController@storeInformation')->name('profile.update.information');
+Route::post('/profile/update/password', 'ProfileController@updateCredentials')->name('profile.update.credentials');
 
 // Customers routes
 Route::get('/customers', 'CustomersController@index')->name('customers.index');
