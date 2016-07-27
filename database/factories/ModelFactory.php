@@ -173,3 +173,15 @@ $factory->define(App\DataPackExcess::class, function(Faker\Generator $faker) {
         'unit'  => 'MB',
     ];
 });
+
+$factory->define(App\PayAsYouGo::class, function(Faker\Generator $faker) {
+    return [
+        'bareMetalId'    => $faker->numberBetween(0, 100),
+        'customerNumber' => $faker->numberBetween(0, 100),
+        'model'          => $faker->numberBetween(0, 100),
+        'pricePerGb'     => '0,50€',
+        'pricePerHour'   => '0,50€',
+        'startedAt'      => $faker->unixTime,
+        'destroyedAt'    => $faker->unixTime,
+    ];
+});

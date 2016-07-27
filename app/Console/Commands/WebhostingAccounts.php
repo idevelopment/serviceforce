@@ -52,7 +52,7 @@ class WebhostingAccounts extends Command
         {
             foreach($info as $web) {
                 Web::create([
-                    'name'  => $os['operatingSystem']['name']
+                    'name'  => $os['operatingSystem']['name'],
                     'subscription_id' => $os['operatingSystem']['id'],
 
                 ]);

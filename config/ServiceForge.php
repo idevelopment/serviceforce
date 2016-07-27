@@ -18,11 +18,12 @@ return [
     'leaseweb' => [
         'apikey' => env('LEASEWEB_KEY', 'default apikey'),
         'urls'   => [
-            'server' => env('LEASEWEB_URL', 'url') . '/bareMetals/' . env('LEASEWEB_USER', 'api user'),
-            'power'  => env('LEASEWEB_URL', 'url') . '/bareMetals/' . env('LEASEWEB_USER', 'api user') . '/powerStatus',
-            'switch' => env('LEASEWEB_URL', 'url') . '/bareMetals/' . env('LEASEWEB_USER', 'api user') . '/switchPort',
-            'ip'     => env('LEASEWEB_URL', 'url') . '/bareMetals/' . env('LEASEWEB_USER', 'api user') . '/ips',
-            'os'     => env('LEASEWEB_URL', 'url') . '/operatingSystems',
+            'server'     => env('LEASEWEB_URL', 'url') . '/bareMetals/' . env('LEASEWEB_USER', 'api user'),
+            'power'      => env('LEASEWEB_URL', 'url') . '/bareMetals/' . env('LEASEWEB_USER', 'api user') . '/powerStatus',
+            'switch'     => env('LEASEWEB_URL', 'url') . '/bareMetals/' . env('LEASEWEB_USER', 'api user') . '/switchPort',
+            'ip'         => env('LEASEWEB_URL', 'url') . '/bareMetals/' . env('LEASEWEB_USER', 'api user') . '/ips',
+            'os'         => env('LEASEWEB_URL', 'url') . '/operatingSystems',
+            'payasyougo' => env('LEASEWEB_URL', 'url') . '/payAsYouGo/bareMetals/instances',
         ]
     ],
 ];

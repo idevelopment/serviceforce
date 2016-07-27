@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\ForgeServers::class,
-        Commands\OperatingSystems::class
+        Commands\OperatingSystems::class,
+        Commands\PayAsYouGo::class
     ];
 
     /**
