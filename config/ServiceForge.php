@@ -24,6 +24,7 @@ return [
             'ip'         => env('LEASEWEB_URL', 'url') . '/bareMetals/' . env('LEASEWEB_USER', 'api user') . '/ips',
             'os'         => env('LEASEWEB_URL', 'url') . '/operatingSystems',
             'payasyougo' => env('LEASEWEB_URL', 'url') . '/payAsYouGo/bareMetals/instances',
+            'payasyougoModels' => env('LEASEWEB_URL', 'url') . '/payAsYouGo/bareMetals/models',
         ]
     ],
 ];

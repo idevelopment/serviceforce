@@ -6,6 +6,8 @@
       <h1>Provision a new server</h1>
     </div>
 
+    {{ Auth::user()->id }}
+
     <input type="hidden" name="operation" value="and">
     <div class="row">
      <div class="col-sm-12">
@@ -49,7 +51,11 @@
           <div class="form-group">
            <label for="type" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">User</label>
            <div class="input-group col-lg-8 col-md-8 col-sm-9 col-xs-8">
-           <input type="text" name="customerNumber" value="{{ Auth::user()->id }}" class="form-control">
+           <select name="user" class="form-control">
+             @foreach($users as $user)
+            <option value="{!! $user->id !!}">{!! $user->fname !!} {!! $user->name !!}</option>
+            @endforeach
+           </select>
               <div class="input-group-addon">
                <span class="help-inline">
                 <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom"  data-container="body" title="What kind of server do you like to request?"></i>
@@ -76,7 +82,7 @@
              </div>
             </div>
           </div>
-          
+
          </div>
          </div>
         </div>
@@ -104,7 +110,7 @@
               </span>
              </div>
             </div>
-          </div>          
+          </div>
 
           <div class="form-group">
            <label for="operatingSystem" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Operating system</label>
@@ -144,51 +150,23 @@
         </tr>
       </thead>
       <tbody>
+      @foreach($models as $server)
+             @foreach($server as $item)
         <tr>
-        <td class="text-center"><input type="radio" name="modelID"></td>
-         <td>HP DL180 G6/2x Intel Quad Core E5620/32GB</td>
-         <td>32 GB</td>
-         <td>AMS-01</td>
-         <td>0.051</td>
-         <td>0.1</td>
-         <td>15</td>
+        <td class="text-center"><input type="radio" name="modelID" value="{!! $item["id"] !!}"></td>
+         <td>{!! $item["case"] !!}</td>
+         <td>{!! $item["ram"]["label"] !!}</td>
+         <td>{!! $item["location"]!!}</td>
+         <td>{!! $item["price"] !!}</td>
+         <td>{!! $item["pricePerGb"] !!}</td>
+         <td>{!! $item["count"] !!}</td>
         </tr>
-
-        <tr>
-        <td class="text-center"><input type="radio" name="modelID"></td>
-         <td>HP DL180 G6/2x Intel Quad Core E5620/32GB</td>
-         <td>32 GB</td>
-         <td>AMS-01</td>
-         <td>0.051</td>
-         <td>0.1</td>
-         <td>15</td>
-
-        </tr>
-
-        <tr>
-        <td class="text-center"><input type="radio" name="modelID"></td>
-         <td>HP DL180 G6/2x Intel Quad Core E5620/32GB</td>
-         <td>32 GB</td>
-         <td>AMS-01</td>
-         <td>0.051</td>
-         <td>0.1</td>
-         <td>15</td>
-
-        </tr>
-
-        <tr>
-        <td class="text-center"><input type="radio" name="modelID"></td>
-         <td>HP DL180 G6/2x Intel Quad Core E5620/32GB</td>
-         <td>32 GB</td>
-         <td>AMS-01</td>
-         <td>0.051</td>
-         <td>0.1</td>
-         <td>15</td>        
-        </tr>
+        @endforeach
+      @endforeach
       </tbody>
-      </table>      
+      </table>
       </div>
-    </div> 
+    </div>
         <div class="row">
       <div class="col-sm-11">
         <div class="form-group pull-right">

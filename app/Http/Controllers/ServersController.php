@@ -10,6 +10,10 @@ use App\BaseServers;
 use App\AssetStates;
 
 use App\OperatingSystems;
+use App\PayAsYouGo;
+use App\Customers;
+use App\User;
+
 
 class ServersController extends Controller
 {
@@ -22,7 +26,7 @@ class ServersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-		$this->middleware('lang');
+        $this->middleware('lang');
     }
 
     /**
@@ -30,11 +34,11 @@ class ServersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-         	
+
     public function index()
     {
         $data["osList"] = OperatingSystems::all();
-        $data["states"] = AssetStates::all();        
+        $data["states"] = AssetStates::all();
 
     	return view('servers.index', $data);
     }
@@ -44,7 +48,7 @@ class ServersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-         	
+
     public function getServers()
     {
         $data["servers"] = BaseServers::all();
@@ -57,7 +61,7 @@ class ServersController extends Controller
      * @param  int $id the id for the data record in the database about the server.
      * @return \Illuminate\Http\Response
      */
-         	
+
     public function display($id)
     {
     	$relations = ['sla', 'serverLocation', 'hostingPack', 'serverInfo', 'networkInfo'];
@@ -68,7 +72,7 @@ class ServersController extends Controller
 
     /**
      * Create server view.
-     * 
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
@@ -81,8 +85,18 @@ class ServersController extends Controller
         //
         // INFO: http://developer.leaseweb.com/paygbm-docs/#list-all-the-models-available-for-ordering
 
+        $path     = config('ServiceForge.leaseweb.urls.payasyougoModels');
+        $client   = new \GuzzleHttp\Client();
+        $response = $client->get($path, ['headers' => ['X-Lsw-Auth' => config('ServiceForge.leaseweb.apikey')]]);
+        $body = $response->getbody();
+        $body->getContents();
+        $data["models"] = json_decode($body, true);
+
         $data["osList"]  = OperatingSystems::all();
+        $data["customers"]  = Customers::all();
+        $data["users"]  = User::all();
         return view('servers.create', $data);
+
     }
 
     public function store()
