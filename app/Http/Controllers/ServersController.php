@@ -77,13 +77,6 @@ class ServersController extends Controller
      */
     public function create()
     {
-        // TODO:
-        //
-        // 1. get server racks from LSW api.
-        // 2. Set it to the database through artisan commands.
-        // 3. Weave them into the view.
-        //
-        // INFO: http://developer.leaseweb.com/paygbm-docs/#list-all-the-models-available-for-ordering
 
         $path     = config('ServiceForge.leaseweb.urls.payasyougoModels');
         $client   = new \GuzzleHttp\Client();
@@ -91,6 +84,7 @@ class ServersController extends Controller
         $body = $response->getbody();
         $body->getContents();
         $data["models"] = json_decode($body, true);
+
 
         $data["osList"]  = OperatingSystems::all();
         $data["customers"]  = Customers::all();
