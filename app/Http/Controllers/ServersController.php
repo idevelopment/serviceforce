@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Exception\RequestException;
 
 use App\Http\Requests;
 use App\BaseServers;
@@ -100,6 +102,21 @@ class ServersController extends Controller
         // 3. save id and his information throught the base server model.
         //
         // INFO: http://developer.leaseweb.com/paygbm-docs/#create-a-new-pay-as-you-go-instance
-    }
+
+     $path     = config('ServiceForge.leaseweb.urls.payasyougo');
+     $headers  = ['X-Lsw-Auth' => config('ServiceForge.leaseweb.apikey')];
+     $serverID = '1112721';
+     $options = [
+         'debug' => true,
+         'headers' => ['X-Lsw-Auth' => config('ServiceForge.leaseweb.apikey')],
+         'form_params' => [
+         'model' => $serverID,
+         ],
+     ];
+
+     $client   = new \GuzzleHttp\Client();
+     $response = $client->post($path, $options);
+     var_dump($response);
+      }
 
 }
