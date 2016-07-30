@@ -1,12 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="{{ url('servers/lookup') }}" method="GET" class="form-horizontal">
+<form action="{{ url('servers/create') }}" method="POST" class="form-horizontal">
  <div class="page-header">
       <h1>Provision a new server</h1>
     </div>
+    @if(Session('message'))
+    <div class="alert alert-success">{{ Session('message')}}</div>
+    @endif
+    
+    {!! csrf_field() !!}
 
-    {{ Auth::user()->id }}
 
     <input type="hidden" name="operation" value="and">
     <div class="row">
@@ -112,14 +116,17 @@
             </div>
           </div>
 
+
           <div class="form-group">
-           <label for="operatingSystem" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Operating system</label>
+           <label for="operatingSystem" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Operating system <pan class="text-danger">*</span></label>
            <div class="input-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <select name="OperatingSystem" id="OperatingSystem" class="form-control">
-             <option value="" selected="selected"></option>
-              @foreach($osList as $item)
-               <option value="{!! $item["id"] !!}">{!! $item["name"] !!}</option>
+            <select name="os" id="OperatingSystem" class="form-control">
+             <option value="" selected="selected">-- Please select --</option>
+             @foreach($OperatingSystems as $osItems)
+                    @foreach($osItems as $item)
+               <option value="{!! $item['operatingSystem']["id"] !!}">{!! $item['operatingSystem']["name"] !!}</option>
               @endforeach
+            @endforeach
             </select>
 
               <div class="input-group-addon">
@@ -141,7 +148,9 @@
       <thead>
         <tr>
           <th class="text-center">#</th>
-          <th>Server</th>
+          <th class="col-md-3">Server</th>
+          <th>CPU</th>
+          <th>Harddisk</th>
           <th>Memory</th>
           <th>Location</th>
           <th>Price</th>
@@ -155,8 +164,10 @@
         <tr>
         <td class="text-center"><input type="radio" name="modelID" value="{!! $item["id"] !!}"></td>
          <td>{!! $item["case"] !!}</td>
+         <td>{!! $item["cpu"]["label"] !!}</td>
+         <td>{!! $item["hdd"]["label"] !!}</td>
          <td>{!! $item["ram"]["label"] !!}</td>
-         <td>{!! $item["location"]!!}</td>
+         <td><a href="https://www.leaseweb.com/nl/platform/datacenters" target="_blank">{!! $item["location"]!!}</a></td>
          <td>{!! $item["price"] !!}</td>
          <td>{!! $item["pricePerGb"] !!}</td>
          <td>{!! $item["count"] !!}</td>

@@ -36,10 +36,9 @@ Route::get('/servers/lookup', 'ServersController@getServers')->name('servers.loo
 Route::get('/servers/display/{id}', 'ServersController@display')->name('servers.display');
 
 Route::get('/servers/create', 'ServersController@create')->name('servers.create');
-Route::post('/servers/create', 'ServersController@create')->name('servers.create');
+Route::post('/servers/create', 'ServersController@store')->name('servers.create');
 
 // Webhosting
 Route::get('/webhosting', 'WebhostingController@index')->name('webhosting.index');
 Route::get('/webhosting/lookup', 'WebhostingController@listWebHostingAccounts')->name('webhosting.list');
 Route::get('/webhosting/manage/{name}', 'WebhostingController@edit')->name('webhosting.manage');
-
