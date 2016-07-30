@@ -152,7 +152,6 @@ class ServersController extends Controller
           curl_setopt($install, CURLOPT_POSTFIELDS, $installData);
          $executeInstall = curl_exec($install);
         }
-        session()->flash('message', 'Server provisioning has been started');
         return redirect()->back()->with('message', 'Server provisioning has been started');
 
         }
