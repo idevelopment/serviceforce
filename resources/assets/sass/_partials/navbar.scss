@@ -1,0 +1,52 @@
+.navbar-fixed-top {
+  border: 0;
+}
+
+.navbar-default {
+  background-color: $navbar-blue;
+  color: $white;
+
+  // .navbar-default .navbar-nav > li > a‡
+  .navbar-nav > li > a {
+    color: $white;
+
+    // .navbar-default .navbar-nav > li > a:hover
+    &:hover {
+      color: $white;
+    }
+
+    // .navbar-default .navbar-nav > li > a:focus
+    &:focus {
+      color: $white;
+    }
+  }
+
+  // .navbar-default .navbar-brand
+  .navbar-brand {
+    color: $white;
+
+    // .navbar-default .navbar-brand:hover
+    &:hover {
+      color: $white;
+    }
+
+    // .navbar-default .navbar-brand:focus
+    &:focus {
+      color: $white;
+    }
+  }
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  background-color: $navbar-blue-2;
+  color: $white;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  background-color: $navbar-blue-2;
+  color: $white;
+}

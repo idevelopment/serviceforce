@@ -1,0 +1,36 @@
+body {
+  font-family: 'Lato';
+  padding-top: 50px;
+  position: relative;
+}
+
+.sub-header {
+  border-bottom: 1px solid $general-white;
+  padding-bottom: 10px;
+}
+
+.main {
+  padding: 20px;
+
+  // .main .page-header
+  .page-header {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+.label-pill {
+  border-radius: 10rem;
+  padding-left: .6em;
+  padding-right: .6em;
+}
+
+.fa-btn {
+  margin-right: 6px;
+}

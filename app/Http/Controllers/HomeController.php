@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
+use App\PayAsYouGo;
+
+
 class HomeController extends Controller
 {
     /**
@@ -15,6 +18,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('lang');
     }
 
     /**
@@ -24,6 +28,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+      $data["count"] = PayAsYouGo::all()->count();
+      $data["PayAsYouGo"] = PayAsYouGo::all();
+      return view('home', $data);
     }
 }

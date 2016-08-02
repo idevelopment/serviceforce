@@ -1,41 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
 <div class="page-header">
 <h1>Servers</h1>
 </div>
-<table class="table table-bordered table-hovered">
+<table class="table table-hovered">
 	 <thead>
         <tr>
           <th>Tag</th>
-          <th>Hostname</th>
+          <th>Type</th>
           <th>Status</th>
-          <th>State</th> 
-          <th>created</th> 
-          <th>updated</th>                     
+          <th>State</th>
+          <th>SLA</th> 
+          <th>Created</th> 
+          <th>Updated</th>                     
         </tr>
       </thead>
       <tbody>
-      	<tr class="warning">
-      	 <td><a href="{{ url('servers/display/1') }}">idev001</a></td>
-      	 <td>local.idevelopment.be</td>
-      	 <td>Running</td>
-      	 <td>Provisioned</td>
-      	 <td>2016-05-27 14:23:01</td>
-      	 <td>2016-05-27 14:23:01</td>
-      	 </tr>
-
+      @foreach($servers as $item)
+       @if ($item["serverStatus"] === "Provisioned")
+        <tr class="">
+        @elseif ($item["serverStatus"] === "Maintenance")
         <tr class="danger">
-         <td><a href="#">idev001</a></td>
-         <td>Unknown</td>
-         <td>Running</td>
-         <td>Provisioned</td>
-         <td>2016-05-27 14:23:01</td>
-         <td>2016-05-27 14:23:01</td>
-         </tr>
-
+@else
+        <tr class="warning">
+@endif  
+        <td><a href="{{ url('servers/display') }}/{!! $item["id"] !!}">{!! $item["serverName"] !!}</a></td>
+        <td>{!! $item["serverType"] !!}</td>
+      	 <td>{!! $item["serverStatus"] !!}</td>
+      	 <td>{!! $item["serverState"] !!}</td>
+         <td>{!! $item["sla_id"] !!}</td>
+      	 <td>{!! $item["created_at"] !!}</td>
+      	 <td>{!! $item["updated_at"] !!}</td>
+      	 </tr>
+         @endforeach
       </tbody>
 </table>
-</div>
 @endsection
