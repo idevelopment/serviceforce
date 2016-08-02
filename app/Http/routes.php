@@ -34,6 +34,7 @@ Route::get('/customers/delete/{id}', 'CustomersController@destroy')->name('custo
 Route::get('/servers', 'ServersController@index')->name('servers.index');
 Route::get('/servers/lookup', 'ServersController@getServers')->name('servers.lookup');
 Route::get('/servers/display/{id}', 'ServersController@display')->name('servers.display');
+Route::get('/servers/remove/{id}', 'ServersController@deleteServerQ')->name('servers.deleteQ');
 
 Route::get('/servers/create', 'ServersController@create')->name('servers.create');
 Route::post('/servers/create', 'ServersController@store')->name('servers.create');

@@ -15,7 +15,10 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\ForgeServers::class,
         Commands\OperatingSystems::class,
-        Commands\PayAsYouGo::class
+        Commands\PayAsYouGo::class,
+        Commands\ProvisionServers::class,
+        Commands\CheckServerInstall::class
+
     ];
 
     /**
@@ -26,10 +29,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
         $schedule->command('backup:clean')->daily()->at('01:00');
         $schedule->command('backup:run')->daily()->at('02:00');
         $schedule->command('backup:monitor')->daily()->at('03:00');
+        $schedule->command('provision:servers')->everyMinute()->withoutOverlapping();
+        $schedule->command('check:install')->everyFiveMinutes()->withoutOverlapping();
+
     }
 }

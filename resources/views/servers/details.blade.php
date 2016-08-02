@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="page-header">
-  <h1>Server <small>idev001</small></h1>
 <div class="page-header">
   <h1>Manage server: <small>{!! $server->bareMetalId !!}</small></h1>
   <h4 class="asset-status-label">
@@ -37,10 +35,10 @@
           <li>
            <a href="#provision-server" role="button" data-backdrop="static" data-keyboard="true" data-toggle="modal">
             <i class="fa  fa-recycle"></i> {{ trans('servers.startReinstall') }}</a>
-          </li>          
+          </li>
         </ul>
       </li>
-      
+
         <li>
          <a href="#datatraffic-info">{{ trans('servers.graphs') }}</a>
         </li>
@@ -65,7 +63,7 @@
         <tr>
           <th>{{ trans('servers.customer') }}</th>
           <td><a href="#">iDevelopment</a></td>
-          <td><span></span></td>          
+          <td><span></span></td>
         </tr>
         <tr>
           <th>{{ trans('servers.serverType') }}</th>
@@ -81,15 +79,15 @@
           <th>{{ trans('servers.cabinet') }}</th>
           <td>{!! $server->serverLocation->Cabinet !!}</td>
           <td></td>
-        </tr>        
+        </tr>
         <tr>
           <th>{{ trans('servers.chassisTag') }}</th>
           <td>{!! $server->serverName !!}</td>
           <td>Tag for asset chassis</td>
-        </tr>        
+        </tr>
         <tr class="warning">
           <td><strong>{{ trans('servers.assetStatus') }}</strong></td>
-          <td>New</td>          
+          <td>New</td>
           <td>Asset has been entered into the system</td>
         </tr>
         <tr class="warning">
@@ -101,13 +99,13 @@
           <th>{{ trans('servers.switchportStatus') }}</th>
           <td></td>
           <td></td>
-        </tr>        
+        </tr>
         <tr>
           <th>{{ trans('servers.chassisTag') }}</th>
           <td>{!! $server->serverName !!}</td>
           <td>Tag for asset chassis</td>
         </tr>
-        
+
         <tr>
           <th>{{ trans('servers.totalDisk') }}</th>
           <td></td>
@@ -130,7 +128,7 @@
           <td>2016-05-27 14:23:14</td>
           <td></td>
         </tr>
-                      
+
       </tbody>
     </table>
 
@@ -191,7 +189,7 @@
         </tr>
       </tbody>
     </table>
-     
+
   <h4>Memory <small>Collected Memory Information</small></h4>
     <table class="table table-bordered table-hover table-condensed">
       <thead>
@@ -207,7 +205,7 @@
         </tr>
       </tbody>
 </table>
-  
+
      </div>
      <div role="tabpanel" class="tab-pane" id="software-details">
         <h3>Software details</h3>
@@ -225,18 +223,18 @@
         <th>Control panel</th>
         <td>127.0.0.1</td>
         <td>Plesk 12 - 100 domains (Linux)</td>
-        <td>PLSK.01234567.8910</td>        
-      </tr>  
+        <td>PLSK.01234567.8910</td>
+      </tr>
 
                 <tr>
         <th>Software as a service</th>
         <td>127.0.0.1</td>
         <td>Timecontrol - 50 users</td>
-        <td>-</td>        
+        <td>-</td>
       </tr>
     </tbody>
   </table>
-     </div>     
+     </div>
   </div>
 
    </div>
@@ -326,11 +324,13 @@
 <label for="OperatingSystem" class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4">{{ trans('servers.ReinstallOs') }} <span class="text-danger">*</span> </label>
 <div class="input-group col-lg-8 col-md-8 col-sm-8 col-xs-8">
    <select name="OperatingSystem" id="OperatingSystem" class="form-control">
-    <option value="" selected="selected"></option>
-    @foreach($osList as $item)
-     <option value="{!! $item["id"] !!}">{!! $item["name"] !!}</option>
+     <option value="" selected="selected">-- Please select --</option>
+     @foreach($OperatingSystems as $osItems)
+            @foreach($osItems as $item)
+       <option value="{!! $item['operatingSystem']["id"] !!}">{!! $item['operatingSystem']["name"] !!}</option>
+      @endforeach
     @endforeach
-  </select>
+    </select>
  <div class="input-group-addon">
   <span class="help-inline">
       <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom" title="{{ trans('servers.ReinstallOShelper') }}"></i>
@@ -340,12 +340,12 @@
 </div>
 
     <div class="form-group">
-     <label for="reinstallDescription" class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4">{{ trans('servers.ReinstallDescription') }} <span class="text-danger">*</span></label>   
+     <label for="reinstallDescription" class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4">{{ trans('servers.ReinstallDescription') }} <span class="text-danger">*</span></label>
       <div class="input-group col-lg-8 col-md-8 col-sm-8 col-xs-8">
        <textarea name="reinstallDescription" id="reinstallDescription" class="form-control" rows="3" placeholder="{{trans('servers.ReinstallDescriptionHelper')}}"></textarea>
       </div>
     </div>
-     
+
     </div>
     <div class="modal-footer">
       <div class="btn-group">
@@ -387,9 +387,9 @@ $("#submitReinstall").css({
 "cursor": "default",
 "box-shadow": "none"
 });
- 
+
  alert("Starting provisioning..!!");
- 
+
  });
 });
 </script>

@@ -8,7 +8,7 @@
     @if(Session('message'))
     <div class="alert alert-success">{{ Session('message')}}</div>
     @endif
-    
+
     {!! csrf_field() !!}
 
 
@@ -23,10 +23,10 @@
             <label for="serverPool" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Pool <span class="text-danger">*</span></label>
              <div class="input-group col-lg-8 col-md-8 col-sm-8 col-xs-8">
              <select name="serverPool" id="serverPool" class="form-control">
-              <option value="" selected=""></option>
-              <option value="production">Production</option>
-              <option value="development">Development</option>
-              <option value="customers">Customers</option>
+              <option value="" selected="">-- Please select --</option>
+              <option value="Production">Production</option>
+              <option value="Development">Development</option>
+              <option value="Customers">Customers</option>
               </select>
 
               <div class="input-group-addon">
@@ -39,9 +39,9 @@
 
         <div style="display:none;" id="customer">
            <div class="form-group">
-           <label for="customerID" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Customer</label>
+           <label for="customerID" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Customer <span class="text-danger">*</span></label>
            <div class="input-group col-lg-8 col-md-8 col-sm-9 col-xs-8">
-           <input type="text" name="customerID" id="customerID" class="form-control">
+           <input type="text" name="customerID" id="customerID" placeholder="Fill in the customer id" class="form-control">
               <div class="input-group-addon">
                <span class="help-inline">
                 <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom"  data-container="body" title="Customer number"></i>
@@ -53,7 +53,7 @@
 
         <div style="display:none;" id="localID">
           <div class="form-group">
-           <label for="type" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">User</label>
+           <label for="type" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Employee <span class="text-danger">*</span></label>
            <div class="input-group col-lg-8 col-md-8 col-sm-9 col-xs-8">
            <select name="user" class="form-control">
              @foreach($users as $user)
@@ -70,7 +70,7 @@
         </div>
 
            <div class="form-group">
-           <label for="type" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Server Type</label>
+           <label for="type" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Server Type <span class="text-danger">*</span></label>
            <div class="input-group col-lg-8 col-md-8 col-sm-8 col-xs-8">
              <select name="type" id="type" class="form-control" disabled="">
               <option value="" selected="selected"></option>
@@ -84,6 +84,15 @@
                 <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="What kind of server do you like to request?"></i>
               </span>
              </div>
+            </div>
+          </div>
+
+          <div style="display:none;" id="reason">
+            <div class="form-group">
+             <label for="reason" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Description <span class="text-danger">*</span></label>
+             <div class="input-group col-lg-8 col-md-8 col-sm-9 col-xs-8">
+             <textarea name="reason" placeholder="Why do you need this server?" rows="5" class="form-control"></textarea>
+              </div>
             </div>
           </div>
 
@@ -198,23 +207,26 @@
       });
 
        $('#serverPool').on('change', function () {
-         if (this.value == 'customers') {
+         if (this.value == 'Customers') {
           $("#localID").hide();
            $("#customer").show();
          }
-         else if (this.value == 'production') {
+         else if (this.value == 'Production') {
             $("#customer").hide();
             $("#localID").show();
+            $("#reason").show();
          }
 
-        else if (this.value == 'development') {
+        else if (this.value == 'Development') {
             $("#customer").hide();
             $("#localID").show();
+            $("#reason").show();
          }
          else{
               $("#customer").hide();
               $("#localID").hide();
-             }
+              $("#reason").hide();
+         }
            });
      });
 </script>

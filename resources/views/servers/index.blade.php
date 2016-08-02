@@ -81,7 +81,7 @@
 
 <div class="input-group-addon">
   <span class="help-inline">
-      <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Asset state represents the current operational state of an asset (i.e. new, failed, starting, running)"></i>    
+      <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Asset state represents the current operational state of an asset (i.e. new, failed, starting, running)"></i>
   </span>
 </div>
 </div>
@@ -102,7 +102,7 @@
     <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Type of Asset (Dedicated, Virtual server)"></i>
    </span>
 </div>
-            
+
 </div>
 </div>
 
@@ -146,16 +146,18 @@
   </span>
 </div>
 </div>
-            
-</div>           
+
+</div>
 
 <div class="form-group">
  <label for="OperatingSystem" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">Operating system</label>
   <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
    <select name="OperatingSystem" id="OperatingSystem" class="form-control">
     <option value="" selected="selected"></option>
-    @foreach($osList as $item)
-    <option value="(none)">{!! $item["name"] !!}</option>
+    @foreach($osList as $osItems)
+           @foreach($osItems as $item)
+      <option value="{!! $item['operatingSystem']["id"] !!}">{!! $item['operatingSystem']["name"] !!}</option>
+     @endforeach
     @endforeach
   </select>
 
@@ -165,7 +167,7 @@
     <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Primary functional role of asset"></i>
   </span>
 </div>
-              
+
 </div>
 </div>
 
@@ -190,23 +192,23 @@
     <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Tag for asset chassis"></i>
   </span>
  </div>
-</div>      
 </div>
-            
+</div>
+
 
 <div class="form-group">
 <label for="cabinet" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ trans('servers.cabinet') }}</label>
  <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
- <input type="text" id="cabinet" name="cabinet" class="form-control"> 
+ <input type="text" id="cabinet" name="cabinet" class="form-control">
   <div class="input-group-addon">
   <span class="help-inline">
-    
+
     <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Position of asset in rack"></i>
-    
+
   </span>
-</div>             
 </div>
-            
+</div>
+
 </div>
 
 <div class="form-group">
@@ -226,12 +228,12 @@
   <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
    <select name="BASE_VENDOR" id="BASE_VENDOR" class="form-control">
     <option value="" selected="selected"></option>
-    <option value="(none)">(None)</option>  
+    <option value="(none)">(None)</option>
    </select>
 
   <div class="input-group-addon">
-  <span class="help-inline">   
-    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Who made your spiffy computer?"></i>    
+  <span class="help-inline">
+    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="Who made your spiffy computer?"></i>
   </span>
  </div>
 </div>
@@ -243,7 +245,7 @@
   <div class="input-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
    <input type="text" id="MAC_ADDRESS" placeholder="MAC Address" class="form-control" name="MAC_ADDRESS">
     <div class="input-group-addon">
-     <span class="help-inline">   
+     <span class="help-inline">
       <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"  data-placement="bottom"  data-container="body" title="MAC Address of NIC"></i>
      </span>
     </div>
@@ -264,7 +266,7 @@
         </div>
       </div>
     </div>
-    
+
 </form>
 
 @endsection

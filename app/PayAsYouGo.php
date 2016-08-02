@@ -15,7 +15,7 @@ class PayAsYouGo extends Model
      *
      * @var bool
      */
-    public $timestamps = false;
+    public $timestamps = true;
 
     /**
      * Mass-assign view.
@@ -23,6 +23,6 @@ class PayAsYouGo extends Model
      * @var array
      */
     protected $fillable = [
-        'bareMetalId', 'customerNumber', 'model', 'pricePerGb', 'pricePerHour', 'startedAt', 'destroyedAt'
+        'bareMetalId', 'pool', 'customerNumber', 'model', 'modelLabel', 'osId', 'osLabel', 'pricePerGb', 'pricePerHour', 'startedAt', 'destroyedAt'
     ];
 }

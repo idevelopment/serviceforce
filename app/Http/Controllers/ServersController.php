@@ -15,7 +15,7 @@ use App\AssetStates;
 use App\PayAsYouGo;
 use App\Customers;
 use App\User;
-
+use Mail;
 
 class ServersController extends Controller
 {
@@ -72,9 +72,16 @@ class ServersController extends Controller
 
     public function display($id)
     {
+      // Get all OperatingSystems from the LSW api.
+        $OSpath     = config('ServiceForge.leaseweb.urls.os');
+        $OSclient   = new \GuzzleHttp\Client();
+        $OSresponse = $OSclient->get($OSpath, ['headers' => ['X-Lsw-Auth' => config('ServiceForge.leaseweb.apikey')]]);
+        $OSbody = $OSresponse->getbody();
+        $OSbody->getContents();
+        $data["OperatingSystems"] = json_decode($OSbody, true);
+
     	$relations = ['sla', 'serverLocation', 'hostingPack', 'serverInfo', 'networkInfo'];
     	$data['server'] = BaseServers::with($relations)->find($id);
-        $data["osList"] = OperatingSystems::all();
     	return view('servers.details', $data);
     }
 
@@ -99,9 +106,9 @@ class ServersController extends Controller
         $response = $client->get($path, ['headers' => ['X-Lsw-Auth' => config('ServiceForge.leaseweb.apikey')]]);
         $body = $response->getbody();
         $body->getContents();
-        $data["models"] = json_decode($body, true);
+        $models  = json_decode($body, true);
 
-
+        $data["models"] = array_filter($models);
         $data["customers"]  = Customers::all();
         $data["users"]  = User::all();
         return view('servers.create', $data);
@@ -110,50 +117,56 @@ class ServersController extends Controller
 
     public function store(Request $request)
     {
+      $apiUrl   = 'https://api.leaseweb.com/v1';
 
-        $resource = '/payAsYouGo/bareMetals/instances';
-        $apiKey   = config('ServiceForge.leaseweb.apikey');
-        $apiUrl   = 'https://api.leaseweb.com/v1';
-        $data = array(
-          "model" => $request->input("modelID")
-        );
-        $installData = array("osId" => $request->input("os"));
+      $apiKey   = config('ServiceForge.leaseweb.apikey');
+      $osId = $request->input("os");
 
-        // Request the new pay-as-you-go server;
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $apiUrl . $resource);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-Lsw-Auth: $apiKey"));
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        $output = curl_exec($ch);
-        // Return the json response for the server provisioning.
-        $json = json_decode($output, true);
-        $bareMetalId = $json["bareMetalId"];
 
+      $modelId = $request->input('modelID');
+      //  retrieve the Operating Systems resource
+      $OSresource = "/operatingSystems/$osId";
+
+      $checkOS = curl_init();
+      curl_setopt($checkOS, CURLOPT_URL, $apiUrl . $OSresource);
+      curl_setopt($checkOS, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($checkOS, CURLOPT_HTTPHEADER, array("X-Lsw-Auth: $apiKey"));
+      $osOutput = curl_exec($checkOS);
+      $OperatingSystemData = json_decode($osOutput, true);
+
+      // Get data for the requested model
+      $modelResource = "/payAsYouGo/bareMetals/models/$modelId";
+      $checkModel = curl_init();
+      curl_setopt($checkModel, CURLOPT_URL, $apiUrl . $modelResource);
+      curl_setopt($checkModel, CURLOPT_RETURNTRANSFER, 1);
+      $modelOutput = curl_exec($checkModel);
+      $modelData = json_decode($modelOutput, true);
+
+
+        // Save the new server to the database.
         $PayAsYouGo = new payAsYouGo;
-        $PayAsYouGo->bareMetalId = $json["bareMetalId"];
-        $PayAsYouGo->model = $json["model"];
-        $PayAsYouGo->pricePerGb = $json["pricePerGb"];
-        $PayAsYouGo->pricePerHour = $json["pricePerHour"];
-        $PayAsYouGo->startedAt = $json["startedAt"];
+        $PayAsYouGo->model = $request->input("modelID");
+        $PayAsYouGo->modelLabel = $modelData["case"];
+        $PayAsYouGo->osId = $request->input("os");
+        $PayAsYouGo->osLabel = $OperatingSystemData["operatingSystem"]["name"];
+        $PayAsYouGo->pool = $request->input("serverPool");
+        $PayAsYouGo->status = "new";
+
         $PayAsYouGo->save();
 
 
-        // Install the operating system on the server.
-        if($output){
-          $URLinstall = "/bareMetals/$bareMetalId/install";
-          $install = curl_init();
-          curl_setopt($install, CURLOPT_URL, $apiUrl . $URLinstall);
-          curl_setopt($install, CURLOPT_RETURNTRANSFER, 1);
-          curl_setopt($install, CURLOPT_POSTFIELDS, $installData);
-          curl_setopt($install, CURLOPT_HTTPHEADER, array("X-Lsw-Auth: $apiKey"));
-          curl_setopt($install, CURLOPT_POST, true );
-          curl_setopt($install, CURLOPT_POSTFIELDS, $installData);
-         $executeInstall = curl_exec($install);
-        }
+        $data["PayAsYouGo"] = $PayAsYouGo;
+        Mail::send('emails.serverRequest', $data, function ($message) {
+          $message->from('provisioning@idevelopment.be', 'iDevelopment Provisioning');
+          $message->to('sales@idevelopment.be');
+        });
         return redirect()->back()->with('message', 'Server provisioning has been started');
 
         }
 
+    public function deleteServerQ($id)
+     {
+       PayAsYouGo::destroy($id);
+       return redirect("home");
+     }
 }
