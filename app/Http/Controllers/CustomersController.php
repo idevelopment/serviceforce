@@ -101,7 +101,7 @@ class CustomersController extends Controller
     public function update(Requests\CostumerValidator $input, $id)
     {
         /** @var array $input the input fields out off the forms */
-        $this->dispatch(new SuiteCrmUpdate($input->except('_token')));
+        $this->dispatch(new CrmUpdate($input->except('_token')));
         Customers::find($id)->update($input->except('_token'));
         session()->flash('message', 'Costumer updated.');
         return redirect()->back(302);
@@ -137,7 +137,7 @@ class CustomersController extends Controller
         $data     = $input->all();
         $customer = Customers::create($data)->id;
 
-        $this->dispatch(new SuiteCrmInsert($input->all()));
+        $this->dispatch(new CrmInsert($input->all()));
         $this->dispatch(new MailNewCustomer($data));
         $this->LogInfo('Customer has been registrered to the platform', $customer);
 
@@ -154,7 +154,7 @@ class CustomersController extends Controller
     public function destroy($id)
     {
         Customers::find($id)->delete();
-        $this->dispatch(new SuiteCrmDelete($id));
+        $this->dispatch(new CrmDelete($id));
 
         session()->flash('message', 'The user has been deleted.');
         return redirect()->back(302);

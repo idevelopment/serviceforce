@@ -7,7 +7,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SuiteCrmDelete extends Job implements ShouldQueue
+class CrmUpdate extends Job implements ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
 
@@ -28,5 +28,6 @@ class SuiteCrmDelete extends Job implements ShouldQueue
      */
     public function handle()
     {
+        //
     }
 }
