@@ -12,7 +12,11 @@
 */
 
 
-Route::auth();
+// Auth routes.
+Route::get('login', 'Auth\AuthController@showLoginForm');
+Route::get('logout', 'Auth\AuthController@logout');
+Route::post('login', 'Auth\AuthController@login');
+
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
