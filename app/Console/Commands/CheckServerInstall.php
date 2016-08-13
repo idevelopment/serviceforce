@@ -35,8 +35,6 @@ class CheckServerInstall extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -76,14 +74,11 @@ class CheckServerInstall extends Command
                     ->where('status', 'progress')
                     ->update(['status' => 'completed', 'bareMetalId' => $order->bareMetalId]);
             } else {
-
                 Mail::send('emails.serverInstall', $data, function ($message) {
                     $message->from('provisioning@idevelopment.be', 'iDevelopment Provisioning');
                     $message->subject("Checking installation process - $order->bareMetalId ");
                     $message->to('support@idevelopment.be');
                 });
-
-
             }
         }
     }
