@@ -24,7 +24,7 @@
     <script src="{{asset('js/moment.js')}}"></script>
     <script src="{{asset('js/datetimepicker/bootstrap-datetimepicker.min.js')}}"></script>
 
-    <script src="{{asset('js/steps/jquery.steps.min.js')}}"></script>
+    <script src="{{asset('js/jquery.formtowizard.js')}}"></script>
 
     <script src="{{asset('js/highcharts/highcharts.js')}}"></script>
     <script src="{{asset('js/highcharts/modules/data.js')}}"></script>

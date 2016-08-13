@@ -1,36 +1,33 @@
 @extends('layouts.app')
-
 @section('content')
-<form action="{{ url('servers/create') }}" method="POST" class="form-horizontal">
- <div class="page-header">
-      <h1>Provision a new server</h1>
+<div class="page-header">
+   <h1>Provision a new server</h1>
+</div>
+
+@if(Session('message'))
+<div class="alert alert-success">{{ Session('message')}}</div>
+@endif
+
+@if (count($errors) > 0)
+<div class="alert alert-danger alert-dismissible fade in">
+  <button class="close" aria-label="Close" data-dismiss="alert" type="button">
+    <span aria-hidden="true">×</span>
+  </button>
+  <h4>An error has occurred</h4>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
-    @if(Session('message'))
-    <div class="alert alert-success">{{ Session('message')}}</div>
-    @endif
+@endif
 
-    @if (count($errors) > 0)
-    <div class="alert alert-danger alert-dismissible fade in">
-      <button class="close" aria-label="Close" data-dismiss="alert" type="button">
-        <span aria-hidden="true">×</span>
-      </button>
-      <h4>An error has occurred</h4>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
+<div class="row">
+ <div class="col-sm-12">
+<form id="wizard" action="{{ url('servers/create') }}" method="POST" class="form-horizontal">
+    <fieldset>
     {!! csrf_field() !!}
-
-    <input type="hidden" name="operation" value="and">
-    <div class="row">
-     <div class="col-sm-12">
-      <h3>General data</h3>
-      <section>
-        kmjkjgfdlgj
+    <legend style="display:none">Account information</legend>
        <div class="col-sm-6 col-md-6">
         <div class="row">
           <div class="col-sm-12 col-md-11 col-lg-9">
@@ -162,11 +159,9 @@
           </div>
 
         </div>
-      </section>
-
-
-      <h3 class="{{ $errors->has('modelID') ? ' text-danger' : '' }}">Select server <span class="text-danger">*</span></h3>
-       <section>
+      </fieldset>
+      <fieldset>
+          <legend class="{{ $errors->has('modelID') ? ' text-danger' : '' }}">Select server model</legend>
         <table id="servers" class="table table-bordered table-striped table-condensed">
          <thead>
           <tr>
@@ -199,11 +194,14 @@
       @endforeach
       </tbody>
       </table>
-    </section>
+      <div class="clearfix">
+
+</fieldset>
+</div>
 
       <div class="row">
-            <div class="col-sm-11">
-              <div class="form-group pull-right">
+            <div class="col-sm-12">
+              <div class="form-group">
                 <div class="btn-group">
                   <button type="submit" class="btn btn-primary">Start provisioning</button>
                   <button type="reset" class="btn btn-default">Reset</button>
@@ -250,35 +248,7 @@
 </script>
 <script type="text/javascript">
 $(document).ready(function() {
-$("#wizard").steps({
-  headerTag: 'h3',
-	bodyTag: "section",
-  enableAllSteps: true,
-  enableFinishButton: false,
-  transitionEffect: "slideLeft",
-  labels: {
-						next: "Next <i class=\"fa fa-angle-right\"></i>",
-						previous: "<i class=\"fa fa-angle-left\"></i> Previous",
-						current: "",
-						finish: "Agree"
-					},
-          onStepChanged: function (event, currentIndex, priorIndex) {
-            // adjust wizard height
-            setContentHeight('#wizard')
-          },
-
-onFinished: function (event, currentIndex)
-{
-    alert("Submitted!");
-}
-});
-
-// set initial wizard height
-setContentHeight('#wizard');
-        // rezie wizard on window resize
-        $(window).on('resize',function() {
-          setContentHeight('#wizard_101');
-        })
+$("#wizard").formToWizard({ submitButton: 'SaveAccount' })
 
  $('#startDate').datetimepicker({
   useCurrent: true,
