@@ -12,13 +12,18 @@ class CrmUpdate extends Job implements ShouldQueue
     use InteractsWithQueue, SerializesModels;
 
     /**
-     * Create a new job instance.
+     * The form input
      *
-     * @return void
+     * @var object
      */
-    public function __construct()
+    protected $data;
+
+    /**
+     * Create a new job instance.
+     */
+    public function __construct($input)
     {
-        //
+        $this->data = $input;
     }
 
     /**

@@ -11,14 +11,20 @@ class CrmDelete extends Job implements ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
 
+
+    /**
+     * The form input
+     *
+     * @var object
+     */
+    protected $data;
+
     /**
      * Create a new job instance.
-     *
-     * @return void
      */
-    public function __construct()
+    public function __construct($input)
     {
-        //
+        $this->data = $input;
     }
 
     /**
