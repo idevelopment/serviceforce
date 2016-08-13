@@ -25,6 +25,9 @@ Route::get('/profile', 'ProfileController@index')->name('profile.index');
 Route::post('/profile/update/info', 'ProfileController@storeInformation')->name('profile.update.information');
 Route::post('/profile/update/password', 'ProfileController@updateCredentials')->name('profile.update.credentials');
 
+// Domain routes.
+Route::get('/domains', 'DomainController@index')->name('domains');
+
 // Customers routes
 Route::get('/customers', 'CustomersController@index')->name('customers.index');
 Route::get('/customers/register', 'CustomersController@register')->name('customers.register');
