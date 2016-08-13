@@ -35,8 +35,6 @@ class CheckServerInstall extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -50,6 +48,7 @@ class CheckServerInstall extends Command
      */
     public function handle()
     {
+<<<<<<< HEAD
       $apiKey   = config('ServiceForge.leaseweb.apikey');
       $apiUrl   = 'https://api.leaseweb.com/v1';
 
@@ -99,3 +98,40 @@ class CheckServerInstall extends Command
       }
      }
   }
+=======
+        $apiKey = config('ServiceForge.leaseweb.apikey');
+        $apiUrl = 'https://api.leaseweb.com/v1';
+
+        // Get all servers that need to execute provisioning
+        $PayAsYouGo = Servers::where('status', 'progress')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        foreach ($PayAsYouGo as $order) {
+
+            $serverId = $order->bareMetalId;
+
+            $installResource = "/bareMetals/$serverId/installationStatus";
+
+            $checkInstall = curl_init();
+            curl_setopt($checkInstall, CURLOPT_URL, $apiUrl . $installResource);
+            curl_setopt($checkInstall, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($checkInstall, CURLOPT_HTTPHEADER, array("X-Lsw-Auth: $apiKey"));
+            $verify = curl_exec($checkInstall);
+            $data = json_decode($verify, true);
+
+            if ($data["installationStatus"]["code"] = "1000") {
+                Servers::where('id', $order->id)
+                    ->where('status', 'progress')
+                    ->update(['status' => 'completed', 'bareMetalId' => $order->bareMetalId]);
+            } else {
+                Mail::send('emails.serverInstall', $data, function ($message) {
+                    $message->from('provisioning@idevelopment.be', 'iDevelopment Provisioning');
+                    $message->subject("Checking installation process - $order->bareMetalId ");
+                    $message->to('support@idevelopment.be');
+                });
+            }
+        }
+    }
+}
+>>>>>>> 90a021b03ba38fa9bd2e883150fc7382cfa40b77

@@ -7,18 +7,30 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SuiteCrmUpdate extends Job implements ShouldQueue
+/**
+ * Class SuiteCrmInsert
+ * @package App\Jobs
+ */
+class CrmInsert extends Job implements ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
+
+
+    /**
+     * The form input
+     *
+     * @var object
+     */
+    protected $data;
 
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param array $input the form input
      */
-    public function __construct()
+    public function __construct($input)
     {
-        //
+        $this->data = $input;
     }
 
     /**
@@ -28,6 +40,6 @@ class SuiteCrmUpdate extends Job implements ShouldQueue
      */
     public function handle()
     {
-        //
+       //
     }
 }

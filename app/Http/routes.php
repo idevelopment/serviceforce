@@ -12,7 +12,11 @@
 */
 
 
-Route::auth();
+// Auth routes.
+Route::get('login', 'Auth\AuthController@showLoginForm');
+Route::get('logout', 'Auth\AuthController@logout');
+Route::post('login', 'Auth\AuthController@login');
+
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
@@ -20,6 +24,9 @@ Route::get('/home', 'HomeController@index');
 Route::get('/profile', 'ProfileController@index')->name('profile.index');
 Route::post('/profile/update/info', 'ProfileController@storeInformation')->name('profile.update.information');
 Route::post('/profile/update/password', 'ProfileController@updateCredentials')->name('profile.update.credentials');
+
+// Domain routes.
+Route::get('/domains', 'DomainController@index')->name('domains');
 
 // Customers routes
 Route::get('/customers', 'CustomersController@index')->name('customers.index');
