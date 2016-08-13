@@ -28,7 +28,6 @@
     <input type="hidden" name="operation" value="and">
     <div class="row">
      <div class="col-sm-12">
-       <div id="wizard" class="wizard">
       <h3>General data</h3>
       <section>
         kmjkjgfdlgj
@@ -201,6 +200,16 @@
       </tbody>
       </table>
     </section>
+
+      <div class="row">
+            <div class="col-sm-11">
+              <div class="form-group pull-right">
+                <div class="btn-group">
+                  <button type="submit" class="btn btn-primary">Start provisioning</button>
+                  <button type="reset" class="btn btn-default">Reset</button>
+                </div>
+              </div>
+            </div>
       </div>
     </div>
 
@@ -209,6 +218,10 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+    $('#servers').DataTable(
+  {
+    bFilter: false,
+  });
        $('#serverPool').on('change', function () {
          if (this.value == 'Customers') {
           $("#localID").hide();
