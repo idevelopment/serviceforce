@@ -12,13 +12,23 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap.css')}}">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="{{asset('js/datatables/jquery.dataTables.js')}}"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
+    <script src="{{asset('js/moment.js')}}"></script>
+    <script src="{{asset('js/datetimepicker/bootstrap-datetimepicker.min.js')}}"></script>
+
+    <script src="{{asset('js/steps/jquery.steps.min.js')}}"></script>
+
+    <script src="{{asset('js/highcharts/highcharts.js')}}"></script>
+    <script src="{{asset('js/highcharts/modules/data.js')}}"></script>
+    <script src="{{asset('js/highcharts/modules/exporting.js')}}"></script>
 </head>
  <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -30,7 +40,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ url('/') }}">ServiceForce</a>
+          <a class="navbar-brand" href="{{ url('/') }}"><i class="fa fa-server fa-lg"></i> ServiceForce</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -82,12 +92,13 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-                 @if (Auth::guest())                
+                 @if (Auth::guest())
                     <li><a href="{{ url('/home') }}">Home</a></li>
-                 @else   
+                 @else
                     <li><a href="{{ url('/home') }}">Home</a></li>
-                    <li><a href="{{ url('/customers') }}">Customers</a></li>                    
-                    <li><a href="{{ url('/domains') }}">Domainname assets</a></li>                    
+                    <li><a href="{{ url('/customers') }}">Customers</a></li>
+                    <li><a href="{{ url('/domains') }}">Domainname assets</a></li>
+                    <li><a href="{{ url('/ips') }}">IP assets</a></li>
                     <li><a href="{{ url('/servers') }}">Server assets</a></li>
                     <li><a href="{{ url('/webhosting') }}">Webhosting assets</a></li>
                 @endif

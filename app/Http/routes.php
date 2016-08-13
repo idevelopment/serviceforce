@@ -30,14 +30,28 @@ Route::get('/customers/active/{id}', 'CustomersController@ActivateCustomer')->na
 Route::get('/customers/suspend/{id}', 'CustomersController@SuspendCustomer')->name('customers.suspend');
 Route::get('/customers/delete/{id}', 'CustomersController@destroy')->name('customers.destroy');
 
+
+// Servers routes
+Route::get('/ips', 'IPMController@index')->name('ips.index');
+Route::get('/ips/edit/{id}', 'IPMController@edit')->name('ips.edit');
+Route::post('/ips', 'IPMController@update')->name('ips.update');
+Route::get('/ips/whois/{id}', 'IPMController@whois')->name('ips.whois');
+
+
+
 // Servers routes
 Route::get('/servers', 'ServersController@index')->name('servers.index');
-Route::get('/servers/lookup', 'ServersController@getServers')->name('servers.lookup');
+Route::get('/servers/lookup', 'ServersController@index')->name('servers.lookup');
 Route::get('/servers/display/{id}', 'ServersController@display')->name('servers.display');
-Route::get('/servers/remove/{id}', 'ServersController@deleteServerQ')->name('servers.deleteQ');
+Route::post('/servers/reinstall', 'ServersController@Reinstall')->name('servers.reinstall');
+
+Route::get('/servers/remove/{id}', 'ServersController@deleteServer')->name('servers.delete');
+Route::get('/servers/removeq/{id}', 'ServersController@deleteServerQ')->name('servers.deleteQ');
 
 Route::get('/servers/create', 'ServersController@create')->name('servers.create');
 Route::post('/servers/create', 'ServersController@store')->name('servers.create');
+
+Route::get('/servers/queue', 'ServersController@index')->name('servers.queue');
 
 // Webhosting
 Route::get('/webhosting', 'WebhostingController@index')->name('webhosting.index');

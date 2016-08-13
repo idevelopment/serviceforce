@@ -4,9 +4,9 @@
 
 <div class="login-page">
             <div class="panel panel-color panel-default login-panel">
-                <div class="panel-heading"> 
+                <div class="panel-heading">
                     <h4 class="text-center">Sign in to <strong>ServiceForce</strong></h4>
-                </div> 
+                </div>
 
 
                 <div class="panel-body">
@@ -23,7 +23,7 @@
                       <input type="password" name="password" placeholder="Password" class="form-control">
                      </div>
                     </div>
-                    
+
                     <div class="form-group text-center">
                         <div class="col-xs-12">
                             <button class="btn  btn-default" type="submit">Log In</button>
@@ -34,9 +34,9 @@
 
                         </div>
                     </div>
-                </form> 
-                </div>                                 
-                
+                </form>
+                </div>
+
             </div>
         </div>
 @endsection

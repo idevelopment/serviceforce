@@ -56,7 +56,7 @@ class OperatingSystems extends Command
         {
             foreach($info as $os) {
                 OS::create([
-                    'os_id' => $os['operatingSystem']['id'],
+                    'osId' => $os['operatingSystem']['id'],
                     'name'  => $os['operatingSystem']['name']
                 ]);
             }

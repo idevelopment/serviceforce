@@ -54,15 +54,12 @@ class CheckServerInstall extends Command
       $apiUrl   = 'https://api.leaseweb.com/v1';
 
       // Get all servers that need to execute provisioning
-      $PayAsYouGo = Servers::where('status', 'progress')
-               ->orderBy('id', 'asc')
-               ->get();
+      $PayAsYouGo = Servers::where('status', 'Provisioning')->orderBy('id', 'asc')->get();
 
  foreach($PayAsYouGo as $order){
 
-    $serverId = $order->bareMetalId;
-
-     $installResource = "/bareMetals/$serverId/installationStatus";
+      $serverId = $order->bareMetalId;
+      $installResource = "/bareMetals/$serverId/installationStatus";
 
       $checkInstall = curl_init();
       curl_setopt($checkInstall, CURLOPT_URL, $apiUrl . $installResource);
@@ -70,23 +67,35 @@ class CheckServerInstall extends Command
       curl_setopt($checkInstall, CURLOPT_HTTPHEADER, array("X-Lsw-Auth: $apiKey"));
       $verify = curl_exec($checkInstall);
       $data = json_decode($verify, true);
+      $status = $data["installationStatus"]["description"];
+      print_r($data);
 
-      if($data["installationStatus"]["code"] = "1000"){
-        Servers::where('id', $order->id)
-         ->where('status', 'progress')
-         ->update(['status' => 'completed', 'bareMetalId' => $order->bareMetalId]);
-      }
-      else{
+      if($status == "Installing"){
 
-      Mail::send('emails.serverInstall', $data, function ($message) {
-        $message->from('provisioning@idevelopment.be', 'iDevelopment Provisioning');
-        $message->subject("Checking installation process - $order->bareMetalId ");
-        $message->to('support@idevelopment.be');
+        Mail::send('emails.serverInstall', $data, function ($message) {
+          $message->from('no-reply@idevelopment.be', 'iDevelopment Provisioning');
+          $message->to('sales@idevelopment.be');
+          $message->subject("Installation still running");
+        });
+
+        }else{
+        $UpdateQ = Servers::where('bareMetalId', $order->bareMetalId)
+           ->where('status', 'Provisioning')
+           ->update(['status' => 'Provisioned']);
+
+           BaseServers::where('bareMetalId', $serverId)
+            ->where('serverStatus', 'Provisioning')
+            ->update(['serverStatus' => 'Provisioned', 'serverState' => 'Running']);
+
+            Mail::send('emails.serverInstall', $data, function ($message) {
+              $message->from('no-reply@idevelopment.be', 'iDevelopment Provisioning');
+              $message->to('sales@idevelopment.be');
+              $message->subject("Installation completed");
+            });
+
+          $this->info("The installation process has been completed - $serverId");
+
         }
-      });
-
-
-
+      }
      }
   }
-}
