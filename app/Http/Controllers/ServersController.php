@@ -150,19 +150,11 @@ class ServersController extends Controller
      * Add a new server.
      *
      * @url    POST: servers/create
-     * @param  Request $request
+     * @param  Requests\ServerCreateValidator $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Requests\ServerCreateValidator $request)
     {
-        $this->validate($request, [
-            'serverPool' => 'required',
-            'startDate' => 'required',
-            'modelID' => 'required',
-            'os' => 'required',
-        ]);
-
-
         $apiUrl = env('LEASEWEB_URL');
         $apiKey = config('ServiceForge.leaseweb.apikey');
         $osId = $request->input("os");
