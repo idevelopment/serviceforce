@@ -22,6 +22,9 @@ class IPMController extends Controller
     }
 
     /**
+     * Get the overview
+     *
+     * @url    GET|HEAD: /ips
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
@@ -42,7 +45,34 @@ class IPMController extends Controller
     }
 
     /**
-     * @param $id
+     * Update a resource.
+     *
+     * @url    POST: /ips
+     * @param  int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update($id)
+    {
+        return redirect()->back();
+    }
+
+    /**
+     * Update a resource.
+     *
+     * @url    GET|HEAD: /ips/edit/{id}
+     * @param  int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function edit($id)
+    {
+        return redirect()->back();
+    }
+
+    /**
+     * Check who is who.
+     *
+     * @url    GET|HEAD; /ips/whois/{id}
+     * @param  int $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function whois($id)

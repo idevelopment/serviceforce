@@ -8,10 +8,8 @@ use App\Http\Requests;
 
 class WebhostingController extends Controller
 {
-	/**
+    /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -22,6 +20,7 @@ class WebhostingController extends Controller
     /**
      * Show the webhosting search form.
      *
+     * @url    GET|HEAD: /webhosting
      * @return \Illuminate\Http\Response
      */
 
@@ -33,6 +32,7 @@ class WebhostingController extends Controller
     /**
      * list webhosting accounts.
      *
+     * @url    GET|HEAD: /webhosting/lookup
      * @return \Illuminate\Http\Response
      */
     public function listWebHostingAccounts()
@@ -52,6 +52,7 @@ class WebhostingController extends Controller
     /**
      * Edit webhosting account.
      *
+     * @url    GET|HEAD: /webhosting/manage/name
      * @param  int $id the id for the data record in the database about the webhosting account.     
      * @return \Illuminate\Http\Response
      */
