@@ -2,6 +2,11 @@
 
 use Illuminate\Database\Seeder;
 use App\Customers as Customers;
+use Illuminate\Support\Facades\DB;
+
+/**
+ * Class createCustomers
+ */
 class createCustomers extends Seeder
 {
     /**
@@ -11,7 +16,7 @@ class createCustomers extends Seeder
      */
     public function run()
     {
-             Customers::create(array(
+        $data = array(
         	'company' =>  'iDevelopment',
         	'fname' => 'Demo',
             'name' => 'Customer',
@@ -22,6 +27,9 @@ class createCustomers extends Seeder
             'email' => 'admin@ringme.eu',
             'phone' => '0',
             'mobile' => '0',
-        ));
+        );
+
+        DB::table('customers')->delete();
+        DB::table('customers')->insert($data);
     }
 }
