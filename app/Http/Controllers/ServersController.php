@@ -108,7 +108,11 @@ class ServersController extends Controller
 
         $data["IPoutput"] = json_decode($IPoutput);
 
-        $relations = ['sla', 'serverLocation', 'hostingPack', 'serverInfo', 'networkInfo'];
+        $relations = [
+            'sla', 'serverLocation', 'hostingPack', 'serverInfo',
+            'networkInfo', 'notes.staff'
+        ];
+
         $data['server'] = BaseServers::with($relations)->where('bareMetalId', '=', $id)->first();
         return view('servers.details', $data);
         //  $server = BaseServers::with($relations)->where('bareMetalId','=', $id);

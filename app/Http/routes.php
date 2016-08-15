@@ -28,6 +28,11 @@ Route::post('/profile/update/password', 'ProfileController@updateCredentials')->
 // Domain routes.
 Route::get('/domains', 'DomainController@index')->name('domains');
 
+// Notes routes
+Route::post('/servers/note/{id}', 'ServerNoteController@store')->name('note.store');
+Route::post('/servers/notes/update/{id}', 'ServerNoteController@update')->name('note.update');
+Route::get('/servers/notes/destroy/{sid}/{nid}', 'ServerNoteController@destroy')->name('note.destroy');
+
 // Customers routes
 Route::get('/customers', 'CustomersController@index')->name('customers.index');
 Route::get('/customers/register', 'CustomersController@register')->name('customers.register');
