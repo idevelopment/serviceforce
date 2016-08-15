@@ -1,58 +1,74 @@
 .nav-tabs {
-  border-bottom-color: #ddd;
+  border-bottom-color: $tab-white;
+
+  // .nav-tabs > li
+  > li {
+    background: none;
+    margin: 0 2px -1px 0;
+
+    // .nav-tabs > li > a
+    > a {
+      background: $white-2;
+      border: 1px solid transparent;
+      margin: 0;
+      padding: 8px 10px 7px;
+    }
+  }
+
+  // .nav-tabs > li.active > a
+  li.active > a {
+    border-top-color: transparent;
+    padding-bottom: 10px;
+    position: relative;
+
+    // .nav-tabs > li.active > a:before
+    &:before {
+      background: $navbar-blue;
+      content: '';
+      display: block;
+      height: 2px;
+      left: 0;
+      position: absolute;
+      top: -2px;
+      width: 100%;
+    }
+  }
+
+  // .nav-tabs.nav-justified > li.disabled > a
+  &.nav-justified > li.disabled > a {
+    border-bottom: 1px solid $tab-white;
+  }
+
+  // .nav-tabs.nav-justified > li.active > a
+  &.nav-justified > li.active > a {
+    padding-bottom: 7px;
+  }
 }
-.nav-tabs > li {
-  margin: 0 2px -1px 0;
-  background: none;
-}
-.nav-tabs > li > a {
-  background: #f5f5f5;
-  padding: 8px 10px 7px;
-  margin: 0;
-  border: 1px solid transparent;
-}
+
 .nav-tabs > li > a:hover,
 .nav-tabs > li > a:focus {
+  background: $tab-white2;
   border: 1px solid transparent;
-  background: #e8e8e8;
 }
-.nav-tabs > li.active > a {
-  border-top-color: transparent;
-  position: relative;
-  padding-bottom: 10px;
-}
+
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
   background: $white;
-  border-color: #ddd;
   border-bottom-color: $white;
+  border-color: $tab-white;
 }
-.nav-tabs > li.active > a:before {
-  content: '';
-  display: block;
-  width: 100%;
-  left: 0;
-  top: -2px;
-  height: 2px;
-  background: $navbar-blue;
-  position: absolute;
-}
+
 .nav-tabs > li.disabled > a,
 .nav-tabs > li.disabled > a:hover,
 .nav-tabs > li.disabled > a:focus {
   background: $white;
-  color: #999;
+  color: $gray;
 }
-.nav-tabs.nav-justified > li.active > a {
-  padding-bottom: 7px;
-}
-.nav-tabs.nav-justified > li.disabled > a {
-  border-bottom: 1px solid #ddd;
-}
+
 .tab-content {
-  border-width: 0 1px 1px;
+  border-color: $tab-white;
   border-style: solid;
-  border-color: #ddd;
+  border-width: 0 1px 1px;
   padding: 14px 10px;
 }

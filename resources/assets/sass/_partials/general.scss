@@ -7,15 +7,19 @@ body {
 h1 {
   font: 400 36px / 1.1 "Open Sans", Arial, sans-serif;
 }
+
 h2 {
   font: 400 30px / 1.1 "Open Sans", Arial, sans-serif;
 }
+
 h3 {
   font: 400 26px / 1.1 "Open Sans", Arial, sans-serif;
 }
+
 h4 {
   font: 400 20px / 1.1 "Open Sans", Arial, sans-serif;
 }
+
 h5 {
   font: 400 16px / 1.1 "Open Sans", Arial, sans-serif;
 }
@@ -35,15 +39,14 @@ h5 {
 }
 
 .tab-content {
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    padding: 10px;
+  border-left: 1px solid $tab-white;
+  border-right: 1px solid $tab-white;
+  padding: 10px;
 }
 
 .nav-tabs {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
-
 
 @media (min-width: 768px) {
   .main {
