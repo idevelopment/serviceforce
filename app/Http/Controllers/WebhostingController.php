@@ -9,12 +9,24 @@ use App\Http\Requests;
 class WebhostingController extends Controller
 {
     /**
+     * Plesk config variable
+     *
+     * @var array
+     */
+    protected $pleskConfig;
+
+    /**
      * Create a new controller instance.
      */
     public function __construct()
     {
         $this->middleware('auth');
 		$this->middleware('lang');
+
+        // Plesk config
+        $this->pleskConfig['host']     = env('PLESK_HOST');
+        $this->pleskConfig['username'] = env('PLESK_USER');
+        $this->pleskConfig['password'] = env('PLESK_PASS');
     }
 
     /**
@@ -37,13 +49,7 @@ class WebhostingController extends Controller
      */
     public function listWebHostingAccounts()
     {
-    	$pleskConfig = [
-    		'host'     => env('PLESK_HOST'),
-    		'username' => env('PLESK_USER'),
-    		'password' => env('PLESK_PASS'),
-		];
-    
-      	$request = new \pmill\Plesk\ListSubscriptions($pleskConfig);
+      	$request = new \pmill\Plesk\ListSubscriptions($this->pleskConfig);
     	$data["subscriptions"] = $request->process();
 
     	return view('webhosting/list', $data);
@@ -59,18 +65,12 @@ class WebhostingController extends Controller
 
     public function edit($name)
     {
-    	$pleskConfig = array(
-    		'host'     => env('PLESK_HOST'),
-    		'username' => env('PLESK_USER'),
-    		'password' => env('PLESK_PASS'),
-    		);
-
     	$params = array(
     		'name'   => $name,
     		'domain' => $name,
     	 );
 
-       	$request = new \pmill\Plesk\GetSubscription($pleskConfig, $params);
+       	$request = new \pmill\Plesk\GetSubscription($this->pleskConfig, $params);
        	$mailbox = new \pmill\Plesk\ListEmailAddresses($pleskConfig, $params);
    
     	$data["subscription"] = $request->process();
@@ -86,12 +86,6 @@ class WebhostingController extends Controller
      */
     public function register()
     {
-    	$pleskConfig = array(
-    		'host'     => env('PLESK_HOST'),
-    		'username' => env('PLESK_USER'),
-    		'password' => env('PLESK_PASS'),
-    		);
-
     	$params = array(
     		'domain_name'=>'example.com',
     		'username'=>'username',
@@ -100,7 +94,7 @@ class WebhostingController extends Controller
     		'owner_id'=>0,
     		'service_plan_id'=>0,
     		);
-    	$request = new \pmill\Plesk\CreateSubscription($pleskConfig, $params);
+    	$request = new \pmill\Plesk\CreateSubscription($this->pleskConfig, $params);
     	$info = $request->process();
     	var_dump($info);
     }

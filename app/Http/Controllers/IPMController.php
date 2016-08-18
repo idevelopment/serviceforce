@@ -53,6 +53,7 @@ class IPMController extends Controller
      */
     public function update($id)
     {
+        session()->flash('', '');
         return redirect()->back();
     }
 
