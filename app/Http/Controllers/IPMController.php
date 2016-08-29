@@ -40,4 +40,17 @@ class IPMController extends Controller
 
      return view("ips/whois", $data);
   }
+
+  public function web()
+  {
+    $config = array(
+      'host'     => env('PLESK_HOST'),
+      'username' => env('PLESK_USER'),
+      'password' => env('PLESK_PASS'),
+      );
+
+    $request = new \pmill\Plesk\ListIPAddresses($config);
+    $info = $request->process();
+    var_dump($info);
+  }
 }

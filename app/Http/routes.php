@@ -43,6 +43,8 @@ Route::get('/ips', 'IPMController@index')->name('ips.index');
 Route::get('/ips/edit/{id}', 'IPMController@edit')->name('ips.edit');
 Route::post('/ips', 'IPMController@update')->name('ips.update');
 Route::get('/ips/whois/{id}', 'IPMController@whois')->name('ips.whois');
+Route::get('/ips/web', 'IPMController@web')->name('ips.web');
+
 
 
 
@@ -63,4 +65,6 @@ Route::get('/servers/queue', 'ServersController@index')->name('servers.queue');
 // Webhosting
 Route::get('/webhosting', 'WebhostingController@index')->name('webhosting.index');
 Route::get('/webhosting/lookup', 'WebhostingController@listWebHostingAccounts')->name('webhosting.list');
-Route::get('/webhosting/manage/{name}', 'WebhostingController@edit')->name('webhosting.manage');
+Route::get('/webhosting/manage/{id}', 'WebhostingController@edit')->name('webhosting.manage');
+Route::get('/webhosting/register', 'WebhostingController@index')->name('webhosting.register');
+Route::post('/webhosting/save', 'WebhostingController@save')->name('webhosting.save');
