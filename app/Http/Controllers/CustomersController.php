@@ -34,6 +34,7 @@ class CustomersController extends Controller
     /**
      * The customer index view.
      *
+     * @url    GET|HEAD: /customers
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
@@ -45,6 +46,7 @@ class CustomersController extends Controller
     /**
      * Suspend a customer.
      *
+     * @url    GET|HEAD: customers/suspend/{id}
      * @param  int $id the customer id.
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -63,6 +65,7 @@ class CustomersController extends Controller
     /**
      * Activate a customer.
      *
+     * @url    GET|HEAD /customers/active/{id}
      * @param  int $id the customer id.
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -80,6 +83,7 @@ class CustomersController extends Controller
     /**
      * The customer index view.
      *
+     * @url    GET|HEAD /customers/display/{id}
      * @param  int $id The customer id in the database.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -110,6 +114,7 @@ class CustomersController extends Controller
     /**
      * Register a new customer.
      *
+     * @url    GET|HEAD: /customers/register
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function register()
@@ -121,6 +126,7 @@ class CustomersController extends Controller
     /**
      * Store a new costumer in the database.
      *
+     * @url    POST: customers/register
      * @param  Requests\CostumerValidator $input
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -147,7 +153,8 @@ class CustomersController extends Controller
 
     /**
      * Soft delete a customer in the application.
-     * 
+     *
+     * @url    GET|HEAD /customers/delete/{id}
      * @param  int $id the customer id in the database
      * @return \Illuminate\Http\RedirectResponse
      */

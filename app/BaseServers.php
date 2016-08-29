@@ -76,4 +76,8 @@ class BaseServers extends Model
     {
         return $this->belongsTo('App\NetworkInformation', 'network_informations_id', 'id');
     }
+    public function notes()
+    {
+        return $this->belongsToMany('App\Notes');
+    }
 }

@@ -20,6 +20,14 @@ Route::post('login', 'Auth\AuthController@login');
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
+
 // Profile
 Route::get('/profile', 'ProfileController@index')->name('profile.index');
 Route::post('/profile/update/info', 'ProfileController@storeInformation')->name('profile.update.information');
@@ -27,6 +35,11 @@ Route::post('/profile/update/password', 'ProfileController@updateCredentials')->
 
 // Domain routes.
 Route::get('/domains', 'DomainController@index')->name('domains');
+
+// Notes routes
+Route::post('/servers/note/{id}', 'ServerNoteController@store')->name('note.store');
+Route::post('/servers/notes/update/{id}', 'ServerNoteController@update')->name('note.update');
+Route::get('/servers/notes/destroy/{sid}/{nid}', 'ServerNoteController@destroy')->name('note.destroy');
 
 // Customers routes
 Route::get('/customers', 'CustomersController@index')->name('customers.index');

@@ -88,8 +88,11 @@
   </tr>
   <tr style="height:100px;">
     <th>QR CODE</th>
-    <td></td>
-    <td></td>
+    <td>
+      {{-- Google api because it's to stupid for a local library --}}
+      <img src="https://chart.googleapis.com/chart?chs=100x100&amp;cht=qr&amp;chl=H{{ route('servers.display', ['id' => $server['bareMetalId']]) }}d&amp;choe=UTF-8" alt="server qr code">
+    </td>
+    <td>{{-- Don't need to be filled in. --}}</td>
   </tr>
   <tr>
     <th>{{ trans('servers.dateCreated') }}</th>

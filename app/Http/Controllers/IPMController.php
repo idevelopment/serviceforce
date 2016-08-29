@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+/**
+ * Class IPMController
+ * @package App\Http\Controllers
+ */
 class IPMController extends Controller
 {
   /**
@@ -53,4 +57,5 @@ class IPMController extends Controller
     $info = $request->process();
     var_dump($info);
   }
+
 }

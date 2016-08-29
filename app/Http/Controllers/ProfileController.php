@@ -25,7 +25,8 @@ class ProfileController extends Controller
 
     /**
      * Get the profile settings for the current logged in user.
-     * 
+     *
+     * @url    GET|HEAD: /profile
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
@@ -37,6 +38,7 @@ class ProfileController extends Controller
     /**
      * Update the account information.
      *
+     * @url    POST: /profile/update/info
      * @param  Requests\AccountInfoValidator $input
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -51,6 +53,7 @@ class ProfileController extends Controller
     /**
      * Update the password.
      *
+     * @url    GET|HEAD: profile/update/password
      * @param  Requests\PasswordValidator $input
      * @return \Illuminate\Http\RedirectResponse
      */

@@ -12,6 +12,7 @@ return [
     'logs'              => 'Logs',
     'hardware'          => 'Hardware details',
     'software'          => 'Software',
+    'notes'             => 'Notes',
 
     'actions'           => 'Actions',
     'createNote'        => 'Create note',

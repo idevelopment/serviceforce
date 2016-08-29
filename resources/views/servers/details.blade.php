@@ -73,6 +73,10 @@
       </li>
 
         <li>
+            <a href="#notes" data-toggle="tab">{{ trans('servers.notes') }}</a>
+        </li>
+
+        <li>
          <a href="#datatraffic" data-toggle="tab">{{ trans('servers.graphs') }}</a>
         </li>
      </ul>
@@ -82,6 +86,9 @@
      <div role="tabpanel" class="tab-pane active" id="overview">
       @include('servers/partials/basicData')
      </div>
+        <div role="tabpanel" class="tab-pane" id="notes">
+            @include('servers/partials/noteData')
+        </div>
      <div role="tabpanel" class="tab-pane" id="network-info">
        @include('servers/partials/networkData')
     </div>
@@ -103,6 +110,9 @@
 
  @include('servers/partials/maintenanceModel')
  @include('servers/partials/provisionModel')
+    @include('servers/notes/insert')
+    @include('servers/notes/specific')
+    @include('servers/notes/update')
 </div>
 
 <script type="text/javascript">
