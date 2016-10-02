@@ -19,22 +19,22 @@
       @foreach($subscriptions as $item)
        @if ($item["subscription_status"] === 16)
         <tr class="warning">
-       @else       
+       @else
         <tr class="">
       @endif
-         <td><a href="{{ url('webhosting/manage')}}/{!! $item["name"] !!}">{!! $item["name"] !!}</a></td>
+         <td><a href="{{ url('webhosting/manage')}}/{!! $item["id"] !!}">{!! $item["name"] !!}</a></td>
          <td><a href="#">{!! $item["owner_id"] !!}</a></td>
          <td>
             @if ($item["subscription_status"] === 16)
              Suspended
             @elseif ($item["subscription_status"] === 0)
              Provisionised
-            @else 
+            @else
 
             @endif
             </td>
         <td>{!! $item["created"] !!}</td>
-        <td><a href="{{ url('webhosting/manage')}}/{!! $item["name"] !!}" data-toggle="tooltip" title="Account details" data-placement="bottom"><i class="fa fa-info-circle"></i></a></td>
+        <td><a href="{{ url('webhosting/manage')}}/{!! $item["id"] !!}" data-toggle="tooltip" title="Account details" data-placement="bottom"><i class="fa fa-info-circle"></i></a></td>
       	</tr>
         @endforeach
       </tbody>

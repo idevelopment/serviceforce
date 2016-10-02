@@ -1,7 +1,11 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import '_modules/variables';
 
 @import '_partials/general';
+@import '_partials/buttons';
 @import '_partials/navbar';
 @import '_partials/forms';
 @import '_partials/sidebar';
-
+@import '_partials/tabs';
+@import '_partials/modal';
+@import '_partials/wizard';

@@ -34,6 +34,7 @@ class CustomersController extends Controller
     /**
      * The customer index view.
      *
+     * @url    GET|HEAD: /customers
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
@@ -45,6 +46,7 @@ class CustomersController extends Controller
     /**
      * Suspend a customer.
      *
+     * @url    GET|HEAD: customers/suspend/{id}
      * @param  int $id the customer id.
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -63,6 +65,7 @@ class CustomersController extends Controller
     /**
      * Activate a customer.
      *
+     * @url    GET|HEAD /customers/active/{id}
      * @param  int $id the customer id.
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -80,6 +83,7 @@ class CustomersController extends Controller
     /**
      * The customer index view.
      *
+     * @url    GET|HEAD /customers/display/{id}
      * @param  int $id The customer id in the database.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -101,7 +105,7 @@ class CustomersController extends Controller
     public function update(Requests\CostumerValidator $input, $id)
     {
         /** @var array $input the input fields out off the forms */
-        $this->dispatch(new SuiteCrmUpdate($input->except('_token')));
+        $this->dispatch(new CrmUpdate($input->except('_token')));
         Customers::find($id)->update($input->except('_token'));
         session()->flash('message', 'Costumer updated.');
         return redirect()->back(302);
@@ -110,6 +114,7 @@ class CustomersController extends Controller
     /**
      * Register a new customer.
      *
+     * @url    GET|HEAD: /customers/register
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function register()
@@ -121,6 +126,7 @@ class CustomersController extends Controller
     /**
      * Store a new costumer in the database.
      *
+     * @url    POST: customers/register
      * @param  Requests\CostumerValidator $input
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -137,7 +143,7 @@ class CustomersController extends Controller
         $data     = $input->all();
         $customer = Customers::create($data)->id;
 
-        $this->dispatch(new SuiteCrmInsert($input->all()));
+        $this->dispatch(new CrmInsert($input->all()));
         $this->dispatch(new MailNewCustomer($data));
         $this->LogInfo('Customer has been registrered to the platform', $customer);
 
@@ -147,14 +153,15 @@ class CustomersController extends Controller
 
     /**
      * Soft delete a customer in the application.
-     * 
+     *
+     * @url    GET|HEAD /customers/delete/{id}
      * @param  int $id the customer id in the database
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         Customers::find($id)->delete();
-        $this->dispatch(new SuiteCrmDelete($id));
+        $this->dispatch(new CrmDelete($id));
 
         session()->flash('message', 'The user has been deleted.');
         return redirect()->back(302);

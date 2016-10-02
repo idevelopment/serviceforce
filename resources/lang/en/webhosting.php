@@ -4,19 +4,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Webhosting 
+    | Webhosting
     |--------------------------------------------------------------------------
     |
     | The following language lines are used for the webhosting pages
     |
     */
     'overview'    => 'Overview',
+    'dns'         => 'DNS',
     'databases'   => 'Databases',
-    'mail'        => 'Email addresses',    
-
-    'security'    => 'Security',
+    'mail'        => 'Email addresses',
     'logs'        => 'Logs',
-    'network'     => 'Network',
+    'subdomains'  => 'Subdomains',
+
     'software'    => 'Software',
     'actions'     => 'Actions',
     'suspend'     => 'Suspend account',
@@ -24,6 +24,16 @@ return [
 
     'customer'   => 'Customer',
     'domain'     => 'Domain',
-    'ip'         => 'IP',    
-    'directory'   => 'Directory',    
+    'ip'         => 'IP',
+    'directory'   => 'Directory',
+
+    'ssl'        => 'SSL',
+    'certificateName' => 'Certificate',
+    'cgi'          => 'CGI',
+    'perl'          => 'Perl',
+    'php'          => 'PHP',
+    'phpHandlerType' => 'PHP Handler Type',
+    'python'          => 'Python',
+    'webstat'       => 'Web statistics'
+
     ];

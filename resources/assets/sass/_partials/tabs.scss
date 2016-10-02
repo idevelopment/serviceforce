@@ -1,0 +1,74 @@
+.nav-tabs {
+  border-bottom-color: $tab-white;
+
+  // .nav-tabs > li
+  > li {
+    background: none;
+    margin: 0 2px -1px 0;
+
+    // .nav-tabs > li > a
+    > a {
+      background: $white-2;
+      border: 1px solid transparent;
+      margin: 0;
+      padding: 8px 10px 7px;
+    }
+  }
+
+  // .nav-tabs > li.active > a
+  li.active > a {
+    border-top-color: transparent;
+    padding-bottom: 10px;
+    position: relative;
+
+    // .nav-tabs > li.active > a:before
+    &:before {
+      background: $navbar-blue;
+      content: '';
+      display: block;
+      height: 2px;
+      left: 0;
+      position: absolute;
+      top: -2px;
+      width: 100%;
+    }
+  }
+
+  // .nav-tabs.nav-justified > li.disabled > a
+  &.nav-justified > li.disabled > a {
+    border-bottom: 1px solid $tab-white;
+  }
+
+  // .nav-tabs.nav-justified > li.active > a
+  &.nav-justified > li.active > a {
+    padding-bottom: 7px;
+  }
+}
+
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+  background: $tab-white2;
+  border: 1px solid transparent;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background: $white;
+  border-bottom-color: $white;
+  border-color: $tab-white;
+}
+
+.nav-tabs > li.disabled > a,
+.nav-tabs > li.disabled > a:hover,
+.nav-tabs > li.disabled > a:focus {
+  background: $white;
+  color: $gray;
+}
+
+.tab-content {
+  border-color: $tab-white;
+  border-style: solid;
+  border-width: 0 1px 1px;
+  padding: 14px 10px;
+}

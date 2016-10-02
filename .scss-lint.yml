@@ -4,3 +4,21 @@ eclude: './node_modules/**/*'
 linters:
   SelectorDepth:
     enabled: false
+
+  ImportantRule:
+    enabled: false
+
+  NestingDepth:
+    enabled: false
+
+  QualifyingElement:
+    enabled: false
+
+  VendorPrefix:
+    enabled: false
+
+  PseudoElement:
+    enabled: false
+
+  IdSelector:
+    enabled: false

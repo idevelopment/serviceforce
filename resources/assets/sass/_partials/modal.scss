@@ -1,0 +1,36 @@
+.modal-header {
+  background: $modal-gray;
+  border-color: $modal-gray2;
+  padding: 5px 15px;
+
+  // .modal-header .close
+  .close {
+    margin-top: 3px;
+  }
+}
+
+.modal-title {
+  font-size: 14px;
+  line-height: 26px;
+  text-transform: uppercase;
+}
+
+.modal-footer {
+  padding: 7px 15px 8px;
+}
+
+.modal-content {
+  border: 2px $modal-gray;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.modal-body {
+  padding: 20px 15px;
+}
+
+.modal-open .modal {
+  overflow-y: scroll;
+}

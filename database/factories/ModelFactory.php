@@ -185,3 +185,17 @@ $factory->define(App\PayAsYouGo::class, function(Faker\Generator $faker) {
         'destroyedAt'    => $faker->unixTime,
     ];
 });
+
+$factory->define(App\Notes::class, function(Faker\Generator $faker) {
+    return [
+        'server_id' => function() {
+            return factory(App\Server::class)->create()->id;
+        },
+
+        'user_id'   => function() {
+            return factory(App\User::class)->create()->id;
+        },
+
+        'note'      =>$faker->text(200)
+    ];
+});
